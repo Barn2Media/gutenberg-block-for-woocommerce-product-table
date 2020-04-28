@@ -28,7 +28,7 @@ if ( !config || !('ssh' in config) ) {
 }
 
 sass.compiler = require( 'node-sass' );
-
+/*
 if ( 'privateKey' in config.ssh.barn2 ) {
     config.ssh.barn2.privateKey = fs.readFileSync( config.ssh.barn2.privateKey );
 }
@@ -55,55 +55,16 @@ const sshTesting = new GulpSSH( {
     ignoreErrors: false,
     sshConfig: config.ssh.testing
 } );
+*/
+//const pluginRootPath = config.paths.plugins.base;
+//const pluginArchivePath = config.paths.archive;
 
-const pluginRootPath = config.paths.plugins.base;
-const pluginArchivePath = config.paths.archive;
-
-// Better Recent Comments (BRC)
-var BRC = function( cb ) {
+var WCPTB = function( cb ) {
     setupBuild( {
-        name: 'Better Recent Comments',
-        slug: 'better-recent-comments',
-        libFiles: ['lib/Plugin/Plugin.php', 'lib/Plugin/Simple_Plugin.php', 'lib/Registerable.php']
-    }, cb );
-};
-
-// Posts Table with Search and Sort (PSS)
-var PSS = function( cb ) {
-    setupBuild( {
-        name: 'Posts Table with Search and Sort',
-        slug: 'posts-data-table',
-        libFiles: ['lib/class-wp-settings-api-helper.php', 'lib/Plugin/Plugin.php', 'lib/Plugin/Simple_Plugin.php', 'lib/Registerable.php',
-            'lib/Service.php', 'lib/Service_Provider.php', 'lib/Util.php']
-    }, cb );
-};
-
-// WooCommerce Custom Add to Cart Button (WCB)
-var WCB = function( cb ) {
-    setupBuild( {
-        name: 'WooCommerce Custom Add to Cart Button',
-        slug: 'woo-custom-add-to-cart-button',
-        domain: ['woo-custom-add-to-cart-button', 'woocommerce'],
-        libFiles: ['lib/Plugin/Plugin.php', 'lib/Plugin/Simple_Plugin.php', 'lib/Registerable.php', 'lib/Service.php', 'lib/Service_Provider.php', 'lib/Util.php']
-    }, cb );
-};
-
-// Posts Table Pro (PTP)
-var PTP = function( cb ) {
-    setupBuild( {
-        name: 'Posts Table Pro',
-        slug: 'posts-table-pro',
-        libFiles: ['license/*.php', 'lib/class-html-data-table.php', 'lib/class-wp-settings-api-helper.php', 'lib/class-wp-scoped-hooks.php']
-    }, cb );
-};
-
-// EDD EU VAT (VAT)
-var VAT = function( cb ) {
-    setupBuild( {
-        name: 'EDD EU VAT',
-        slug: 'edd-eu-vat',
-        libFiles: ['license/*.php', 'lib/Plugin/Plugin.php', 'lib/Plugin/Simple_Plugin.php', 'lib/Plugin/EDD_Plugin.php', 'lib/Registerable.php', 'lib/Service.php',
-            'lib/Service_Provider.php', 'lib/Util.php', 'lib/Plugin/Admin/Plugin_Activation_Listener.php']
+        name: 'WooCommerce Product Table Block',
+        slug: 'woocommerce-product-table-block',
+        libFiles: [],
+        domain: 'wpt-block'
     }, cb );
 };
 
@@ -118,7 +79,7 @@ var setupBuild = function( data, cb ) {
     buildPath = fs.realpathSync( process.cwd() );
     libPath = fs.realpathSync( buildPath + '/..' );
 
-    if ( !pluginRootPath ) {
+    /*if ( !pluginRootPath ) {
         cb( new Error( 'No plugin root path defined in config.json' ) );
     } else {
         var pluginBase = pluginRootPath + '/' + pluginSlug;
@@ -130,7 +91,9 @@ var setupBuild = function( data, cb ) {
         log( 'Plugin directory: ' + pluginBase );
         process.chdir( pluginBase );
         cb();
-    }
+    }*/
+
+    cb();
 };
 
 var getVersion = function() {
@@ -156,26 +119,6 @@ var getFilesToDeploy = function() {
         files.push( '!vendor/**' );
     }
     return files;
-};
-
-var refreshLib = function( cb ) {
-    src( buildPath + '/license.txt' ).pipe( dest( '.' ) );
-    var replaceDomain = textDomain;
-
-    // If we have more than one text domain, use the first domain for replacement.
-    if ( Array.isArray( textDomain ) && textDomain.length ) {
-        replaceDomain = textDomain[0];
-    }
-
-    if ( libFiles.length ) {
-        return src( libFiles, { cwd: libPath, base: libPath } )
-            .pipe( debug() )
-            .pipe( replace( /'barn2'|'easy-digital-downloads'/g, "'" + replaceDomain + "'" ) )
-            .pipe( dest( '.' ) );
-    } else {
-        // No library files to copy, so just use error-first callback.
-        cb();
-    }
 };
 
 var sassLib = function( cb ) {
@@ -207,19 +150,20 @@ var scripts = function( cb ) {
     src( ['assets/js/*.min.js', 'assets/js/admin/*.min.js'], { read: false } )
         .pipe( clean() );
 
-    src( 'js/**/*.js' )
-        .pipe( babel( {
-            presets: ['@babel/preset-env', {
-                "useBuiltIns": "entry",
-                "corejs": "3"
-            }]
-        }))
-        .pipe(gulp.dest('assets/js'));
-
     pump( [
         src( ['assets/js/*.js', 'assets/js/admin/*.js', '!**/*.min.js'], { base: './' } ),
         debug(),
-        header( getCopyright(), getCopyrightVars() ),
+        babel( { presets: [
+            [
+                '@babel/preset-env', 
+                {
+                    "targets": {
+                        "esmodules": true,
+                        "ie": "11"
+                    }
+                }
+            ]
+        ] }),
         minify( { compress: { negate_iife: false }, output: { comments: '/^\/*!/' } } ),
         rename( { suffix: '.min' } ),
         dest( '.' )
@@ -235,8 +179,7 @@ var minifyCss = function( cb ) {
         // Only process CSS in top-level CSS folder - some plugins put vendor CSS in subfolders (e.g. assets/css/datatables/)
         src( ['assets/css/*.css', 'assets/css/admin/*.css', '!**/*.min.css'], { base: './' } ),
         debug(),
-        header( getCopyright( ), getCopyrightVars() ),
-        cleancss( { compatibility: 'ie10' } ),
+        cleancss( { compatibility: 'ie11' } ),
         rename( { suffix: '.min' } ),
         dest( '.' )
     ], cb );
@@ -334,7 +277,7 @@ var barn2 = function( cb ) {
     }
 };
 
-var build = series( parallel( refreshLib, scripts, styles, lint ), checkTranslations );
+var build = series( WCPTB, parallel( scripts, styles ), checkTranslations );
 var archive = series( createZipFile, copyToArchive );
 var release = series( build, parallel( demo, pluginTesting, archive, readme ) );
 var freePluginRelease = series( build, parallel( pluginTesting, archive ) );
@@ -342,7 +285,7 @@ var freePluginRelease = series( build, parallel( pluginTesting, archive ) );
 //var updateDemo = series( build, demo );
 var updatePluginTesting = series( build, pluginTesting );
 
-var ptpBuild = series( parallel( refreshLib, lint ), checkTranslations );
+var ptpBuild = series( parallel( lint ), checkTranslations );
 var ptpRelease = series( ptpBuild, parallel( demo, pluginTesting, archive, readme ) );
 
 var test = function( cb ) {
@@ -352,34 +295,10 @@ var test = function( cb ) {
 
 module.exports = {
     default: test,
-
-    Better_Recent_Comments_build: series( BRC, build ),
-    Better_Recent_Comments_lib: series( BRC, refreshLib ),
-    Better_Recent_Comments_testing: series( BRC, updatePluginTesting ),
-    Better_Recent_Comments_release: series( BRC, freePluginRelease ),
-
-    Posts_Table_Search_Sort_build: series( PSS, build ),
-    Posts_Table_Search_Sort_lib: series( PSS, refreshLib ),
-    Posts_Table_Search_Sort_testing: series( PSS, updatePluginTesting ),
-    Posts_Table_Search_Sort_release: series( PSS, freePluginRelease ),
-
-    WC_Custom_Cart_Button_build: series( WCB, build ),
-    WC_Custom_Cart_Button_lib: series( WCB, refreshLib ),
-    WC_Custom_Cart_Button_testing: series( WCB, updatePluginTesting ),
-    WC_Custom_Cart_Button_release: series( WCB, freePluginRelease ),
-
-    EDD_EU_VAT_build: series( VAT, build ),
-    EDD_EU_VAT_zip: series( VAT, build, createZipFile ),
-    EDD_EU_VAT_lib: series( VAT, refreshLib ),
-    EDD_EU_VAT_testing: series( VAT, updatePluginTesting ),
-    EDD_EU_VAT_release: series( VAT, release, barn2 ),
-
-    Posts_Table_Pro_build: series( PTP, ptpBuild ),
-    Posts_Table_Pro_zip: series( PTP, ptpBuild, createZipFile ),
-    Posts_Table_Pro_lib: series( PTP, refreshLib ),
-    Posts_Table_Pro_testing: series( PTP, updatePluginTesting ),
-    Posts_Table_Pro_release: series( PTP, ptpRelease, barn2 )
-
+    setup: WCPTB,
+    build: build,
+    watch: () => {
+        watch( 'assets/scss/*.scss', compileSass );
+        watch( 'assets/js/*.js', compileScripts );
+    }
 };
-
-
