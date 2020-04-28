@@ -58,14 +58,14 @@ class Block {
 		
 		wp_register_style(
 			"barn2-wc-product-table-block",
-			Plugin::$assets_uri . "assets/css/editor.min.css",
+			Plugin::$assets_uri . "css/editor.min.css",
 			array(),
 			Plugin::$assets_version
 		);
 
 		wp_register_script(
 			"barn2-wc-product-table-block",
-			Plugin::$assets_uri . "assets/js/editor.min.js",
+			Plugin::$assets_uri . "js/editor.min.js",
 			array(),
 			Plugin::$assets_version
 		);
