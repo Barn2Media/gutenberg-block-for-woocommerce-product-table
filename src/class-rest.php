@@ -10,6 +10,9 @@
 
 namespace Barn2\Plugin\WC_Product_Table_Block;
 
+use Barn2\Plugin\WC_Product_Table\Table_Shortcode as Table_Shortcode;
+use Barn2\Plugin\WC_Product_Table\Table_Factory as Table_Factory;
+
 /**
  * The Gutenberg block class.
  */
@@ -56,8 +59,44 @@ class Rest {
 	 */
 	public function install() {
 
+		register_rest_route( 'wc-product-table/v1', 'count', array(
+			'methods'  => 'POST',
+			'callback' => array( $this, 'get_product_count' ),
+			'permissions_callback' => function() {
+				return current_user_can( 'edit_page' );
+			},
+		) );
+
+	}
+
+	/**
+	 * Gets a product count from WC Product Table based on attributes passed
+	 */
+	public function get_product_count( $request ) {
+
+		$attributes = $request->get_param( 'attrs' );
+
+		$args = [];
+
+		if ( ! empty( $attributes['columns'] && is_array( $attributes['columns'] ) ) ) {
+			$args['columns'] = implode( ',', $attributes['columns'] );
+		}
+
+		if ( ! empty( $attributes['filters'] && is_array( $attributes['filters'] ) ) ) {
+			foreach ( $attributes['filters'] as $filter ) {
+				$args[ $filter['key'] ] = $filter['value'];
+			}
+		}
+
+		$args = shortcode_atts( \WC_Product_Table_Args::get_defaults(), $args, Table_Shortcode::SHORTCODE );
+
+		$table = Table_Factory::create( $args );
+		$data = $table->get_data( 'array' );
+		
+		return [ 'args' => $args, 'count' => count( $data ) ];
+
 	}
 
 }
 
-add_action( 'barn2_wcptb_installed', array( 'Barn2\Plugin\WC_Product_Table_Block\Rest', 'init' ) );
+add_action( 'rest_api_init', array( 'Barn2\Plugin\WC_Product_Table_Block\Rest', 'init' ) );

@@ -1,7 +1,7 @@
 /**
  * Deprecated - replaced by gulpfile-common.js
  */
-const { src, dest, series, parallel } = require( 'gulp' );
+const { src, dest, series, parallel, watch } = require( 'gulp' );
 
 const config = require( './config.json' ),
     pump = require( 'pump' ),
@@ -22,6 +22,7 @@ const config = require( './config.json' ),
     postcss = require( 'gulp-postcss' ),
     autoprefixer = require( 'autoprefixer' ),
     babel = require('gulp-babel');
+
 
 if ( !config || !('ssh' in config) ) {
     throw new Error( "No config file found" );
@@ -164,7 +165,7 @@ var scripts = function( cb ) {
                 }
             ]
         ] }),
-        minify( { compress: { negate_iife: false }, output: { comments: '/^\/*!/' } } ),
+        //minify( { compress: { negate_iife: false }, output: { comments: '/^\/*!/' } } ),
         rename( { suffix: '.min' } ),
         dest( '.' )
     ], cb );
@@ -298,7 +299,7 @@ module.exports = {
     setup: WCPTB,
     build: build,
     watch: () => {
-        watch( 'assets/scss/*.scss', compileSass );
-        watch( 'assets/js/*.js', compileScripts );
+        watch( 'assets/scss/*.scss', styles );
+        watch( [ 'assets/js/*.js', '!**/*.min.js' ], scripts );
     }
 };
