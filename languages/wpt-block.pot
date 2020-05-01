@@ -1,0 +1,272 @@
+# Copyright (C) 2020 Barn2 Plugins
+# This file is distributed under the GNU General Public License v3.0.
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Product Table Block 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-product-table-block\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-05-01T14:04:40+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0-alpha\n"
+"X-Domain: wpt-block\n"
+
+#. Plugin Name of the plugin
+msgid "WooCommerce Product Table Block"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Integrate the WooCommerce Product Table plugin from a WordPress Editor block interface."
+msgstr ""
+
+#. Author of the plugin
+msgid "Barn2 Plugins"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://barn2.co.uk"
+msgstr ""
+
+#: src/class-block.php:168
+msgid "ID"
+msgstr ""
+
+#: src/class-block.php:169
+msgid "SKU"
+msgstr ""
+
+#: src/class-block.php:170
+msgid "Name"
+msgstr ""
+
+#: src/class-block.php:171
+msgid "Description"
+msgstr ""
+
+#: src/class-block.php:172
+msgid "Summary"
+msgstr ""
+
+#: src/class-block.php:173
+msgid "Date"
+msgstr ""
+
+#: src/class-block.php:174
+msgid "Categories"
+msgstr ""
+
+#: src/class-block.php:175
+msgid "Tags"
+msgstr ""
+
+#: src/class-block.php:176
+msgid "Image"
+msgstr ""
+
+#: src/class-block.php:177
+msgid "Stock"
+msgstr ""
+
+#: src/class-block.php:178
+msgid "Reviews"
+msgstr ""
+
+#: src/class-block.php:179
+msgid "Weight"
+msgstr ""
+
+#: src/class-block.php:180
+msgid "Dimensions"
+msgstr ""
+
+#: src/class-block.php:181
+msgid "Price"
+msgstr ""
+
+#: src/class-block.php:182
+msgid "Buy"
+msgstr ""
+
+#: src/class-block.php:183
+msgid "Details"
+msgstr ""
+
+#: src/class-block.php:185
+msgid "Product Attribute"
+msgstr ""
+
+#: src/class-block.php:188
+msgid "Custom Field Value"
+msgstr ""
+
+#: src/class-block.php:188
+msgid "Enter a customer meta key"
+msgstr ""
+
+#: src/class-block.php:189
+msgid "Custom Taxonomy"
+msgstr ""
+
+#: src/class-block.php:189
+msgid "Enter a taxonomy name"
+msgstr ""
+
+#: src/class-plugin.php:136
+msgid "PHP must be running on version 5.6 or above to use this plugin."
+msgstr ""
+
+#: src/class-plugin.php:140
+msgid "This plugin requires WordPress 5.3 or above"
+msgstr ""
+
+#: src/class-plugin.php:144
+msgid "This plugin requires WooCommerce to be active"
+msgstr ""
+
+#: src/class-plugin.php:148
+msgid "This plugin requires the WooCommerce Product Table plugin to be active"
+msgstr ""
+
+#: src/class-plugin.php:156
+msgid "The WooCommerce Product Table Block plugin is active but not functioning!"
+msgstr ""
+
+#: assets/js/editor.js:73
+msgid "Custom Parameters"
+msgstr ""
+
+#: assets/js/product-selection.js:90
+msgid "(Select a product option)"
+msgstr ""
+
+#: assets/js/product-selection.js:121
+msgid "(Select a value)"
+msgstr ""
+
+#: assets/js/product-selection.js:434
+msgid "Select Products"
+msgstr ""
+
+#: assets/js/product-selection.js:496
+#: assets/js/table-columns.js:337
+msgid "Add"
+msgstr ""
+
+#: assets/js/product-selection.js:502
+msgid "Match all"
+msgstr ""
+
+#: assets/js/product-selection.js:518
+#: assets/js/table-columns.js:285
+msgid "Save"
+msgstr ""
+
+#: assets/js/settings-panel.js:53
+msgid "Additional Settings"
+msgstr ""
+
+#: assets/js/settings-panel.js:62
+msgid "Add to Cart Column"
+msgstr ""
+
+#: assets/js/settings-panel.js:67
+msgid "Add to Cart Button"
+msgstr ""
+
+#: assets/js/settings-panel.js:70
+#: assets/js/settings-panel.js:86
+#: assets/js/settings-panel.js:101
+#: assets/js/settings-panel.js:122
+msgid "(Use global option)"
+msgstr ""
+
+#: assets/js/settings-panel.js:71
+msgid "Button"
+msgstr ""
+
+#: assets/js/settings-panel.js:72
+msgid "Checkbox"
+msgstr ""
+
+#: assets/js/settings-panel.js:73
+msgid "Button and Checkbox"
+msgstr ""
+
+#: assets/js/settings-panel.js:83
+msgid "Quantities"
+msgstr ""
+
+#: assets/js/settings-panel.js:87
+msgid "Show quantity selectors in the Add to Cart column"
+msgstr ""
+
+#: assets/js/settings-panel.js:88
+msgid "Do not show quantity selectors"
+msgstr ""
+
+#: assets/js/settings-panel.js:98
+msgid "Variations"
+msgstr ""
+
+#: assets/js/settings-panel.js:102
+msgid "Link to product page"
+msgstr ""
+
+#: assets/js/settings-panel.js:103
+msgid "Dropdown lists in add to cart column"
+msgstr ""
+
+#: assets/js/settings-panel.js:104
+msgid "Separate rows in table (one per variation)"
+msgstr ""
+
+#: assets/js/settings-panel.js:114
+msgid "Table Controls"
+msgstr ""
+
+#: assets/js/settings-panel.js:119
+msgid "Product Filters"
+msgstr ""
+
+#: assets/js/settings-panel.js:123
+msgid "Disabled"
+msgstr ""
+
+#: assets/js/settings-panel.js:124
+msgid "Show based on columns in the table"
+msgstr ""
+
+#: assets/js/settings-panel.js:125
+msgid "Custom"
+msgstr ""
+
+#: assets/js/settings-panel.js:145
+msgid "Custom Product Filters"
+msgstr ""
+
+#: assets/js/table-columns.js:61
+msgid "(Select a column to add)"
+msgstr ""
+
+#: assets/js/table-columns.js:82
+msgid "(Select an attribute)"
+msgstr ""
+
+#: assets/js/table-columns.js:273
+msgid "Modify Table Columns"
+msgstr ""
+
+#: assets/js/table-columns.js:294
+msgid "(Using global options)"
+msgstr ""
+
+#: assets/js/table-columns.js:351
+msgid "Customize Columns"
+msgstr ""

@@ -76,6 +76,8 @@ class Plugin {
 			return;
 		}
 
+		load_plugin_textdomain( 'wpt-block', '', basename( dirname( PLUGIN_FILE ) ) . '/languages/' );
+
 		self::$assets_uri     = plugins_url( 'assets/', PLUGIN_FILE );
 		self::$assets_version = WP_DEBUG ? time() : PLUGIN_VERSION;
 
