@@ -111,7 +111,10 @@ class Block {
 
 		$defaults = \WCPT_Settings::get_setting_table_defaults();
 		if ( empty( $defaults['columns'] ) ) {
-			$defaults['columns'] = explode( ',', \WC_Product_Table_Args::$default_args['columns'] );
+			$defaults['columns'] = \WC_Product_Table_Args::$default_args['columns'];
+		}
+		if ( ! empty( $defaults['columns'] ) ) {
+			$defaults['columns'] = explode( ',', $defaults['columns'] );
 			foreach ( $defaults['columns'] as &$column ) {
 				$column = trim( $column );
 			}
