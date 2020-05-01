@@ -26,8 +26,6 @@
 			settings[setting.key] = setting.value;
 		}
 
-		console.log( settings );
-
 		let changeSetting = ( key, value ) => {
 			settings[key] = value;
 			let newSettings = [];

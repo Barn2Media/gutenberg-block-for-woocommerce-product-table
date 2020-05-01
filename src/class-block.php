@@ -74,7 +74,7 @@ class Block {
 			'draggable-sortable',
 			Plugin::$assets_uri . 'js/sortable.min.js',
 			array(),
-			'1.0.0-beta.8',
+			'1.0.0-beta.8'
 		);
 
 		wp_register_script(
@@ -165,22 +165,22 @@ class Block {
 			self::$column_defaults = apply_filters(
 				'wc_product_table_column_defaults',
 				array(
-					'id'                => array( 'heading' => __( 'ID', 'woocommerce-product-table' ), 'priority' => 8 ),
-					'sku'               => array( 'heading' => __( 'SKU', 'woocommerce-product-table' ), 'priority' => 6 ),
-					'name'              => array( 'heading' => __( 'Name', 'woocommerce-product-table' ), 'priority' => 1 ),
-					'description'       => array( 'heading' => __( 'Description', 'woocommerce-product-table' ), 'priority' => 12 ),
-					'short-description' => array( 'heading' => __( 'Summary', 'woocommerce-product-table' ), 'priority' => 11 ),
-					'date'              => array( 'heading' => __( 'Date', 'woocommerce-product-table' ), 'priority' => 14 ),
-					'categories'        => array( 'heading' => __( 'Categories', 'woocommerce-product-table' ), 'priority' => 9 ),
-					'tags'              => array( 'heading' => __( 'Tags', 'woocommerce-product-table' ), 'priority' => 10 ),
-					'image'             => array( 'heading' => __( 'Image', 'woocommerce-product-table' ), 'priority' => 4 ),
-					'stock'             => array( 'heading' => __( 'Stock', 'woocommerce-product-table' ), 'priority' => 7 ),
-					'reviews'           => array( 'heading' => __( 'Reviews', 'woocommerce-product-table' ), 'priority' => 13 ),
-					'weight'            => array( 'heading' => __( 'Weight', 'woocommerce-product-table' ), 'priority' => 15 ),
-					'dimensions'        => array( 'heading' => __( 'Dimensions', 'woocommerce-product-table' ), 'priority' => 16 ),
-					'price'             => array( 'heading' => __( 'Price', 'woocommerce-product-table' ), 'priority' => 3 ),
-					'add-to-cart'       => array( 'heading' => __( 'Buy', 'woocommerce-product-table' ), 'priority' => 2 ),
-					'button'            => array( 'heading' => __( 'Details', 'woocommerce-product-table' ), 'priority' => 5 ),
+					'id'                => array( 'heading' => __( 'ID', 'wpt-block' ), 'priority' => 8 ),
+					'sku'               => array( 'heading' => __( 'SKU', 'wpt-block' ), 'priority' => 6 ),
+					'name'              => array( 'heading' => __( 'Name', 'wpt-block' ), 'priority' => 1 ),
+					'description'       => array( 'heading' => __( 'Description', 'wpt-block' ), 'priority' => 12 ),
+					'short-description' => array( 'heading' => __( 'Summary', 'wpt-block' ), 'priority' => 11 ),
+					'date'              => array( 'heading' => __( 'Date', 'wpt-block' ), 'priority' => 14 ),
+					'categories'        => array( 'heading' => __( 'Categories', 'wpt-block' ), 'priority' => 9 ),
+					'tags'              => array( 'heading' => __( 'Tags', 'wpt-block' ), 'priority' => 10 ),
+					'image'             => array( 'heading' => __( 'Image', 'wpt-block' ), 'priority' => 4 ),
+					'stock'             => array( 'heading' => __( 'Stock', 'wpt-block' ), 'priority' => 7 ),
+					'reviews'           => array( 'heading' => __( 'Reviews', 'wpt-block' ), 'priority' => 13 ),
+					'weight'            => array( 'heading' => __( 'Weight', 'wpt-block' ), 'priority' => 15 ),
+					'dimensions'        => array( 'heading' => __( 'Dimensions', 'wpt-block' ), 'priority' => 16 ),
+					'price'             => array( 'heading' => __( 'Price', 'wpt-block' ), 'priority' => 3 ),
+					'add-to-cart'       => array( 'heading' => __( 'Buy', 'wpt-block' ), 'priority' => 2 ),
+					'button'            => array( 'heading' => __( 'Details', 'wpt-block' ), 'priority' => 5 ),
 					'att'               => array( 
 						'heading' => __( 'Product Attribute', 'wpt-block' ), 
 						'values'  => wc_get_attribute_taxonomies(),

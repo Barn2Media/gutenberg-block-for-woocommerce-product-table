@@ -100,7 +100,7 @@ class Plugin {
 	 * Checks to ensure the server PHP version is compatible with this plugin
 	 */
 	public function is_php_version_safe() {
-		return version_compare( PHP_VERSION, '7.1.0', '>=' );
+		return version_compare( PHP_VERSION, '5.6.0', '>=' );
 	}
 
 	/**
@@ -122,7 +122,7 @@ class Plugin {
 	 * Checks to ensure WooCommerce Product Table plugin is active
 	 */
 	public function is_wpt_safe() {
-		return function_exists( 'Barn2\Plugin\WC_Product_Table\wpt' );
+		return class_exists( 'WC_Product_Table_Plugin' );
 	}
 
 	/**
@@ -133,7 +133,7 @@ class Plugin {
 		$message = '';
 
 		if ( ! $this->is_php_version_safe() ) {
-			$messages .= '<li>' . esc_html( __( 'PHP must be running on version 7.1 or above to use this plugin.', 'wpt-block' ) ) . '</li>';
+			$messages .= '<li>' . esc_html( __( 'PHP must be running on version 5.6 or above to use this plugin.', 'wpt-block' ) ) . '</li>';
 		}
 
 		if ( ! $this->is_wordpress_safe() ) {

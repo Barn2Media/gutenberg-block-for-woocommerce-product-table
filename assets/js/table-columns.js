@@ -40,18 +40,14 @@
 
 	const getTableColumnOrder = ( container ) => {
 
-		console.log( container );
 
 		let newColumnOrder = [];
 		let columnsSelected = container.querySelectorAll( 'li' );
 
-		console.log( columnsSelected );
 
 		for( let i = 0; i < columnsSelected.length; i += 1 ) {
 			newColumnOrder.push( columnsSelected[i].dataset.slug );
 		}
-
-		console.log( newColumnOrder );
 
 		return newColumnOrder;
 	}
@@ -86,7 +82,7 @@
 				__( '(Select an attribute)', 'wpt-block' )
 			)
 		];
-		console.log( settings.columnLabels.att.values );
+
 		for ( let index in settings.columnLabels.att.values ) {
 			let attr = settings.columnLabels.att.values[index];
 			options.push( el(
@@ -335,7 +331,6 @@
 								columns: newColumns
 							} );
 
-							console.log( newColumns );
 							setState( { columnsHaveChanged: true, newColumns } );
 						},
 					},
