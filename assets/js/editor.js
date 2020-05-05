@@ -8,7 +8,7 @@
 		RawHTML
 	} = wp.element;
 	const { InspectorControls } = wp.blockEditor;
-	const { PanelBody } = wp.components;
+	const { PanelBody, Icon } = wp.components;
 
 	const { ProductTableColumns, ProductSelection, SettingsPanel } = ptbComponents;
 
@@ -68,44 +68,6 @@
 						null,
 						[
 							el(
-								PanelBody,
-								{
-									title: __( 'Custom Parameters', 'wpt-block' ),
-								},
-								[]
-							),
-						]
-					),
-					el(
-						'div',
-						{
-							className: 'barn2-wc-product-table-block',
-						},
-						[
-							//el( 'h2', {}, 'Barn2 WooCommerce Product Table Block' ),
-							el(
-								ProductTableColumns,
-								{
-									columns: attributes.columns,
-									onChange: ( newColumns ) => {
-										//console.log( changed );
-										setAttributes( { columns: newColumns } );
-									}
-								}
-							),
-							el(
-								ProductSelection,
-								{
-									columns: attributes.columns,
-									onChange: ( newFilters ) => {
-										//console.log( changed );
-										setAttributes( { filters: newFilters } );
-									},
-									attributes: attributes,
-									ref: productPreviewRef
-								}
-							),
-							el(
 								SettingsPanel,
 								{
 									onChange: ( newSettings ) => {
@@ -114,6 +76,55 @@
 									},
 									attributes
 								}
+							),
+						]
+					),
+					el(
+						'div',
+						{ className: 'components-placeholder barn2-wc-product-table-block' },
+						[
+							el(
+								'div',
+								{ className: 'components-placeholder__label' },
+								[
+									el( Icon, { icon: tableIcon, alt: '' } ),
+									__( 'Product Table', 'wpt-block' )
+								]
+							),
+							el(
+								'div',
+								{ className: 'components-placeholder__fieldset' },
+								[
+									__( 'Lists products in a table view using the WooCommerce Product Table plugin.', 'wpt-block' ),
+									el(
+										'div',
+										{ className: 'barn2-wc-product-table-block__options' },
+										[
+											el(
+												ProductTableColumns,
+												{
+													columns: attributes.columns,
+													saveColumns: ( newColumns ) => {
+														//console.log( changed );
+														setAttributes( { columns: newColumns } );
+													}
+												}
+											),
+											el(
+												ProductSelection,
+												{
+													columns: attributes.columns,
+													onChange: ( newFilters ) => {
+														//console.log( changed );
+														setAttributes( { filters: newFilters } );
+													},
+													attributes: attributes,
+													ref: productPreviewRef
+												}
+											)
+										]
+									)
+								]
 							)
 						]
 					)

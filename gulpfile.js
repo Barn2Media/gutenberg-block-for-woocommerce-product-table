@@ -165,7 +165,7 @@ var scripts = function( cb ) {
                 }
             ]
         ] }),
-        minify( { compress: { negate_iife: false }, output: { comments: '/^\/*!/' } } ),
+        //minify( { compress: { negate_iife: false }, output: { comments: '/^\/*!/' } } ),
         rename( { suffix: '.min' } ),
         dest( '.' )
     ], cb );

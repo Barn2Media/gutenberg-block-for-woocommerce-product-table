@@ -3,7 +3,7 @@
 
 	const { __ } = wp.i18n;
 	const { createElement } = wp.element;
-	const { Button, IconButton } = wp.components;
+	const { Button, IconButton, Icon } = wp.components;
 
 	const { withState } = wp.compose;
 
@@ -26,6 +26,22 @@
 				d: "M12,2C6.486,2,2,6.486,2,12s4.486,10,10,10s10-4.486,10-10S17.514,2,12,2z M16.207,14.793l-1.414,1.414L12,13.414 l-2.793,2.793l-1.414-1.414L10.586,12L7.793,9.207l1.414-1.414L12,10.586l2.793-2.793l1.414,1.414L13.414,12L16.207,14.793z"
 			}
 		)
+	);
+
+	const reorderIcon = el(
+		'svg',
+		{
+			xmlns: "http://www.w3.org/2000/svg",
+			width: 20,
+			height: 24,
+			viewBox: "0 0 20 24"
+		},
+		el( 'circle', { cx: '5.5', cy: '4.5', r: '2.5' } ),
+		el( 'circle', { cx: '5.5', cy: '11.5', r: '2.5' } ),
+		el( 'circle', { cx: '14.5', cy: '11.5', r: '2.5' } ),
+		el( 'circle', { cx: '5.5', cy: '18.5', r: '2.5' } ),
+		el( 'circle', { cx: '14.5', cy: '18.5', r: '2.5' } ),
+		el( 'circle', { cx: '14.5', cy: '4.5', r: '2.5' } )
 	);
 
 	const getTableColumnLabel = ( type ) => {
@@ -58,7 +74,7 @@
 			el(
 				'option',
 				{ value: '', key: 0 },
-				__( '(Select a column to add)', 'wpt-block' )
+				__( '(Select a table column to add)', 'wpt-block' )
 			)
 		];
 		for ( var slug in settings.columnLabels ) {
@@ -162,11 +178,22 @@
 
 	}
 
-	const createTableColumns = ( { ref, columns, onChange } ) => {
+	const createTableColumns = ( { columnRef, columns, onChange } ) => {
 
 		let columnNodes = [];
 
 		for ( let i in columns ) {
+
+			let labelSplit = columns[i].split(':');
+			let label = [
+				el( 'strong', {}, settings.columnLabels[ labelSplit[0] ].heading )
+			];
+			if ( labelSplit.length > 1 ) {
+				label.push(
+					el( 'em', {}, labelSplit[1] )
+				);
+			}
+
 			let node = el(
 				'li',
 				{
@@ -174,7 +201,14 @@
 					key: 'table-column-' + i
 				},
 				[
-					columns[i],
+					el(
+						Icon,
+						{
+							icon: reorderIcon,
+							alt: ''
+						}
+					),
+					el( 'span', {}, label ),
 					el(
 						IconButton,
 						{
@@ -191,11 +225,24 @@
 			columnNodes.push( node );
 		}
 
+		waitForReference( columnRef, ( ref ) => {
+			if ( ! ref.classList.contains( 'ui-sortable' ) ) {
+				let $sortRef = jQuery( ref );
+				$sortRef.sortable( {
+					update: function() {
+						let newColumns = getTableColumnOrder( ref );
+						$sortRef.sortable( 'cancel' );
+						onChange( { newColumns } );
+					}
+				} );
+			}
+		} );
+
 		return el(
 			'ul',
 			{
-				className: 'table-column-options',
-				ref: ref,
+				className: 'barn2-wc-product-table-block__columns-selected',
+				ref: columnRef,
 				'data-columns': columns.join( ',' )
 			},
 			columnNodes
@@ -203,70 +250,88 @@
 
 	}
 
-	const createTableHeaderColumn = ( colSlug ) => {
-
-		let colType;
-		let colSplit = colSlug.indexOf( ':' );
-		if ( colSplit !== -1 ) {
-			colType = colSlug.substring( 0, colSplit );
-		} else {
-			colType = colSlug;
-		}
-
-		return el(
-			'span',
-			{
-				className: 'col-' + colType
-			},
-			getTableColumnLabel( colType )
-		);
-
-	}
-
-	window.productTableBlockComponents.ProductTableColumns = withState( {
+	/*window.productTableBlockComponents.ProductTableColumns = withState( {
 
 		columnsHaveChanged: false,
 		modalOpened: false,
 		newColumns: null,
 
-	} )( ( { columnsHaveChanged, modalOpened, newColumns, columns, onChange, setState } ) => {
+	} )( ( { columnsHaveChanged, modalOpened, newColumns, columns, onChange, setState } ) => {*/
 
-		let tableHeaderColumns = [], firstRun = false, sortable;
-		let componentClassName = 'product-table-column-preview wc-product-table woocommerce dataTable';
+	window.productTableBlockComponents.ProductTableColumns = ( { columns, saveColumns } ) => {
 
-		if ( ! newColumns ) {
-			newColumns = [];
-			firstRun = true;
-		}
+		//let tableHeaderColumns = [], firstRun = false, sortable;
+		let componentClassName = 'barn2-wc-product-table-block__columns';
 
-		if ( ! columns || columns.length === 0 ) {
-			componentClassName += ' default';
-			for ( var col of settings.defaultValues.columns ) {
-				tableHeaderColumns.push( createTableHeaderColumn( col ) );
-			}
-		} else {
-			for ( var col of columns ) {
-				tableHeaderColumns.push( createTableHeaderColumn( col ) );
-				if ( firstRun ) {
-					newColumns.push( col );
-				}
-			}
-		}
-
-		let popupClassName = 'customize-column-modal';
-		if ( columnsHaveChanged ) {
-			popupClassName += ' changed';
-		}
-		if ( modalOpened ) {
-			popupClassName += ' opened';
-		}
+		let	columnElements = [
+			el( 'h3', {}, __( 'Table Columns', 'wpt-block' ) )
+		];
 
 		let columnRef = wp.element.createRef();
+
+		columnElements.push( createTableColumns( {
+			columnRef,
+			columns: columns,
+			onChange: ( { newColumns } ) => {
+				saveColumns( newColumns );
+			}
+		} ) );
+
+		columnElements.push( el( 'p', { className: 'empty-options' }, __( '(Using global options)', 'wpt-block' ) ) );
+
 		let selectionRef = wp.element.createRef();
 		let attrRef = wp.element.createRef();
 		let customRef = wp.element.createRef();
 
-		let columnPopup = el(
+		columnElements.push( el(
+			'select',
+			{
+				className: 'barn2-wc-product-table-block__column-selector',
+				onChange: selectTableColumn,
+				ref: selectionRef,
+			},
+			getTableColumnOptions()
+		) );
+
+		columnElements.push( el(
+			'select',
+			{
+				className: 'barn2-wc-product-table-block__attribute-selector',
+				onChange: selectTableColumnEntry,
+				ref: attrRef
+			},
+			getTableColumnAttributeOptions()
+		) );
+
+		columnElements.push( el(
+			'input',
+			{
+				className: 'barn2-wc-product-table-block__custom-input',
+				onChange: selectTableColumnEntry,
+				ref: customRef
+			}
+		) );
+
+		columnElements.push( el(
+			Button,
+			{
+				className: 'components-button is-secondary barn2-wc-product-table-block__add-column-button',
+				onClick: (e) => {
+					let newColumns = getTableColumnOrder( columnRef.current );
+					newColumns = addTableColumn( {
+						selection: selectionRef.current,
+						attr: attrRef.current,
+						custom: customRef.current,
+						columns: newColumns
+					} );
+					saveColumns( newColumns );
+				},
+			},
+			__( 'Add', 'wpt-block' )
+		) );
+
+
+		/*let columnPopup = el(
 			'div',
 			{ className: popupClassName },
 			[
@@ -284,58 +349,12 @@
 					},
 					__( 'Save', 'wpt-block' )
 				),
-				createTableColumns( {
-					ref: columnRef,
-					columns: newColumns,
-					onChange: ( columns ) => {
-						setState( { columnsHaveChanged: true, newColumns: columns } );
-					}
-				} ),
-				el( 'p', { className: 'empty-options' }, __( '(Using global options)', 'wpt-block' ) ),
-				el(
-					'select',
-					{
-						className: 'new-table-column-selection',
-						onChange: selectTableColumn,
-						ref: selectionRef,
-					},
-					getTableColumnOptions()
-				),
-				el(
-					'select',
-					{
-						className: 'new-table-column-attribute-selection',
-						onChange: selectTableColumnEntry,
-						ref: attrRef
-					},
-					getTableColumnAttributeOptions()
-				),
-				el(
-					'input',
-					{
-						className: 'new-table-column-custom-entry',
-						onChange: selectTableColumnEntry,
-						ref: customRef
-					},
-				),
-				el(
-					Button,
-					{
-						className: 'add-table-column-button',
-						onClick: (e) => {
-							newColumns = getTableColumnOrder( columnRef.current );
-							newColumns = addTableColumn( {
-								selection: selectionRef.current,
-								attr: attrRef.current,
-								custom: customRef.current,
-								columns: newColumns
-							} );
-
-							setState( { columnsHaveChanged: true, newColumns } );
-						},
-					},
-					__( 'Add', 'wpt-block' )
-				),
+				,
+				,
+				
+				
+				
+				
 			]
 		);
 
@@ -349,35 +368,19 @@
 				}
 			},
 			__( 'Customize Columns', 'wpt-block' )
-		) );
+		) );*/
 
-		tableHeaderColumns.push( columnPopup );
-
-		waitForReference( columnRef, ( ref ) => {
-			if ( ! ref.classList.contains( 'ui-sortable' ) ) {
-				let $sortRef = jQuery( ref );
-				$sortRef.sortable( {
-					update: function( e, ui ) {
-						let newOrder = getTableColumnOrder( ref );
-						$sortRef.sortable( 'cancel' );
-						setState( {
-							columnsHaveChanged: true,
-							newColumns: newOrder
-						} );
-					}
-				} );
-			}
-		} );
+		//tableHeaderColumns.push( columnPopup );
 
 		return el(
 			'div',
 			{
 				className: componentClassName
 			},
-			tableHeaderColumns
+			columnElements
 		);
 
-	} );
+	};
 
 	const waitForReference = ( ref, ready ) => {
 
@@ -387,6 +390,6 @@
 			window.setTimeout( waitForReference, 100, ref, ready );
 		}
 
-	}
+	};
 
 } )( window.wp, wcptbSettings );

@@ -10,7 +10,6 @@
 
 namespace Barn2\Plugin\WC_Product_Table_Block;
 
-use Barn2\Plugin\WC_Product_Table\Table_Shortcode as Table_Shortcode;
 use Barn2\Plugin\WC_Product_Table\Table_Factory as Table_Factory;
 
 /**
@@ -88,7 +87,7 @@ class Rest {
 			}
 		}
 
-		$args = shortcode_atts( \WC_Product_Table_Args::get_defaults(), $args, Table_Shortcode::SHORTCODE );
+		$args = shortcode_atts( \WC_Product_Table_Args::get_defaults(), $args, 'product_table' );
 
 		$table = Table_Factory::create( $args );
 		$data = $table->get_data( 'array' );
