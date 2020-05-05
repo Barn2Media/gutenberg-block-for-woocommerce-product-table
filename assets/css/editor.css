@@ -82,7 +82,7 @@
       .barn2-wc-product-table-block__columns h3 em::before,
       .barn2-wc-product-table-block__products h3 em::before,
       .barn2-wc-product-table-block__new-filter-panel h3 em::before {
-        content: ': '; }
+        content: ' '; }
     .editor-styles-wrapper .barn2-wc-product-table-block__columns ul:not(:empty) ~ p.empty-options, .editor-styles-wrapper .barn2-wc-product-table-block__products ul:not(:empty) ~ p.empty-options, .editor-styles-wrapper .barn2-wc-product-table-block__new-filter-panel ul:not(:empty) ~ p.empty-options,
     .barn2-wc-product-table-block__columns ul:not(:empty) ~ p.empty-options,
     .barn2-wc-product-table-block__products ul:not(:empty) ~ p.empty-options,

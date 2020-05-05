@@ -1,8 +1,6 @@
 ( function( wp, ptbComponents ) {
 	"use strict";
 
-	console.log( wcptbInvalid );
-
 	const { __ } = wp.i18n;
 	const {
 		Fragment,

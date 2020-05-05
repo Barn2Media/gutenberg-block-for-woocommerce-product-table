@@ -404,6 +404,10 @@
 			saveFilters( newFilters );
 		};
 
+		if ( count != null && count >= 100 ) {
+			count = 'At least 100';
+		}
+
 		let	productElements = [
 			el(
 				'h3',

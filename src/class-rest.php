@@ -87,6 +87,15 @@ class Rest {
 			}
 		}
 
+		if ( class_exists( 'Barn2\Plugin\WC_Product_Table\Table_Shortcode' ) ) {
+			$args = Barn2\Plugin\WC_Product_Table\Table_Shortcode::check_legacy_atts( $args );
+		} elseif ( class_exists( 'WC_Product_Table_Shortcode' ) ) {
+			$args = \WC_Product_Table_Shortcode::check_legacy_atts( $args );
+		}
+
+		$args['lazy_load'] = 'false';
+		$args['product_limit'] = 100;
+
 		$args = shortcode_atts( \WC_Product_Table_Args::get_defaults(), $args, 'product_table' );
 
 		$table = Table_Factory::create( $args );
