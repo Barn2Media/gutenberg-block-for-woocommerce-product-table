@@ -1,8 +1,10 @@
 $offset-bg: rgba(139, 139, 150, 0.1);
 $link-color: #005d8c;
 
-.editor-styles-wrapper .barn2-wc-product-table-block,
-.barn2-wc-product-table-block {
+$root: '#{$root}';
+
+.editor-styles-wrapper #{$root},
+#{$root} {
 	box-sizing: border-box;
 	font-family: -apple-system, system-ui, BlinkMacSystemFont, 
 			'Segoe UI', Roboto, 'Helvetica Neue', 
@@ -69,7 +71,8 @@ $link-color: #005d8c;
 		display: none;
 	}
 
-	&__columns {
+	&__columns,
+	&__products {
 		display: flex;
 		align-items: stretch;
 		justify-content: flex-start;
@@ -77,6 +80,13 @@ $link-color: #005d8c;
 
 		h3, p {
 			flex: 1 1 100%;
+		}
+
+		h3 em {
+			&::before {
+				content: ': ';
+			}
+			font-weight: normal;
 		}
 
 		ul:not(:empty) ~ p.empty-options {
@@ -94,7 +104,7 @@ $link-color: #005d8c;
 			//flex: 0 0 75%;
 		}
 
-		&.selected ~ .barn2-wc-product-table-block__add-column-button {
+		&.selected ~ #{$root}__add-column-button {
 			display: block;
 		}
 	}
@@ -103,22 +113,26 @@ $link-color: #005d8c;
 		display: none;
 	}
 
-	&__column-selector:not(.select-attribute) ~ .barn2-wc-product-table-block__attribute-selector,
-	&__column-selector:not(.select-custom) ~ .barn2-wc-product-table-block__custom-input {
+	&__column-selector:not(.select-attribute) ~ #{$root}__attribute-selector,
+	&__column-selector:not(.select-custom) ~ #{$root}__custom-input {
 		display: none;
 	}
 
-	&__columns-selected {
+	&__columns-selected,
+	&__product-filters {
 		list-style: none;
 		flex: 1 1 100%;
-		display: flex;
-		flex-direction: column;
+		display: block;
+
 		margin: 0;
 		padding: 0;
 		text-align: left;
 		line-height: 1;
 
 		li {
+			display: block;
+			width: 100%;
+
 			margin: 0;
 			padding: 0.5em;
 			background: $offset-bg;
@@ -236,11 +250,6 @@ $link-color: #005d8c;
 		height: auto;
 	}
 
-	.customize-filters-button[aria-expanded="false"] ~ .customize-filters-modal,
-	.open-settings-panel-button[aria-expanded="false"] ~ .table-settings-panel-modal {
-		display: none;
-	}
-
 	.customize-filter-add-new-selection {
 		margin: 5px 0 0 0;
 		&.selected {
@@ -248,7 +257,7 @@ $link-color: #005d8c;
 		}
 	}
 
-	.customize-filter-new-option {
+	&__new-option {
 		margin: 5px 0 0 0;
 		flex: 1 1 100%;
 		&:not(.visible) {
@@ -259,31 +268,14 @@ $link-color: #005d8c;
 			flex: 0 0 75%;
 		}
 	}
-	input {
-		border: 1px solid #999999;
-		padding: 5px;
-		font-size: 13px;
-		border-radius: 3px;
-	}
 
-	.customize-filter-selections:empty {
+	&__add-filter-button,
+	&__andor-toggle,
+	&__save-filter-button {
 		display: none;
 	}
 
-	.customize-filters-add-button {
-		flex: 0 0 calc( 25% - 5px );
-		margin-left: auto;
-		margin-top: 5px;
-		align-self: stretch;
-	}
-
-	.customize-filters-save-button,
-	.customize-filters-add-button,
-	.customize-filters-andor {
-		display: none;
-	}
-
-	.customize-filters-andor {
+	&__andor-toggle {
 		align-self: center;
 		margin-top: 5px;
 		.components-base-control__field {
@@ -291,9 +283,9 @@ $link-color: #005d8c;
 		}
 	}
 
-	.selected ~	.customize-filters-add-button,
-	.customize-filter-selections:not(:empty) ~ .customize-filters-save-button,
-	.allow-andor .customize-filter-selections:not(:empty) ~ .customize-filters-andor {
+	.selected ~	&__add-filter-button,
+	&__new-filter-selections:not(:empty) ~ &__save-filter-button,
+	.allow-andor &__new-filter-selections:not(:empty) ~ #{$root}__new-filter-selections {
 		display: block;
 	}
 

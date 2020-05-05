@@ -113,12 +113,11 @@
 											el(
 												ProductSelection,
 												{
-													columns: attributes.columns,
-													onChange: ( newFilters ) => {
+													attributes,
+													saveFilters: ( newFilters ) => {
 														//console.log( changed );
 														setAttributes( { filters: newFilters } );
 													},
-													attributes: attributes,
 													ref: productPreviewRef
 												}
 											)

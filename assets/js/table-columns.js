@@ -216,7 +216,7 @@
 							label: 'Remove Column',
 							'data-index': i,
 							onClick: (e) => {
-								onChange( removeArrayIndex( columns, e.currentTarget.dataset.index ) );
+								onChange( { newColumns: removeArrayIndex( columns, e.currentTarget.dataset.index ) } );
 							}
 						}
 					)

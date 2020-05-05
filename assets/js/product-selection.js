@@ -363,11 +363,10 @@
 
 	window.productTableBlockComponents.ProductSelection = withState( {
 
-		modalOpened: false,
 		isMatchall: false,
 		count: null
 
-	} )( ( { modalOpened, count, isMatchall, onChange, attributes, setState } ) => {
+	} )( ( { isMatchall, count, attributes, saveFilters, setState } ) => {
 
 		wp.apiFetch.use( wp.apiFetch.createNonceMiddleware( nonce ) );
 		wp.apiFetch( {
@@ -380,149 +379,158 @@
 			}
 		} );
 
-		let filterSelectionModal = wp.element.createRef();
+		let { filters } = attributes;
 
 		let addFilter = ( filter ) => {
-			// I can't believe this bug is still in react after all this time. 
-			// We clone the object here because otherwise React doesn't see the state change
-			let newFilters = JSON.parse( JSON.stringify( attributes.filters ) );
+			let newFilters = JSON.parse( JSON.stringify( filters ) );
 			newFilters.push( filter );
-
-			setState( { modalOpened: false } );
-			resetModal( filterSelectionModal.current );
-
-			onChange( newFilters );
-
+			saveFilters( newFilters );
 		};
+
+		let temporaryFilterSelectionsRef = wp.element.createRef();
+		let newFilterPanelRef = wp.element.createRef();
+
+		let	productElements = [
+			el( 
+				'h3', 
+				{}, 
+				[
+					__( 'Products', 'wpt-block' ),
+					el(
+						'em',
+						{},
+						count != null ? `${count} products found` : 'Finding products...'
+					)
+				]
+			),
+			el(
+				'ul',
+				{ className: 'barn2-wc-product-table-block__product-filters' },
+				createProductSelectionFilters( {
+					filters,
+					onDelete: ( index ) => {
+						let newFilters = [];
+						for ( let i in filters ) {
+							if ( i !== index ) {
+								newFilters.push( filters[i] );
+							}
+						}
+						saveFilters( newFilters );
+					}
+				} )
+			),
+			el(
+				'div',
+				{ 
+					className: 'barn2-wc-product-table-block__new-filter-panel',
+					ref: newFilterPanelRef
+				},
+				[
+					el(
+						'ul',
+						{ 
+							className: 'barn2-wc-product-table-block__new-filter-selections',
+							ref: temporaryFilterSelectionsRef,
+						}
+					),
+					el( 'p', { className: 'empty-options' }, __( '(Using global options)', 'wpt-block' ) ),
+					el(
+						'select',
+						{ 
+							className: 'barn2-wc-product-table-block__add-new-selection', 
+							onChange: (e) => {
+								selectProductOption( e, newFilterPanelRef.current );
+							} 
+						},
+						getFilterSelectionOptions()
+					),
+					el(
+						'select',
+						{ className: 'barn2-wc-product-table-block__new-option category', onChange: selectProductKey },
+						getFilterSelectionOptionValues( data.categoryTerms )
+					),
+					el(
+						'select',
+						{ className: 'barn2-wc-product-table-block__new-option status', onChange: selectProductKey },
+						getFilterSelectionOptionValues( filterSelectionOptions.status.values )
+					),
+					el(
+						'select',
+						{ className: 'barn2-wc-product-table-block__new-option tag', onChange: selectProductKey },
+						getFilterSelectionOptionValues( data.tagTerms )
+					),
+					el(
+						'select',
+						{ 
+							className: 'barn2-wc-product-table-block__new-option attr', 
+							onChange: ( e ) => {
+								selectProductAttr( e, newFilterPanelRef.current );
+							}
+						},
+						getFilterSelectionOptionValues( data.attributes )
+					),
+					el(
+						'select',
+						{ className: 'barn2-wc-product-table-block__new-option attr-values', onChange: selectProductAttrValue },
+						getFilterSelectionOptionValues( data.attributes, true )
+					),
+					el(
+						'input',
+						{ className: 'barn2-wc-product-table-block__new-option value', onChange: selectProductValue }
+					),
+					el(
+						Button,
+						{
+							className: 'barn2-wc-product-table-block__add-filter-button',
+							onClick: ( e ) => {
+								addFilterSelection( newFilterPanelRef.current, addFilter );
+							}
+						},
+						__( 'Add', 'wpt-block' )
+					),
+					el(
+						ToggleControl,
+						{
+							className: 'barn2-wc-product-table-block__andor-toggle', 
+							label: __( 'Match all', 'wpt-block' ), 
+							checked: isMatchall,
+							onChange: () => {
+								setState( { isMatchall: ! isMatchall } );
+							}
+						}
+					),
+					el(
+						Button,
+						{
+							className: 'barn2-wc-product-table-block__save-filter-button',
+							onClick: (e) => {
+								let newFilter = getNewFilter( newFilterPanelRef.current, isMatchall );
+								addFilter( newFilter );
+							}
+						},
+						__( 'Save', 'wpt-block' )
+					),
+				]
+			)
+		];
+
 
 		return el(
 			'div',
 			{
-				className: 'product-selection-query'
+				className: 'barn2-wc-product-table-block__products'
 			},
+			productElements
+		);
+
+		/*
 			[
-				el(
-					'ul',
-					{ className: 'product-selection-filters' },
-					createProductSelectionFilters( {
-						filters: attributes.filters,
-						onDelete: ( index ) => {
-							let newFilters = [];
-							for ( let i in attributes.filters ) {
-								if ( i !== index ) {
-									newFilters.push( attributes.filters[i] );
-								}
-							}
-							onChange( newFilters );
-						}
-					} )
-				),
-				count != null ? `${count} products found` : 'Finding products...',
-				el(
-					'span',
-					{ className: 'customize-filter-wrapper' },
-					[
-						el(
-							Button,
-							{
-								className: 'customize-filters-button',
-								'aria-expanded': modalOpened ? 'true' : 'false',
-								onClick: (e) => {
-									setState( { modalOpened: ! modalOpened } );
-								}
-							},
-							__( 'Select Products', 'wpt-block' )
-						),
-						el( 
-							'div',
-							{ className: 'customize-filters-modal', ref: filterSelectionModal },
-							[
-								el(
-									'ul',
-									{ className: 'customize-filter-selections' }
-								),
-								el(
-									'select',
-									{ 
-										className: 'customize-filter-add-new-selection', 
-										onChange: (e) => {
-											selectProductOption( e, filterSelectionModal.current );
-										} 
-									},
-									getFilterSelectionOptions()
-								),
-								el(
-									'select',
-									{ className: 'customize-filter-new-option category', onChange: selectProductKey },
-									getFilterSelectionOptionValues( data.categoryTerms )
-								),
-								el(
-									'select',
-									{ className: 'customize-filter-new-option status', onChange: selectProductKey },
-									getFilterSelectionOptionValues( filterSelectionOptions.status.values )
-								),
-								el(
-									'select',
-									{ className: 'customize-filter-new-option tag', onChange: selectProductKey },
-									getFilterSelectionOptionValues( data.tagTerms )
-								),
-								el(
-									'select',
-									{ 
-										className: 'customize-filter-new-option attr', 
-										onChange: ( e ) => {
-											selectProductAttr( e, filterSelectionModal.current );
-										}
-									},
-									getFilterSelectionOptionValues( data.attributes )
-								),
-								el(
-									'select',
-									{ className: 'customize-filter-new-option attr-values', onChange: selectProductAttrValue },
-									getFilterSelectionOptionValues( data.attributes, true )
-								),
-								el(
-									'input',
-									{ className: 'customize-filter-new-option value', onChange: selectProductValue }
-								),
-								el(
-									Button,
-									{
-										className: 'customize-filters-add-button',
-										onClick: ( e ) => {
-											addFilterSelection( filterSelectionModal.current, addFilter );
-										}
-									},
-									__( 'Add', 'wpt-block' )
-								),
-								el(
-									ToggleControl,
-									{
-										className: 'customize-filters-andor', 
-										label: __( 'Match all', 'wpt-block' ), 
-										checked: isMatchall,
-										onChange: () => {
-											setState( { isMatchall: ! isMatchall } );
-										}
-									}
-								),
-								el(
-									Button,
-									{
-										className: 'customize-filters-save-button',
-										onClick: (e) => {
-											let newFilter = getNewFilter( filterSelectionModal.current, isMatchall );
-											addFilter( newFilter );
-										}
-									},
-									__( 'Save', 'wpt-block' )
-								),
-							]
-						)
-					]
-				)
+				,
+				
+				
 			]
 		);
+		*/
 
 	} );
 

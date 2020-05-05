@@ -53,18 +53,30 @@
   .editor-styles-wrapper .barn2-wc-product-table-block .table-column-options:not(:empty) ~ p.empty-options,
   .barn2-wc-product-table-block .table-column-options:not(:empty) ~ p.empty-options {
     display: none; }
-  .editor-styles-wrapper .barn2-wc-product-table-block__columns,
-  .barn2-wc-product-table-block__columns {
+  .editor-styles-wrapper .barn2-wc-product-table-block__columns, .editor-styles-wrapper .barn2-wc-product-table-block__products,
+  .barn2-wc-product-table-block__columns,
+  .barn2-wc-product-table-block__products {
     display: flex;
     align-items: stretch;
     justify-content: flex-start;
     flex-wrap: wrap; }
-    .editor-styles-wrapper .barn2-wc-product-table-block__columns h3, .editor-styles-wrapper .barn2-wc-product-table-block__columns p,
+    .editor-styles-wrapper .barn2-wc-product-table-block__columns h3, .editor-styles-wrapper .barn2-wc-product-table-block__columns p, .editor-styles-wrapper .barn2-wc-product-table-block__products h3, .editor-styles-wrapper .barn2-wc-product-table-block__products p,
     .barn2-wc-product-table-block__columns h3,
-    .barn2-wc-product-table-block__columns p {
+    .barn2-wc-product-table-block__columns p,
+    .barn2-wc-product-table-block__products h3,
+    .barn2-wc-product-table-block__products p {
       flex: 1 1 100%; }
-    .editor-styles-wrapper .barn2-wc-product-table-block__columns ul:not(:empty) ~ p.empty-options,
-    .barn2-wc-product-table-block__columns ul:not(:empty) ~ p.empty-options {
+    .editor-styles-wrapper .barn2-wc-product-table-block__columns h3 em, .editor-styles-wrapper .barn2-wc-product-table-block__products h3 em,
+    .barn2-wc-product-table-block__columns h3 em,
+    .barn2-wc-product-table-block__products h3 em {
+      font-weight: normal; }
+      .editor-styles-wrapper .barn2-wc-product-table-block__columns h3 em::before, .editor-styles-wrapper .barn2-wc-product-table-block__products h3 em::before,
+      .barn2-wc-product-table-block__columns h3 em::before,
+      .barn2-wc-product-table-block__products h3 em::before {
+        content: ': '; }
+    .editor-styles-wrapper .barn2-wc-product-table-block__columns ul:not(:empty) ~ p.empty-options, .editor-styles-wrapper .barn2-wc-product-table-block__products ul:not(:empty) ~ p.empty-options,
+    .barn2-wc-product-table-block__columns ul:not(:empty) ~ p.empty-options,
+    .barn2-wc-product-table-block__products ul:not(:empty) ~ p.empty-options {
       display: none; }
   .editor-styles-wrapper .barn2-wc-product-table-block__column-selector, .editor-styles-wrapper .barn2-wc-product-table-block__attribute-selector, .editor-styles-wrapper .barn2-wc-product-table-block__custom-input,
   .barn2-wc-product-table-block__column-selector,
@@ -85,18 +97,21 @@
   .barn2-wc-product-table-block__column-selector:not(.select-attribute) ~ .barn2-wc-product-table-block__attribute-selector,
   .barn2-wc-product-table-block__column-selector:not(.select-custom) ~ .barn2-wc-product-table-block__custom-input {
     display: none; }
-  .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected,
-  .barn2-wc-product-table-block__columns-selected {
+  .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected, .editor-styles-wrapper .barn2-wc-product-table-block__product-filters,
+  .barn2-wc-product-table-block__columns-selected,
+  .barn2-wc-product-table-block__product-filters {
     list-style: none;
     flex: 1 1 100%;
-    display: flex;
-    flex-direction: column;
+    display: block;
     margin: 0;
     padding: 0;
     text-align: left;
     line-height: 1; }
-    .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li,
-    .barn2-wc-product-table-block__columns-selected li {
+    .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li, .editor-styles-wrapper .barn2-wc-product-table-block__product-filters li,
+    .barn2-wc-product-table-block__columns-selected li,
+    .barn2-wc-product-table-block__product-filters li {
+      display: block;
+      width: 100%;
       margin: 0;
       padding: 0.5em;
       background: rgba(139, 139, 150, 0.1);
@@ -106,32 +121,40 @@
       display: flex;
       justify-content: stretch;
       align-items: center; }
-      .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li:hover,
-      .barn2-wc-product-table-block__columns-selected li:hover {
+      .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li:hover, .editor-styles-wrapper .barn2-wc-product-table-block__product-filters li:hover,
+      .barn2-wc-product-table-block__columns-selected li:hover,
+      .barn2-wc-product-table-block__product-filters li:hover {
         outline: 1px solid rgba(0, 93, 140, 0.5); }
-        .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li:hover > svg,
-        .barn2-wc-product-table-block__columns-selected li:hover > svg {
+        .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li:hover > svg, .editor-styles-wrapper .barn2-wc-product-table-block__product-filters li:hover > svg,
+        .barn2-wc-product-table-block__columns-selected li:hover > svg,
+        .barn2-wc-product-table-block__product-filters li:hover > svg {
           fill: rgba(0, 93, 140, 0.5); }
-      .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li span,
-      .barn2-wc-product-table-block__columns-selected li span {
+      .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li span, .editor-styles-wrapper .barn2-wc-product-table-block__product-filters li span,
+      .barn2-wc-product-table-block__columns-selected li span,
+      .barn2-wc-product-table-block__product-filters li span {
         flex: 1 1 auto;
         margin-left: 1em;
         margin-right: 1em; }
-        .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li span strong + em,
-        .barn2-wc-product-table-block__columns-selected li span strong + em {
+        .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li span strong + em, .editor-styles-wrapper .barn2-wc-product-table-block__product-filters li span strong + em,
+        .barn2-wc-product-table-block__columns-selected li span strong + em,
+        .barn2-wc-product-table-block__product-filters li span strong + em {
           font-weight: normal;
           font-style: normal; }
-          .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li span strong + em::before,
-          .barn2-wc-product-table-block__columns-selected li span strong + em::before {
+          .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li span strong + em::before, .editor-styles-wrapper .barn2-wc-product-table-block__product-filters li span strong + em::before,
+          .barn2-wc-product-table-block__columns-selected li span strong + em::before,
+          .barn2-wc-product-table-block__product-filters li span strong + em::before {
             content: ': '; }
-      .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li + li,
-      .barn2-wc-product-table-block__columns-selected li + li {
+      .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li + li, .editor-styles-wrapper .barn2-wc-product-table-block__product-filters li + li,
+      .barn2-wc-product-table-block__columns-selected li + li,
+      .barn2-wc-product-table-block__product-filters li + li {
         margin-top: 0.5em; }
-      .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li > svg,
-      .barn2-wc-product-table-block__columns-selected li > svg {
+      .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li > svg, .editor-styles-wrapper .barn2-wc-product-table-block__product-filters li > svg,
+      .barn2-wc-product-table-block__columns-selected li > svg,
+      .barn2-wc-product-table-block__product-filters li > svg {
         fill: rgba(139, 139, 150, 0.25); }
-    .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected:not(:empty),
-    .barn2-wc-product-table-block__columns-selected:not(:empty) {
+    .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected:not(:empty), .editor-styles-wrapper .barn2-wc-product-table-block__product-filters:not(:empty),
+    .barn2-wc-product-table-block__columns-selected:not(:empty),
+    .barn2-wc-product-table-block__product-filters:not(:empty) {
       margin-top: 10px;
       margin-bottom: 10px; }
   .editor-styles-wrapper .barn2-wc-product-table-block .save-table-columns-button, .editor-styles-wrapper .barn2-wc-product-table-block .open-settings-panel-button,
@@ -198,62 +221,45 @@
     color: white;
     line-height: 1;
     height: auto; }
-  .editor-styles-wrapper .barn2-wc-product-table-block .customize-filters-button[aria-expanded="false"] ~ .customize-filters-modal,
-  .editor-styles-wrapper .barn2-wc-product-table-block .open-settings-panel-button[aria-expanded="false"] ~ .table-settings-panel-modal,
-  .barn2-wc-product-table-block .customize-filters-button[aria-expanded="false"] ~ .customize-filters-modal,
-  .barn2-wc-product-table-block .open-settings-panel-button[aria-expanded="false"] ~ .table-settings-panel-modal {
-    display: none; }
   .editor-styles-wrapper .barn2-wc-product-table-block .customize-filter-add-new-selection,
   .barn2-wc-product-table-block .customize-filter-add-new-selection {
     margin: 5px 0 0 0; }
     .editor-styles-wrapper .barn2-wc-product-table-block .customize-filter-add-new-selection.selected,
     .barn2-wc-product-table-block .customize-filter-add-new-selection.selected {
       flex: 0 0 75%; }
-  .editor-styles-wrapper .barn2-wc-product-table-block .customize-filter-new-option,
-  .barn2-wc-product-table-block .customize-filter-new-option {
+  .editor-styles-wrapper .barn2-wc-product-table-block__new-option,
+  .barn2-wc-product-table-block__new-option {
     margin: 5px 0 0 0;
     flex: 1 1 100%; }
-    .editor-styles-wrapper .barn2-wc-product-table-block .customize-filter-new-option:not(.visible),
-    .barn2-wc-product-table-block .customize-filter-new-option:not(.visible) {
+    .editor-styles-wrapper .barn2-wc-product-table-block__new-option:not(.visible),
+    .barn2-wc-product-table-block__new-option:not(.visible) {
       display: none; }
-    .editor-styles-wrapper .barn2-wc-product-table-block .customize-filter-new-option.selected,
-    .barn2-wc-product-table-block .customize-filter-new-option.selected {
+    .editor-styles-wrapper .barn2-wc-product-table-block__new-option.selected,
+    .barn2-wc-product-table-block__new-option.selected {
       flex: 0 0 75%; }
-  .editor-styles-wrapper .barn2-wc-product-table-block input,
-  .barn2-wc-product-table-block input {
-    border: 1px solid #999999;
-    padding: 5px;
-    font-size: 13px;
-    border-radius: 3px; }
-  .editor-styles-wrapper .barn2-wc-product-table-block .customize-filter-selections:empty,
-  .barn2-wc-product-table-block .customize-filter-selections:empty {
+  .editor-styles-wrapper .barn2-wc-product-table-block__add-filter-button, .editor-styles-wrapper .barn2-wc-product-table-block__andor-toggle, .editor-styles-wrapper .barn2-wc-product-table-block__save-filter-button,
+  .barn2-wc-product-table-block__add-filter-button,
+  .barn2-wc-product-table-block__andor-toggle,
+  .barn2-wc-product-table-block__save-filter-button {
     display: none; }
-  .editor-styles-wrapper .barn2-wc-product-table-block .customize-filters-add-button,
-  .barn2-wc-product-table-block .customize-filters-add-button {
-    flex: 0 0 calc( 25% - 5px);
-    margin-left: auto;
-    margin-top: 5px;
-    align-self: stretch; }
-  .editor-styles-wrapper .barn2-wc-product-table-block .customize-filters-save-button,
-  .editor-styles-wrapper .barn2-wc-product-table-block .customize-filters-add-button,
-  .editor-styles-wrapper .barn2-wc-product-table-block .customize-filters-andor,
-  .barn2-wc-product-table-block .customize-filters-save-button,
-  .barn2-wc-product-table-block .customize-filters-add-button,
-  .barn2-wc-product-table-block .customize-filters-andor {
-    display: none; }
-  .editor-styles-wrapper .barn2-wc-product-table-block .customize-filters-andor,
-  .barn2-wc-product-table-block .customize-filters-andor {
+  .editor-styles-wrapper .barn2-wc-product-table-block__andor-toggle,
+  .barn2-wc-product-table-block__andor-toggle {
     align-self: center;
     margin-top: 5px; }
-    .editor-styles-wrapper .barn2-wc-product-table-block .customize-filters-andor .components-base-control__field,
-    .barn2-wc-product-table-block .customize-filters-andor .components-base-control__field {
+    .editor-styles-wrapper .barn2-wc-product-table-block__andor-toggle .components-base-control__field,
+    .barn2-wc-product-table-block__andor-toggle .components-base-control__field {
       margin-bottom: 0; }
-  .editor-styles-wrapper .barn2-wc-product-table-block .selected ~ .customize-filters-add-button,
-  .editor-styles-wrapper .barn2-wc-product-table-block .customize-filter-selections:not(:empty) ~ .customize-filters-save-button,
-  .editor-styles-wrapper .barn2-wc-product-table-block .allow-andor .customize-filter-selections:not(:empty) ~ .customize-filters-andor,
-  .barn2-wc-product-table-block .selected ~ .customize-filters-add-button,
-  .barn2-wc-product-table-block .customize-filter-selections:not(:empty) ~ .customize-filters-save-button,
-  .barn2-wc-product-table-block .allow-andor .customize-filter-selections:not(:empty) ~ .customize-filters-andor {
+  .selected ~ .editor-styles-wrapper .barn2-wc-product-table-block__add-filter-button,
+  .editor-styles-wrapper .barn2-wc-product-table-block__new-filter-selections:not(:empty) ~ .editor-styles-wrapper .barn2-wc-product-table-block__save-filter-button,
+  .allow-andor .editor-styles-wrapper .barn2-wc-product-table-block__new-filter-selections:not(:empty) ~ .barn2-wc-product-table-block__new-filter-selections, .selected ~
+  .barn2-wc-product-table-block__add-filter-button,
+  .barn2-wc-product-table-block__new-filter-selections:not(:empty) ~ .editor-styles-wrapper .barn2-wc-product-table-block__save-filter-button,
+  .allow-andor
+  .barn2-wc-product-table-block__new-filter-selections:not(:empty) ~ .barn2-wc-product-table-block__new-filter-selections,
+  .editor-styles-wrapper .barn2-wc-product-table-block__new-filter-selections:not(:empty) ~
+  .barn2-wc-product-table-block__save-filter-button,
+  .barn2-wc-product-table-block__new-filter-selections:not(:empty) ~
+  .barn2-wc-product-table-block__save-filter-button {
     display: block; }
   .editor-styles-wrapper .barn2-wc-product-table-block .customize-filters-save-button,
   .barn2-wc-product-table-block .customize-filters-save-button {
