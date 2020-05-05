@@ -1,7 +1,7 @@
 $offset-bg: rgba(139, 139, 150, 0.1);
 $link-color: #005d8c;
 
-$root: '#{$root}';
+$root: '.barn2-wc-product-table-block';
 
 .editor-styles-wrapper #{$root},
 #{$root} {
@@ -18,7 +18,6 @@ $root: '#{$root}';
 	* {
 		box-sizing: inherit;
 		font-family: inherit;
-		color: inherit;
 	}
 
 	a, components-button.is-secondary {
@@ -41,6 +40,16 @@ $root: '#{$root}';
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
+	}
+
+	.components-button.has-icon span {
+		display: none;
+	}
+
+	p.additional-settings-notice {
+		margin-top: 1em;
+		padding-top: 1em;
+		border-top: 1px solid $offset-bg;
 	}
 
 	&__options {
@@ -67,12 +76,9 @@ $root: '#{$root}';
 		flex: 1 1 100%;
 	}
 	
-	.table-column-options:not(:empty) ~ p.empty-options {
-		display: none;
-	}
-
 	&__columns,
-	&__products {
+	&__products,
+	&__new-filter-panel {
 		display: flex;
 		align-items: stretch;
 		justify-content: flex-start;
@@ -168,7 +174,17 @@ $root: '#{$root}';
 			}
 			
 			> svg {
+				align-self: center;
+				flex: 0 0 20px;
 				fill: rgba(139, 139, 150, 0.25);
+			}
+
+			button {
+				flex: 0 0 32px;
+				svg {
+					width: 16px;
+					height: 16px;
+				}
 			}
 		}
 
@@ -178,95 +194,8 @@ $root: '#{$root}';
 		}
 	}
 
-	.save-table-columns-button, .open-settings-panel-button {
-		align-self: flex-end;
-		background: #191e23;
-		color: white;
-
-		flex: 0 0 auto;
-		margin-left: auto;
-	}
-
-	.product-selection-query {
-		background: white;
-		border: 1px solid #191e23;
-		border-top: none;
-		padding: 10px;
-		width: 100%;
-		text-align: center;
-		
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		justify-content: center;
-
-		.product-selection-filters {
-			flex: 1 1 100%;
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			align-items: stretch;
-
-			list-style: none;
-			margin: 0 0 10px 0;
-			padding: 0;
-
-			&:empty {
-				display: none;
-			}
-
-			li {
-				display: flex;
-				align-items: center;
-				margin: 0 5px;
-				padding: 5px 5px 5px 10px;
-				background: #eeeeee;
-
-				button {
-					padding: 0;
-					margin-left: 5px;
-					height: 24px;
-					width: 24px;
-					display: flex;
-					align-items: center;
-					justify-content: center;;
-				}
-			}
-		}
-	}
-
-	.customize-filter-wrapper {
-		margin-left: 10px;
-	}
-
-	.customize-filters-button,
-	.customize-filters-save-button,
-	.customize-filters-add-button {
-		padding: 5px;
-		border-radius: 3px;
-		background: #191e23;
-		color: white;
-		line-height: 1;
-		height: auto;
-	}
-
-	.customize-filter-add-new-selection {
-		margin: 5px 0 0 0;
-		&.selected {
-			flex: 0 0 75%;
-		}
-	}
-
-	&__new-option {
-		margin: 5px 0 0 0;
-		flex: 1 1 100%;
-		&:not(.visible) {
-			display: none;
-		}
-
-		&.selected {
-			flex: 0 0 75%;
-		}
+	&__new-option:not(.visible) {
+		display: none;
 	}
 
 	&__add-filter-button,
@@ -277,39 +206,48 @@ $root: '#{$root}';
 
 	&__andor-toggle {
 		align-self: center;
-		margin-top: 5px;
+		margin-top: 0;
+		flex: 1 1 100%;
+		margin-bottom: 5px;
 		.components-base-control__field {
 			margin-bottom: 0;
 		}
 	}
 
-	.selected ~	&__add-filter-button,
-	&__new-filter-selections:not(:empty) ~ &__save-filter-button,
-	.allow-andor &__new-filter-selections:not(:empty) ~ #{$root}__new-filter-selections {
+	.selected                                                ~ #{$root}__add-filter-button,
+	&__new-filter-selections:not(:empty)                     ~ #{$root}__save-filter-button,
+	.allow-andor #{$root}__new-filter-selections:not(:empty) ~ #{$root}__andor-toggle {
 		display: block;
 	}
 
-	.customize-filters-save-button {
-		flex: 0 1 30%;
-		margin-left: auto;
-		margin-top: 5px;
-		height: 30px;
-	}
-
-	ul.customize-filter-selections {
+	&__new-filter-selections {
 		flex: 1 1 100%;
-		display: flex;
-		flex-wrap: wrap;
+		&:empty {
+			display: none;
+		}
 		list-style: none;
-		justify-content: center;
-		margin: 0;
 		padding: 0;
+		margin: 5px 0;
+		display: flex;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+
 		li {
-			padding: 5px;
-			background: #eeeeee;
-			margin: 0 2.5px 5px 0;
+			flex: 0 0 auto;
+			margin: 5px 5px 0 0;
+			padding: 10px;
+			background: $offset-bg;
+			flex: 0 0 auto;
 		}
 	}
 
+	&__new-filter-panel select, &__new-filter-panel input, &__new-filter-panel button {
+		margin: 5px 5px 0 0;
+		height: 36px;
+	}
+
+	&__custom-filter-option[aria-hidden="true"] {
+		display: none;
+	}
 
 }

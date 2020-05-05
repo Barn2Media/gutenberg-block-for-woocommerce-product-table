@@ -5,61 +5,16 @@
 	const { createElement } = wp.element;
 	const { Button, IconButton, Icon } = wp.components;
 
-	const { withState } = wp.compose;
-
 	const el = createElement;
 
 	if ( ! window.productTableBlockComponents ) {
 		window.productTableBlockComponents = {};
 	}
 
-	const deleteIcon = el(
-		'svg',
-		{
-			xmlns: "http://www.w3.org/2000/svg",
-			width: 16,
-			height: 16,
-			viewBox: "0 0 24 24"
-		},
-		el( 'path',
-			{
-				d: "M12,2C6.486,2,2,6.486,2,12s4.486,10,10,10s10-4.486,10-10S17.514,2,12,2z M16.207,14.793l-1.414,1.414L12,13.414 l-2.793,2.793l-1.414-1.414L10.586,12L7.793,9.207l1.414-1.414L12,10.586l2.793-2.793l1.414,1.414L13.414,12L16.207,14.793z"
-			}
-		)
-	);
-
-	const reorderIcon = el(
-		'svg',
-		{
-			xmlns: "http://www.w3.org/2000/svg",
-			width: 20,
-			height: 24,
-			viewBox: "0 0 20 24"
-		},
-		el( 'circle', { cx: '5.5', cy: '4.5', r: '2.5' } ),
-		el( 'circle', { cx: '5.5', cy: '11.5', r: '2.5' } ),
-		el( 'circle', { cx: '14.5', cy: '11.5', r: '2.5' } ),
-		el( 'circle', { cx: '5.5', cy: '18.5', r: '2.5' } ),
-		el( 'circle', { cx: '14.5', cy: '18.5', r: '2.5' } ),
-		el( 'circle', { cx: '14.5', cy: '4.5', r: '2.5' } )
-	);
-
-	const getTableColumnLabel = ( type ) => {
-
-		if ( settings.columnLabels[type] ) {
-			return settings.columnLabels[type].heading;
-		} else {
-			return type;
-		}
-
-	}
-
 	const getTableColumnOrder = ( container ) => {
-
 
 		let newColumnOrder = [];
 		let columnsSelected = container.querySelectorAll( 'li' );
-
 
 		for( let i = 0; i < columnsSelected.length; i += 1 ) {
 			newColumnOrder.push( columnsSelected[i].dataset.slug );
@@ -164,19 +119,6 @@
 
 	};
 
-	const removeArrayIndex = ( array, index ) => {
-
-		let newArray = [];
-
-		for ( var i in array ) {
-			if ( i !== index ) {
-				newArray.push( array[i] );
-			}
-		}
-
-		return newArray;
-
-	}
 
 	const createTableColumns = ( { columnRef, columns, onChange } ) => {
 
@@ -204,7 +146,7 @@
 					el(
 						Icon,
 						{
-							icon: reorderIcon,
+							icon: barn2_reorderIcon,
 							alt: ''
 						}
 					),
@@ -212,7 +154,7 @@
 					el(
 						IconButton,
 						{
-							icon: deleteIcon,
+							icon: barn2_deleteIcon,
 							label: 'Remove Column',
 							'data-index': i,
 							onClick: (e) => {
@@ -330,48 +272,6 @@
 			__( 'Add', 'wpt-block' )
 		) );
 
-
-		/*let columnPopup = el(
-			'div',
-			{ className: popupClassName },
-			[
-				el( 'h3', {}, __( 'Modify Table Columns', 'wpt-block' ) ),
-				el(
-					Button,
-					{
-						className: 'save-table-columns-button',
-						onClick: ( e ) => {
-							if ( onChange ) {
-								onChange( newColumns );
-							}
-							setState( { columnsHaveChanged: false, modalOpened: false } );
-						},
-					},
-					__( 'Save', 'wpt-block' )
-				),
-				,
-				,
-				
-				
-				
-				
-			]
-		);
-
-		tableHeaderColumns.push( el(
-			Button,
-			{
-				className: 'customize-columns',
-				'aria-expanded': modalOpened ? 'true' : 'false',
-				onClick: (e) => {
-					setState( { modalOpened: ! modalOpened } );
-				}
-			},
-			__( 'Customize Columns', 'wpt-block' )
-		) );*/
-
-		//tableHeaderColumns.push( columnPopup );
-
 		return el(
 			'div',
 			{
@@ -382,14 +282,4 @@
 
 	};
 
-	const waitForReference = ( ref, ready ) => {
-
-		if ( ref.current ) {
-			ready( ref.current );
-		} else {
-			window.setTimeout( waitForReference, 100, ref, ready );
-		}
-
-	};
-
-} )( window.wp, wcptbSettings );
+} )( window.wp, typeof wcptbSettings !== 'undefined' ? wcptbSettings : null );

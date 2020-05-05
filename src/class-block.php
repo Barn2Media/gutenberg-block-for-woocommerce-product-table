@@ -71,16 +71,17 @@ class Block {
 		);
 
 		wp_register_script(
-			'draggable-sortable',
-			Plugin::$assets_uri . 'js/sortable.min.js',
-			array(),
-			'1.0.0-beta.8'
+			'barn2-wc-product-table-columns-common',
+			Plugin::$assets_uri . 'js/common.min.js',
+			array( 'jquery-ui-sortable', 'wp-element', 'wp-i18n', 'wp-components', 'wp-compose' ),
+			Plugin::$assets_version,
+			true
 		);
 
 		wp_register_script(
 			'barn2-wc-product-table-columns',
 			Plugin::$assets_uri . 'js/table-columns.min.js',
-			array( 'jquery-ui-sortable', 'wp-element', 'wp-i18n', 'wp-components', 'wp-compose' ),
+			array( 'barn2-wc-product-table-columns-common', 'jquery-ui-sortable', 'wp-element', 'wp-i18n', 'wp-components', 'wp-compose' ),
 			Plugin::$assets_version,
 			true
 		);
@@ -88,7 +89,7 @@ class Block {
 		wp_register_script(
 			'barn2-wc-product-table-query',
 			Plugin::$assets_uri . 'js/product-selection.min.js',
-			array( 'wp-element', 'wp-i18n', 'wp-components', 'wp-compose', 'wp-api-fetch' ),
+			array( 'barn2-wc-product-table-columns-common', 'jquery-ui-sortable', 'wp-element', 'wp-i18n', 'wp-components', 'wp-compose', 'wp-api-fetch' ),
 			Plugin::$assets_version,
 			true
 		);
@@ -96,7 +97,7 @@ class Block {
 		wp_register_script(
 			'barn2-wc-product-table-settings',
 			Plugin::$assets_uri . 'js/settings-panel.min.js',
-			array( 'wp-element', 'wp-i18n', 'wp-components', 'wp-compose' ),
+			array( 'barn2-wc-product-table-columns-common', 'wp-element', 'wp-i18n', 'wp-components', 'wp-compose' ),
 			Plugin::$assets_version,
 			true
 		);
@@ -104,46 +105,75 @@ class Block {
 		wp_register_script(
 			'barn2-wc-product-table-block',
 			Plugin::$assets_uri . 'js/editor.min.js',
-			array( 'barn2-wc-product-table-columns', 'barn2-wc-product-table-query', 'barn2-wc-product-table-settings', 'wc-blocks', 'wp-blocks', 'wp-editor', 'wp-components', 'wp-element', 'wp-i18n' ),
+			array( 'barn2-wc-product-table-columns-common', 'barn2-wc-product-table-columns', 'barn2-wc-product-table-query', 'barn2-wc-product-table-settings', 'wc-blocks', 'wp-blocks', 'wp-editor', 'wp-components', 'wp-element', 'wp-i18n' ),
 			Plugin::$assets_version,
 			true
 		);
 
-		$defaults = \WCPT_Settings::get_setting_table_defaults();
-		if ( empty( $defaults['columns'] ) ) {
-			$defaults['columns'] = \WC_Product_Table_Args::$default_args['columns'];
-		}
-		if ( ! empty( $defaults['columns'] ) ) {
-			$defaults['columns'] = explode( ',', $defaults['columns'] );
-			foreach ( $defaults['columns'] as &$column ) {
-				$column = trim( $column );
+		if ( ! Plugin::is_wpt_safe() ) {
+
+			wp_localize_script(
+				'barn2-wc-product-table-block',
+				'wcptbInvalid',
+				[
+					'message' => __( 'Warning! This block is an add-on for the %s plugin, which is not currently installed. Please install the plugin before continuing.', 'wpt-block' ),
+					'link_text' => __( 'WooCommerce Product Table', 'wpt-block' ),
+					'link' => 'https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/?utm_source=plugin&utm_medium=wptblock&utm_campaign=wptaddblock&utm_content=wptblockdashboard'
+				]
+			);
+
+		} elseif ( ! Plugin::is_woocommerce_safe() ) {
+
+			wp_localize_script(
+				'barn2-wc-product-table-block',
+				'wcptbInvalid',
+				[
+					'no_woo' => true,
+					'message' => __( 'Warning! This block requires WooCommerce to function.', 'wpt-block' ),
+					'link_text' => __( 'WooCommerce Product Table', 'wpt-block' ),
+					'link' => 'https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/?utm_source=plugin&utm_medium=wptblock&utm_campaign=wptaddblock&utm_content=wptblockdashboard'
+				]
+			);
+
+		} else {
+
+			$defaults = \WCPT_Settings::get_setting_table_defaults();
+			if ( empty( $defaults['columns'] ) ) {
+				$defaults['columns'] = \WC_Product_Table_Args::$default_args['columns'];
 			}
+			if ( ! empty( $defaults['columns'] ) ) {
+				$defaults['columns'] = explode( ',', $defaults['columns'] );
+				foreach ( $defaults['columns'] as &$column ) {
+					$column = trim( $column );
+				}
+			}
+
+			wp_localize_script(
+				'barn2-wc-product-table-columns',
+				'wcptbSettings',
+				[
+					'columnLabels'  => self::column_defaults(),
+					'defaultValues' => $defaults,
+				]
+			);
+
+			wp_localize_script(
+				'barn2-wc-product-table-query',
+				'wcptbNonce',
+				wp_create_nonce( 'wp_rest' )
+			);
+
+			wp_localize_script(
+				'barn2-wc-product-table-query',
+				'wcptbCatalog',
+				[
+					'categoryTerms' => self::get_product_category_terms(),
+					'tagTerms'      => self::get_tag_terms(),
+					'attributes'    => self::get_product_attributes(),
+				]
+			);
+
 		}
-
-		wp_localize_script(
-			'barn2-wc-product-table-columns',
-			'wcptbSettings',
-			[
-				'columnLabels'  => self::column_defaults(),
-				'defaultValues' => $defaults,
-			]
-		);
-
-		wp_localize_script(
-			'barn2-wc-product-table-query',
-			'wcptbNonce',
-			wp_create_nonce( 'wp_rest' )
-		);
-
-		wp_localize_script(
-			'barn2-wc-product-table-query',
-			'wcptbCatalog',
-			[
-				'categoryTerms' => self::get_product_category_terms(),
-				'tagTerms'      => self::get_tag_terms(),
-				'attributes'    => self::get_product_attributes(),
-			]
-		);
 
 		register_block_type(
 			'barn2/wc-product-table',

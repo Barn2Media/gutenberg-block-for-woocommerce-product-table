@@ -10,10 +10,10 @@
  * @copyright Barn2 Media Ltd
  *
  * @wordpress-plugin
- * Plugin Name:     WooCommerce Product Table Block
- * Plugin URI:      https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/
- * Description:     Integrate the WooCommerce Product Table plugin from a WordPress Editor block interface.
- * Version:         1.0
+ * Plugin Name:     Gutenberg Block for WooCommerce Product Table
+ * Plugin URI:      https://barn2.co.uk/wordpress-plugins/woocommerce-product-table-gutenberg/
+ * Description:     Adds a Gutenberg block to the WooCommerce Product Table plugin by Barn2, making it quick and easy to create product tables with Gutenberg.
+ * Version:         1.0.1
  * Author:          Barn2 Plugins
  * Author URI:      https://barn2.co.uk
  * Text Domain:     wpt-block
@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const PLUGIN_VERSION = '1.0';
+const PLUGIN_VERSION = '1.0.1';
 const PLUGIN_FILE    = __FILE__;
 
 require_once __DIR__ . '/src/class-plugin.php';

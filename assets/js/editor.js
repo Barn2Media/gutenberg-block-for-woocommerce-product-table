@@ -1,5 +1,7 @@
-( function( wp, ptbComponents, nonce ) {
+( function( wp, ptbComponents ) {
 	"use strict";
+
+	console.log( wcptbInvalid );
 
 	const { __ } = wp.i18n;
 	const {
@@ -8,7 +10,7 @@
 		RawHTML
 	} = wp.element;
 	const { InspectorControls } = wp.blockEditor;
-	const { PanelBody, Icon } = wp.components;
+	const { Placeholder, Icon } = wp.components;
 
 	const { ProductTableColumns, ProductSelection, SettingsPanel } = ptbComponents;
 
@@ -47,6 +49,8 @@
 			}
 		},
 		supports: {
+			customClassName: false,
+			className: false,
 			html: false,
 			align: [ 'wide', 'full' ],
 		},
@@ -57,78 +61,113 @@
 
 			const productPreviewRef = wp.element.createRef();
 
-			let settings = attributes.custom;
+			let blockStructure;
 
-			const blockStructure = el(
-				Fragment,
-				null,
-				[
-					el(
-						InspectorControls,
-						null,
-						[
-							el(
-								SettingsPanel,
-								{
-									onChange: ( newSettings ) => {
-										//console.log( newSettings );
-										setAttributes( { settings: newSettings } );
-									},
-									attributes
-								}
-							),
-						]
-					),
-					el(
-						'div',
-						{ className: 'components-placeholder barn2-wc-product-table-block' },
-						[
-							el(
-								'div',
-								{ className: 'components-placeholder__label' },
-								[
-									el( Icon, { icon: tableIcon, alt: '' } ),
-									__( 'Product Table', 'wpt-block' )
-								]
-							),
-							el(
-								'div',
-								{ className: 'components-placeholder__fieldset' },
-								[
-									__( 'Lists products in a table view using the WooCommerce Product Table plugin.', 'wpt-block' ),
-									el(
-										'div',
-										{ className: 'barn2-wc-product-table-block__options' },
-										[
-											el(
-												ProductTableColumns,
-												{
-													columns: attributes.columns,
-													saveColumns: ( newColumns ) => {
-														//console.log( changed );
-														setAttributes( { columns: newColumns } );
+			if ( typeof wcptbInvalid !== 'undefined' ) {
+
+				let messageSplit = wcptbInvalid.message.split('%s'), message;
+				
+				if ( messageSplit.length > 1 ) {
+					message = [
+						messageSplit[0],
+						el(
+							'a',
+							{ href: wcptbInvalid.link },
+							wcptbInvalid.link_text
+						),
+						messageSplit[1]
+					];
+				} else {
+					message = messageSplit[0];
+				}
+				
+
+				blockStructure = el( 
+					Placeholder,
+					{ icon: tableIcon, label: 'Product Table', instructions: message }
+				);
+
+			} else {
+
+				blockStructure = el(
+					Fragment,
+					null,
+					[
+						el(
+							InspectorControls,
+							null,
+							[
+								el(
+									SettingsPanel,
+									{
+										onChange: ( newSettings ) => {
+											//console.log( newSettings );
+											setAttributes( { settings: newSettings } );
+										},
+										attributes
+									}
+								),
+							]
+						),
+						el(
+							'div',
+							{ className: 'components-placeholder barn2-wc-product-table-block' },
+							[
+								el(
+									'div',
+									{ className: 'components-placeholder__label' },
+									[
+										el( Icon, { icon: tableIcon, alt: '' } ),
+										__( 'Product Table', 'wpt-block' )
+									]
+								),
+								el(
+									'div',
+									{ className: 'components-placeholder__fieldset' },
+									[
+										__( 'Lists products in a table view using the WooCommerce Product Table plugin.', 'wpt-block' ),
+										el(
+											'div',
+											{ className: 'barn2-wc-product-table-block__options' },
+											[
+												el(
+													ProductTableColumns,
+													{
+														columns: attributes.columns,
+														saveColumns: ( newColumns ) => {
+															//console.log( changed );
+															setAttributes( { columns: newColumns } );
+														}
 													}
-												}
-											),
-											el(
-												ProductSelection,
-												{
-													attributes,
-													saveFilters: ( newFilters ) => {
-														//console.log( changed );
-														setAttributes( { filters: newFilters } );
-													},
-													ref: productPreviewRef
-												}
-											)
-										]
+												),
+												el(
+													ProductSelection,
+													{
+														attributes,
+														saveFilters: ( newFilters ) => {
+															//console.log( changed );
+															setAttributes( { filters: newFilters } );
+														},
+														ref: productPreviewRef
+													}
+												)
+											]
+										)
+									],
+									el(
+										'p',
+										{ className: 'additional-settings-notice' },
+										__( "You can configure additional settings in the 'Block' tab in the sidebar.", 'wpt-block' )
 									)
-								]
-							)
-						]
-					)
-				]
-			);
+								)
+							]
+						)
+					]
+				);
+
+			}
+
+			
 
 			return blockStructure;
 		},
@@ -156,7 +195,9 @@
 						if ( setting.value === '' ) {
 							continue;
 						}
-						if ( setting.key !== 'customFilters' ) {
+						if ( setting.key === 'additional' ) {
+							attrs = `${setting.value} ` + attrs;
+						} else if ( setting.key !== 'customFilters' ) {
 							if ( setting.key === 'filters' && setting.value === 'custom' ) {
 								continue;
 							}
@@ -183,4 +224,4 @@
 		}
 	} );
 
-} )( window.wp, window.productTableBlockComponents, wcptbNonce );
+} )( window.wp, window.productTableBlockComponents );

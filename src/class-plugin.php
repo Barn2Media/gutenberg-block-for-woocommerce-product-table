@@ -94,8 +94,8 @@ class Plugin {
 	private function is_plugin_compatible() {
 		return $this->is_php_version_safe()
 			&& $this->is_wordpress_safe()
-			&& $this->is_woocommerce_safe()
-			&& $this->is_wpt_safe();
+			&& $this->is_woocommerce_safe();
+			//&& $this->is_wpt_safe();
 	}
 
 	/**
@@ -116,14 +116,14 @@ class Plugin {
 	/**
 	 * Checks to ensure WooCommerce is active
 	 */
-	public function is_woocommerce_safe() {
+	public static function is_woocommerce_safe() {
 		return class_exists( 'woocommerce' );
 	}
 
 	/**
 	 * Checks to ensure WooCommerce Product Table plugin is active
 	 */
-	public function is_wpt_safe() {
+	public static function is_wpt_safe() {
 		return class_exists( 'WC_Product_Table_Plugin' );
 	}
 
@@ -132,7 +132,7 @@ class Plugin {
 	 */
 	public function requirement_notices() {
 
-		$message = '';
+		$messages = '';
 
 		if ( ! $this->is_php_version_safe() ) {
 			$messages .= '<li>' . esc_html( __( 'PHP must be running on version 5.6 or above to use this plugin.', 'wpt-block' ) ) . '</li>';
@@ -146,9 +146,9 @@ class Plugin {
 			$messages .= '<li>' . esc_html( __( 'This plugin requires WooCommerce to be active', 'wpt-block' ) ) . '</li>';
 		}
 
-		if ( ! $this->is_wpt_safe() ) {
+		/*if ( ! $this->is_wpt_safe() ) {
 			$messages .= '<li>' . esc_html( __( 'This plugin requires the WooCommerce Product Table plugin to be active', 'wpt-block' ) ) . '</li>';
-		}
+		}*/
 
 		if ( empty( $messages ) ) {
 			return;
