@@ -58,7 +58,7 @@
 								__( "How 'Add to Cart' buttons are displayed in the table. ", 'wpt-block' ),
 								el(
 									'a',
-									{ href: 'https://barn2.co.uk/kb/add-to-cart-buttons' },
+									{ href: 'https://barn2.co.uk/kb/add-to-cart-buttons', target: '_blank' },
 									__( 'Read More', 'wpt-block' )
 								)
 							]
@@ -71,7 +71,7 @@
 							value: settings.show_quantity,
 							options: [
 								{ value: '', label: __( '(Use global option)', 'wpt-block' ) },
-								{ value: 'true', label: __( 'Show quantity selectors in the Add to Cart column', 'wpt-block' ) },
+								{ value: 'true', label: __( 'Show in add to cart column', 'wpt-block' ) },
 								{ value: 'false', label: __( 'Do not show quantity selectors', 'wpt-block' ) },
 							],
 							onChange: ( value ) => {
@@ -87,8 +87,8 @@
 							options: [
 								{ value: '', label: __( '(Use global option)', 'wpt-block' ) },
 								{ value: 'false', label: __( 'Link to product page', 'wpt-block' ) },
-								{ value: 'dropdown', label: __( 'Dropdown lists in add to cart column', 'wpt-block' ) },
-								{ value: 'separate', label: __( 'Separate rows in table (one per variation)', 'wpt-block' ) },
+								{ value: 'dropdown', label: __( 'Dropdowns in add to cart column', 'wpt-block' ) },
+								{ value: 'separate', label: __( 'Separate rows in table', 'wpt-block' ) },
 							],
 							onChange: ( value ) => {
 								changeSetting( 'variations', value );
@@ -97,7 +97,7 @@
 								__( 'How to display options for variable products. ', 'wpt-block' ),
 								el(
 									'a',
-									{ href: 'https://barn2.co.uk/kb/product-variations' },
+									{ href: 'https://barn2.co.uk/kb/product-variations', target: '_blank' },
 									__( 'Read More', 'wpt-block' )
 								)
 							]
@@ -117,7 +117,7 @@
 							options: [
 								{ value: '', label: __( '(Use global option)', 'wpt-block' ) },
 								{ value: 'false', label: __( 'Disabled', 'wpt-block' ) },
-								{ value: 'true', label: __( 'Show based on columns in the table', 'wpt-block' ) },
+								{ value: 'true', label: __( 'Show based on columns in table', 'wpt-block' ) },
 								{ value: 'custom', label: __( 'Custom', 'wpt-block' ) },
 							],
 							onChange: ( value ) => {
@@ -130,7 +130,7 @@
 								__( 'Dropdown lists to filter the table by category, tag, attribute, or custom taxonomy. ', 'wpt-block' ),
 								el(
 									'a',
-									{ href: 'https://barn2.co.uk/kb/wpt-filters/#filter-dropdowns' },
+									{ href: 'https://barn2.co.uk/kb/wpt-filters/#filter-dropdowns', target: '_blank' },
 									__( 'Read More', 'wpt-block' )
 								)
 							]
@@ -159,19 +159,24 @@
 			),
 			el(
 				PanelBody,
-				{ title: __( 'Advanced Configuration', 'wpt-block' ), initialOpen: false },
+				{ title: __( 'Additional Options', 'wpt-block' ), initialOpen: false },
 				[
 					el(
 						'p',
 						{},
 						[
-							__( 'You can configure ', 'wpt-block' ),
+							__( 'You can configure additional options globally on the  ', 'wpt-block' ),
 							el( 
 								'a',
-								{ href: '/wp-admin/admin.php?page=wc-settings&tab=products&section=product-table' },
-								__( 'additional options', 'wpt-block' )
+								{ href: '/wp-admin/admin.php?page=wc-settings&tab=products&section=product-table', target: '_blank' },
+								__( 'WooCommerce Product Table settings page', 'wpt-block' )
 							),
-							__( ' globally on the WooCommerce Product Table settings page, or by adding the [product_table] shortcode to a ‘Shortcode’ block. Custom settings can also be added below.', 'wpt-block' )
+							__( ', or by adding them below with one option per line (e.g. sort_by="name").', 'wpt-block' ),
+							el( 
+								'a',
+								{ href: 'https://barn2.co.uk/kb/product-table-options/%5D%22', target: '_blank' },
+								__( 'See full list of options.', 'wpt-block' )
+							)
 						]
 					),
 					el(

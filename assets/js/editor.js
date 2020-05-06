@@ -70,7 +70,7 @@
 						messageSplit[0],
 						el(
 							'a',
-							{ href: wcptbInvalid.link },
+							{ href: wcptbInvalid.link, target: '_blank' },
 							wcptbInvalid.link_text
 						),
 						messageSplit[1]
@@ -123,7 +123,18 @@
 									'div',
 									{ className: 'components-placeholder__fieldset' },
 									[
-										__( 'Lists products in a table view using the WooCommerce Product Table plugin.', 'wpt-block' ),
+										el( 
+											'span',
+											{ className: 'block-description' },
+											[
+												__( 'Lists products in a table view using the WooCommerce Product Table plugin. ', 'wpt-block' ),
+												el(
+													'a',
+													{ href: 'https://barn2.co.uk/kb/woocommerce-product-table-gutenberg/', target: '_blank' },
+													__( 'Documentation', 'wpt-block' )
+												)
+											]
+										),
 										el(
 											'div',
 											{ className: 'barn2-wc-product-table-block__options' },

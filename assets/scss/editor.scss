@@ -56,16 +56,31 @@ $root: '.barn2-wc-product-table-block';
 		margin-top: 1em;
 		padding-top: 1em;
 		border-top: 1px solid $offset-bg;
-		display: flex;
-		align-items: flex-start;
 
-		> * {
-			flex: 0 1 50%;
+		@media screen and (min-width: 783px) {
+
+			display: flex;
+			align-items: flex-start;
+
+			> * {
+				flex: 0 1 50%;
+			}
+
 		}
 	}
 
-	&__products {
-		margin-left: 1em;
+	@media screen and (max-width: 782px) {
+		&__products {
+			margin-top: 1em;
+			padding-top: 1em;
+			border-top: 1px solid $offset-bg;
+		}
+	}
+
+	@media screen and (min-width: 783px) {
+		&__products {
+			margin-left: 1em;
+		}
 	}
 
 
@@ -124,6 +139,16 @@ $root: '.barn2-wc-product-table-block';
 		display: none;
 	}
 
+	&__columns-selected li {
+		cursor: grab;
+		&:hover {
+			outline: 1px solid rgba( $link-color, 0.5 );
+			> svg {
+				fill: rgba( $link-color, 0.5 );
+			}
+		}
+	}
+
 	&__columns-selected,
 	&__product-filters {
 		list-style: none;
@@ -143,18 +168,12 @@ $root: '.barn2-wc-product-table-block';
 			padding: 0.5em;
 			background: $offset-bg;
 			line-height: inherit;
-			cursor: grab;
+			
 			line-height: 1;
 			display: flex;
 			justify-content: stretch;
 			align-items: center;
 
-			&:hover {
-				outline: 1px solid rgba( $link-color, 0.5 );
-				> svg {
-					fill: rgba( $link-color, 0.5 );
-				}
-			}
 
 			span {
 				flex: 1 1 auto;
@@ -206,25 +225,35 @@ $root: '.barn2-wc-product-table-block';
 
 	&__andor-toggle {
 		align-self: center;
-		margin-top: 0;
+		margin-top: 5px;
 		flex: 1 1 100%;
-		margin-bottom: 5px;
+		margin-bottom: 10px;
 		.components-base-control__field {
 			margin-bottom: 0;
 		}
+		.allow-andor.has-multiple & {
+			display: block;
+		}
 	}
 
-	.selected                                                ~ #{$root}__add-filter-button,
-	&__new-filter-selections:not(:empty)                     ~ #{$root}__save-filter-button,
-	.allow-andor #{$root}__new-filter-selections:not(:empty) ~ #{$root}__andor-toggle {
+	.allow-multiple .selected  ~ #{$root}__add-filter-button,
+	&__new-filter-selections:not(:empty) ~ #{$root}__save-filter-button,
+	&__new-filter-panel:not(.allow-multiple) .selected ~ #{$root}__save-filter-button {
 		display: block;
+	}
+
+	&__new-filter-selection-label {
+		display: none;
+		.allow-multiple & {
+			display: block;
+			flex: 1 1 100%;
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
 	}
 
 	&__new-filter-selections {
 		flex: 1 1 100%;
-		&:empty {
-			display: none;
-		}
 		list-style: none;
 		padding: 0;
 		margin: 5px 0;

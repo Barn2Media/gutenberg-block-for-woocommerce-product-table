@@ -29,7 +29,7 @@
 			el(
 				'option',
 				{ value: '', key: 0 },
-				__( '(Select a table column to add)', 'wpt-block' )
+				__( 'Add column', 'wpt-block' )
 			)
 		];
 		for ( var slug in settings.columnLabels ) {
@@ -50,7 +50,7 @@
 			el(
 				'option',
 				{ value: '', key: 0 },
-				__( '(Select an attribute)', 'wpt-block' )
+				__( 'Select global attribute', 'wpt-block' )
 			)
 		];
 
@@ -70,9 +70,9 @@
 	const addTableColumn = ( { selection, attr, custom, columns } ) => {
 
 		if ( selection.value === 'att' ) {
-			columns.push( selection.value + ':' + attr.value );
+			columns.push( selection.value + ':' + attr.value.replace(/^att\:/, '').trim() );
 		} else if ( selection.value === 'tax' || selection.value === 'cf' ) {
-			columns.push( selection.value + ':' + custom.value );
+			columns.push( selection.value + ':' + custom.value.replace(/^(tax|cf)\:/, '').trim() );
 		} else {
 			columns.push( selection.value );
 		}

@@ -23,10 +23,10 @@
 		'month': { label: 'Month', for: 'value' },
 		'day': { label: 'Day', for: 'value' },
 		'status': { label: 'Product Status', for: 'status', values: [ 'publish', 'draft', 'private', 'pending', 'future', 'any' ], multiple: true },
-		'include': { label: 'Include Products', description: 'Separate Product IDs with a comma', for: 'value' },
-		'exclude': { label: 'Exclude Products', description: 'Separate Product IDs with a comma', for: 'value' },
+		'include': { label: 'Include Products', description: 'Product IDs', for: 'value' },
+		'exclude': { label: 'Exclude Products', description: 'Product IDs', for: 'value' },
 		'exclude_category': { andor: true, label: 'Exclude Category', for: 'category', multiple: true },
-		'user_products=true': { label: 'Previously Ordered Products' },
+		'user_products': { label: 'Previously Ordered Products', value: 'true' },
 		//'variations=separate': { label: 'Show Variations' },
 	};
 
@@ -45,13 +45,13 @@
 					key: 'table-column-' + i
 				},
 				[
-					el(
+					/*el(
 						Icon,
 						{
 							icon: barn2_reorderIcon,
 							alt: ''
 						}
-					),
+					),*/
 					el(
 						'span',
 						{},
@@ -87,7 +87,7 @@
 		optionNodes.push( el(
 			'option',
 			{ value: '' },
-			__( '(Select a product option to add)', 'wpt-block' )
+			__( 'Select products', 'wpt-block' )
 		) );
 
 		for ( let key in filterSelectionOptions ) {
@@ -101,6 +101,7 @@
 					'data-multiple': filterSelectionOptions[key].multiple,
 					'data-andor': filterSelectionOptions[key].andor,
 					'data-description': filterSelectionOptions[key].description,
+					'data-value': filterSelectionOptions[key].value,
 				},
 				filterSelectionOptions[key].label
 			) );
@@ -118,7 +119,7 @@
 		optionNodes.push( el(
 			'option',
 			{ value: '' },
-			__( '(Select a value)', 'wpt-block' )
+			__( 'Select value', 'wpt-block' )
 		) );
 
 		for ( let key in values ) {
@@ -165,6 +166,7 @@
 
 		panel.classList.remove( 'allow-multiple' );
 		panel.classList.remove( 'allow-andor' );
+		panel.classList.remove( 'has-multiple' );
 
 		let disabled = panel.querySelectorAll( '*[disabled]' );
 		for( let option of disabled ) {
@@ -191,6 +193,7 @@
 		let thisOption = self.querySelector( `option[value="${value}"]` );
 
 		panel.classList.remove( 'allow-multiple' );
+		panel.classList.remove( 'has-multiple' );
 		panel.classList.remove( 'allow-andor' );
 
 		self.classList.remove( 'selected' );
@@ -208,6 +211,15 @@
 
 			if ( thisOption.dataset.multiple ) {
 				panel.classList.add( 'allow-multiple' );
+
+				let label = self.parentNode.querySelector( '.barn2-wc-product-table-block__new-filter-selection-label' );
+				let button = self.parentNode.querySelector( '.barn2-wc-product-table-block__add-filter-button' );
+				if ( label ) {
+					label.innerHTML = thisOption.innerHTML + ' ' + __( 'Selections', 'wpt-block' );
+				}
+				if ( button ) {
+					button.innerHTML = __( 'Add', 'wpt-block' ) + ' ' + thisOption.innerHTML;
+				}
 			}
 			if ( thisOption.dataset.andor ) {
 				panel.classList.add( 'allow-andor' );
@@ -286,47 +298,37 @@
 
 	};
 
-	const addFilterSelection = ( panel, saveNewFilter ) => {
+	const addFilterSelection = ( panel ) => {
 
 		let key = panel.querySelector( '.barn2-wc-product-table-block__add-new-selection' ),
 			value = panel.querySelector( '.barn2-wc-product-table-block__new-option.selected' );
 
 		key.disabled = true;
 
-		if ( panel.classList.contains( 'allow-multiple' ) ) {
+		let list = panel.querySelector( 'ul' ),
+			item = document.createElement( 'li' );
 
-			let list = panel.querySelector( 'ul' ),
-				item = document.createElement( 'li' );
+		item.innerHTML = value.value;
+		item.dataset.value = value.value;
 
-			item.innerHTML = value.value;
-			item.dataset.value = value.value;
+		list.append( item );
 
-			list.append( item );
+		if ( list.children.length > 1 ) {
+			panel.classList.add( 'has-multiple' );
+		}
 
-			key.disabled = true;
+		key.disabled = true;
 
-			value.value = '';
-			value.classList.remove( 'selected' );
+		value.value = '';
+		value.classList.remove( 'selected' );
 
-			if ( value.tagName === 'SELECT' ) {
+		if ( value.tagName === 'SELECT' ) {
 
-				let option = value.querySelector( `option[value="${value.value}"]` );
-				if ( option ) {
-					option.disabled = true;
-				}
-
+			let option = value.querySelector( `option[value="${value.value}"]` );
+			if ( option ) {
+				option.disabled = true;
 			}
 
-		} else {
-
-			let split = key.value.split( '=' );
-			let newFilterKey = split[0];
-			let newFilterValue = split.length > 1 ? split[1] : '';
-			if ( split.length === 1 ) {
-				newFilterValue = value.value;
-			}
-
-			saveNewFilter( { key: newFilterKey, value: newFilterValue } );
 		}
 
 	};
@@ -350,10 +352,29 @@
 
 			newFilterValue = filters.join( joinChar );
 
-		} else {
-			let split = selectedOption.dataset.key.split( '=' );
-			newFilterKey = split[0];
-			newFilterValue = split.length > 1 ? split[1] : '';
+		} else if ( ! panel.classList.contains( 'allow-multiple' ) ) {
+			
+			let value = panel.querySelector( '.barn2-wc-product-table-block__new-option.selected' );
+
+			if ( selectedOption.dataset.value && selectedOption.dataset.value.length > 0 ) {
+
+				newFilterKey = key.value;
+				newFilterValue = selectedOption.dataset.value;
+
+			} else {
+
+				let value = panel.querySelector( '.barn2-wc-product-table-block__new-option.selected' );
+				let split = key.value.split( '=' );
+				newFilterKey = split[0];
+				newFilterValue = split.length > 1 ? split[1] : '';
+				if ( split.length === 1 ) {
+					newFilterValue = value.value;
+				}
+
+			}
+
+			//saveNewFilter( { key: newFilterKey, value: newFilterValue } );
+
 		}
 
 		return { key: newFilterKey, value: newFilterValue };
@@ -451,6 +472,11 @@
 						getFilterSelectionOptions()
 					),
 					el(
+						'strong',
+						{ className: 'barn2-wc-product-table-block__new-filter-selection-label' },
+						''
+					),
+					el(
 						'select',
 						{ className: 'barn2-wc-product-table-block__new-option category', onChange: selectProductKey },
 						getFilterSelectionOptionValues( data.categoryTerms )
@@ -504,7 +530,7 @@
 						ToggleControl,
 						{
 							className: 'barn2-wc-product-table-block__andor-toggle',
-							label: __( 'Match all', 'wpt-block' ),
+							label: __( 'Products must match all values', 'wpt-block' ),
 							checked: isMatchall,
 							onChange: () => {
 								setState( { isMatchall: ! isMatchall } );
@@ -520,7 +546,7 @@
 								addFilter( newFilter );
 							}
 						},
-						__( 'Add Selection to Table', 'wpt-block' )
+						__( 'Add to Table', 'wpt-block' )
 					),
 					el(
 						Button,
@@ -530,13 +556,13 @@
 								resetPanel( newFilterPanelRef.current );
 							}
 						},
-						__( 'Reset', 'wpt-block' )
+						__( 'Cancel', 'wpt-block' )
 					)
 				]
 			)
 		];
 
-		waitForReference( filterSelectionsRef, ( ref ) => {
+		/*waitForReference( filterSelectionsRef, ( ref ) => {
 			if ( ! ref.classList.contains( 'ui-sortable' ) ) {
 				let $sortRef = jQuery( ref );
 				$sortRef.sortable( {
@@ -548,7 +574,7 @@
 					}
 				} );
 			}
-		} );
+		} );*/
 
 		return el(
 			'div',
