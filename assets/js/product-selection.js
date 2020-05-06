@@ -218,7 +218,7 @@
 					label.innerHTML = thisOption.innerHTML + ' ' + __( 'Selections', 'wpt-block' );
 				}
 				if ( button ) {
-					button.innerHTML = __( 'Add', 'wpt-block' ) + ' ' + thisOption.innerHTML;
+					button.innerHTML = __( 'Select', 'wpt-block' ) + ' ' + thisOption.innerHTML;
 				}
 			}
 			if ( thisOption.dataset.andor ) {
@@ -518,7 +518,7 @@
 								addFilterSelection( newFilterPanelRef.current, addFilter );
 							}
 						},
-						__( 'Add', 'wpt-block' )
+						__( 'Select', 'wpt-block' )
 					),
 					el(
 						'ul',
