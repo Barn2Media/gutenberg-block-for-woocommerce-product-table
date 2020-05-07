@@ -175,6 +175,12 @@ class Block {
 
 		}
 
+		wp_localize_script(
+			'barn2-wc-product-table-block',
+			'wcptbPreviewImage',
+			plugins_url( 'assets/images/block-preview.png', __DIR__ )
+		);
+
 		register_block_type(
 			'barn2/wc-product-table',
 			array(

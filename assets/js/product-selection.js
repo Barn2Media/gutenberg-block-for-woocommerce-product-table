@@ -3,7 +3,7 @@
 
 	const { __ } = wp.i18n;
 	const { createElement } = wp.element;
-	const { Button, Icon, IconButton, ToggleControl } = wp.components;
+	const { Button, Icon, IconButton, TextControl, ToggleControl } = wp.components;
 
 	const { withState } = wp.compose;
 
@@ -14,19 +14,19 @@
 	}
 
 	const filterSelectionOptions = {
-		'category': { label: 'Category', andor: true, for: 'category', multiple: true },
-		'tag': { label: 'Tag', andor: true, for: 'tag', multiple: true },
+		'category': { label: 'Category', andor: true, for: 'category', multiple: true, selectLabel: 'Add category' },
+		'tag': { label: 'Tag', andor: true, for: 'tag', multiple: true, selectLabel: 'Add tag' },
 		'cf': { label: 'Custom Field', andor: true, keypair: [ 'Key', 'Value' ], multiple: true, for: 'value' },
 		'term': { label: 'Custom Taxonomy Term', keypair: [ 'Taxonomy', 'Term' ], multiple: true, for: 'value' },
-		'attr': { attr: 'term', label: 'Attribute', keypair: [ 'Attribute', 'Term' ], for: 'attr', multiple: true },
+		'attr': { attr: 'term', label: 'Attribute', keypair: [ 'Attribute', 'Term' ], for: 'attr', multiple: true, selectLabel: 'Add global attribute' },
 		'year': { label: 'Year', for: 'value' },
 		'month': { label: 'Month', for: 'value' },
 		'day': { label: 'Day', for: 'value' },
 		'status': { label: 'Product Status', for: 'status', values: [ 'publish', 'draft', 'private', 'pending', 'future', 'any' ], multiple: true },
-		'include': { label: 'Include Products', description: 'Product IDs', for: 'value' },
-		'exclude': { label: 'Exclude Products', description: 'Product IDs', for: 'value' },
-		'exclude_category': { andor: true, label: 'Exclude Category', for: 'category', multiple: true },
-		'user_products': { label: 'Previously Ordered Products', value: 'true' },
+		'include': { label: 'Include Products', description: 'Product IDs', for: 'value', selectLabel: 'Add product' },
+		'exclude': { label: 'Exclude Products', description: 'Product IDs', for: 'value', selectLabel: 'Exclude product' },
+		'exclude_category': { andor: true, label: 'Exclude Category', for: 'category', multiple: true, selectLabel: 'Exclude category' },
+		'user_products': { label: 'Previously Ordered Products', value: 'true', valueLabel: 'Enabled' },
 		//'variations=separate': { label: 'Show Variations' },
 	};
 
@@ -36,6 +36,11 @@
 
 		for ( let i in filters ) {
 			let prettyValue = filters[i].value.replace(/,/g, ', ').replace(/\+/g, ' + ');
+
+			if ( filterSelectionOptions[ filters[i].key ].valueLabel ) {
+				prettyValue = filterSelectionOptions[ filters[i].key ].valueLabel;
+			}
+
 			let node = el(
 				'li',
 				{
@@ -112,14 +117,14 @@
 
 	};
 
-	const getFilterSelectionOptionValues = ( values, recursive ) => {
+	const getFilterSelectionOptionValues = ( values, label, recursive ) => {
 
 		let optionNodes = [];
 
 		optionNodes.push( el(
 			'option',
 			{ value: '' },
-			__( 'Select value', 'wpt-block' )
+			__( label, 'wpt-block' )
 		) );
 
 		for ( let key in values ) {
@@ -192,11 +197,9 @@
 		let value = self.value;
 		let thisOption = self.querySelector( `option[value="${value}"]` );
 
-		panel.classList.remove( 'allow-multiple' );
-		panel.classList.remove( 'has-multiple' );
-		panel.classList.remove( 'allow-andor' );
+		resetPanel( panel );
 
-		self.classList.remove( 'selected' );
+		self.value = value;
 
 		let options = self.parentNode.querySelectorAll( '.barn2-wc-product-table-block__new-option' );
 		for( let option of options ) {
@@ -218,7 +221,10 @@
 					label.innerHTML = thisOption.innerHTML + ' ' + __( 'Selections', 'wpt-block' );
 				}
 				if ( button ) {
-					button.innerHTML = __( 'Select', 'wpt-block' ) + ' ' + thisOption.innerHTML;
+					button.innerHTML = __( 'Add', 'wpt-block' );
+					if ( filterSelectionOptions[ value ].selectLabel ) {
+						button.innerHTML = filterSelectionOptions[ value ].selectLabel;
+					}
 				}
 			}
 			if ( thisOption.dataset.andor ) {
@@ -308,10 +314,25 @@
 		let list = panel.querySelector( 'ul' ),
 			item = document.createElement( 'li' );
 
-		item.innerHTML = value.value;
+		item.innerHTML = '<span>' + value.value + '</span>';
 		item.dataset.value = value.value;
 
+		let removeButton = document.createElement( 'button' );
+		removeButton.classList.add( 'components-button' );
+		removeButton.classList.add( 'has-icon' );
+		removeButton.innerHTML = '<svg role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" class="dashicon dashicons-dismiss"><path d="M10 2c4.42 0 8 3.58 8 8s-3.58 8-8 8-8-3.58-8-8 3.58-8 8-8zm5 11l-3-3 3-3-2-2-3 3-3-3-2 2 3 3-3 3 2 2 3-3 3 3z"></path></svg>';
+		removeButton.addEventListener( 'click', function (e) {
+			item.remove();
+
+			if ( list.children.length < 2 ) {
+				panel.classList.remove( 'has-multiple' );
+			}
+		} );
+
+		item.append( removeButton );
+
 		list.append( item );
+
 
 		if ( list.children.length > 1 ) {
 			panel.classList.add( 'has-multiple' );
@@ -381,7 +402,7 @@
 
 	};
 
-	const getFiltersOrder = ( list ) => {
+	/*const getFiltersOrder = ( list ) => {
 
 		let newColumnOrder = [];
 		let columnsSelected = list.querySelectorAll( 'li' );
@@ -392,7 +413,7 @@
 
 		return newColumnOrder;
 
-	};
+	};*/
 
 	window.productTableBlockComponents.ProductSelection = withState( {
 
@@ -477,50 +498,6 @@
 						''
 					),
 					el(
-						'select',
-						{ className: 'barn2-wc-product-table-block__new-option category', onChange: selectProductKey },
-						getFilterSelectionOptionValues( data.categoryTerms )
-					),
-					el(
-						'select',
-						{ className: 'barn2-wc-product-table-block__new-option status', onChange: selectProductKey },
-						getFilterSelectionOptionValues( filterSelectionOptions.status.values )
-					),
-					el(
-						'select',
-						{ className: 'barn2-wc-product-table-block__new-option tag', onChange: selectProductKey },
-						getFilterSelectionOptionValues( data.tagTerms )
-					),
-					el(
-						'select',
-						{
-							className: 'barn2-wc-product-table-block__new-option attr',
-							onChange: ( e ) => {
-								selectProductAttr( e, newFilterPanelRef.current );
-							}
-						},
-						getFilterSelectionOptionValues( data.attributes )
-					),
-					el(
-						'select',
-						{ className: 'barn2-wc-product-table-block__new-option attr-values', onChange: selectProductAttrValue },
-						getFilterSelectionOptionValues( data.attributes, true )
-					),
-					el(
-						'input',
-						{ className: 'barn2-wc-product-table-block__new-option value', onChange: selectProductValue }
-					),
-					el(
-						Button,
-						{
-							className: 'is-secondary barn2-wc-product-table-block__add-filter-button',
-							onClick: ( e ) => {
-								addFilterSelection( newFilterPanelRef.current, addFilter );
-							}
-						},
-						__( 'Select', 'wpt-block' )
-					),
-					el(
 						'ul',
 						{
 							className: 'barn2-wc-product-table-block__new-filter-selections',
@@ -538,6 +515,51 @@
 						}
 					),
 					el(
+						'select',
+						{ className: 'barn2-wc-product-table-block__new-option category', onChange: selectProductKey },
+						getFilterSelectionOptionValues( data.categoryTerms, 'Select category' )
+					),
+					el(
+						'select',
+						{ className: 'barn2-wc-product-table-block__new-option status', onChange: selectProductKey },
+						getFilterSelectionOptionValues( filterSelectionOptions.status.values, 'Select status' )
+					),
+					el(
+						'select',
+						{ className: 'barn2-wc-product-table-block__new-option tag', onChange: selectProductKey },
+						getFilterSelectionOptionValues( data.tagTerms, 'Select tag' )
+					),
+					el(
+						'select',
+						{
+							className: 'barn2-wc-product-table-block__new-option attr',
+							onChange: ( e ) => {
+								selectProductAttr( e, newFilterPanelRef.current );
+							}
+						},
+						getFilterSelectionOptionValues( data.attributes, 'Select global attribute' )
+					),
+					el(
+						'select',
+						{ className: 'barn2-wc-product-table-block__new-option attr-values', onChange: selectProductAttrValue },
+						getFilterSelectionOptionValues( data.attributes, 'Select attribute value', true )
+					),
+					el(
+						'input',
+						{ className: 'barn2-wc-product-table-block__new-option components-text-control__input value', onChange: selectProductValue }
+					),
+					el(
+						Button,
+						{
+							className: 'is-secondary barn2-wc-product-table-block__add-filter-button',
+							onClick: ( e ) => {
+								addFilterSelection( newFilterPanelRef.current, addFilter );
+							}
+						},
+						__( 'Select', 'wpt-block' )
+					),
+					el( 'span', { className: 'spacer' }, '' ),
+					el(
 						Button,
 						{
 							className: 'is-primary barn2-wc-product-table-block__save-filter-button',
@@ -546,12 +568,12 @@
 								addFilter( newFilter );
 							}
 						},
-						__( 'Add to Table', 'wpt-block' )
+						__( 'Done', 'wpt-block' )
 					),
 					el(
 						Button,
 						{
-							className: 'is-secondary barn2-wc-product-table-block__save-filter-button',
+							className: 'is-secondary barn2-wc-product-table-block__reset-filter-button',
 							onClick: (e) => {
 								resetPanel( newFilterPanelRef.current );
 							}

@@ -88,7 +88,7 @@ class Rest {
 		}
 
 		if ( class_exists( 'Barn2\Plugin\WC_Product_Table\Table_Shortcode' ) ) {
-			$args = Barn2\Plugin\WC_Product_Table\Table_Shortcode::check_legacy_atts( $args );
+			$args = \Barn2\Plugin\WC_Product_Table\Table_Shortcode::check_legacy_atts( $args );
 		} elseif ( class_exists( 'WC_Product_Table_Shortcode' ) ) {
 			$args = \WC_Product_Table_Shortcode::check_legacy_atts( $args );
 		}

@@ -171,10 +171,10 @@
 								{ href: '/wp-admin/admin.php?page=wc-settings&tab=products&section=product-table', target: '_blank' },
 								__( 'WooCommerce Product Table settings page', 'wpt-block' )
 							),
-							__( ', or by adding them below with one option per line (e.g. sort_by="name").', 'wpt-block' ),
+							__( ', or by adding them below with one option per line (e.g. sort_by="name"). ', 'wpt-block' ),
 							el( 
 								'a',
-								{ href: 'https://barn2.co.uk/kb/product-table-options/%5D%22', target: '_blank' },
+								{ href: 'https://barn2.co.uk/kb/product-table-options/', target: '_blank' },
 								__( 'See full list of options.', 'wpt-block' )
 							)
 						]

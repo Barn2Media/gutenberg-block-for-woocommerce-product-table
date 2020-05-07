@@ -3,6 +3,22 @@ $link-color: #005d8c;
 
 $root: '.barn2-wc-product-table-block';
 
+@mixin responsive-collapse() {
+	#{$root}__options {
+		flex-direction: column;
+		align-items: stretch;
+		> * {
+			flex: 0 0 auto;
+		}
+	}
+	#{$root}__products {
+		margin-top: 1em;
+		margin-left: 0;
+		padding-top: 1em;
+		border-top: 1px solid $offset-bg;
+	}
+}
+
 .editor-styles-wrapper #{$root},
 #{$root} {
 	box-sizing: border-box;
@@ -57,32 +73,35 @@ $root: '.barn2-wc-product-table-block';
 		padding-top: 1em;
 		border-top: 1px solid $offset-bg;
 
-		@media screen and (min-width: 783px) {
-
-			display: flex;
-			align-items: flex-start;
-
-			> * {
-				flex: 0 1 50%;
-			}
-
+		display: flex;
+		align-items: flex-start;
+		> * {
+			flex: 0 1 50%;
 		}
 	}
 
+	&__products {
+		margin-left: 1em;
+	}
+
+	@media screen and (max-width: 622px) {
+		@include responsive-collapse();
+	}
 	@media screen and (max-width: 782px) {
-		&__products {
-			margin-top: 1em;
-			padding-top: 1em;
-			border-top: 1px solid $offset-bg;
+		.is-fullscreen-mode & {
+			@include responsive-collapse();
 		}
 	}
-
-	@media screen and (min-width: 783px) {
-		&__products {
-			margin-left: 1em;
+	@media screen and (max-width: 1080px) {
+		.is-fullscreen-mode .is-sidebar-opened & {
+			@include responsive-collapse();
 		}
 	}
-
+	@media screen and (max-width: 1240px) {
+		body:not(.is-fullscreen-mode) .is-sidebar-opened & {
+			@include responsive-collapse();
+		}
+	}
 
 	overflow: visible;
 
@@ -119,7 +138,8 @@ $root: '.barn2-wc-product-table-block';
 	&__attribute-selector,
 	&__custom-input {
 		margin: 0 0.5em 0 0;
-		height: 36px;
+		height: auto;
+		min-height: 31px;
 		
 		&.selected {
 			//flex: 0 0 75%;
@@ -132,6 +152,8 @@ $root: '.barn2-wc-product-table-block';
 
 	&__add-column-button {
 		display: none;
+		height: auto;
+		min-height: 31px;
 	}
 
 	&__column-selector:not(.select-attribute) ~ #{$root}__attribute-selector,
@@ -219,7 +241,8 @@ $root: '.barn2-wc-product-table-block';
 
 	&__add-filter-button,
 	&__andor-toggle,
-	&__save-filter-button {
+	&__save-filter-button,
+	&__reset-filter-button {
 		display: none;
 	}
 
@@ -227,16 +250,20 @@ $root: '.barn2-wc-product-table-block';
 		align-self: center;
 		margin-top: 5px;
 		flex: 1 1 100%;
-		margin-bottom: 10px;
+		margin-bottom: 15px;
 		.components-base-control__field {
 			margin-bottom: 0;
 		}
 		.allow-andor.has-multiple & {
 			display: block;
 		}
+		.components-form-toggle {
+			margin-right: 8px;
+		}
 	}
 
 	.allow-multiple .selected  ~ #{$root}__add-filter-button,
+	.allow-multiple .visible  ~ #{$root}__reset-filter-button,
 	&__new-filter-selections:not(:empty) ~ #{$root}__save-filter-button,
 	&__new-filter-panel:not(.allow-multiple) .selected ~ #{$root}__save-filter-button {
 		display: block;
@@ -252,31 +279,72 @@ $root: '.barn2-wc-product-table-block';
 		}
 	}
 
+	.spacer {
+		flex: 1 1 100%;
+	}
+
 	&__new-filter-selections {
 		flex: 1 1 100%;
 		list-style: none;
 		padding: 0;
-		margin: 5px 0;
+		margin: 0 0 5px 0;
 		display: flex;
 		justify-content: flex-start;
 		flex-wrap: wrap;
 
 		li {
 			flex: 0 0 auto;
-			margin: 5px 5px 0 0;
-			padding: 10px;
-			background: $offset-bg;
-			flex: 0 0 auto;
+			margin: 5px 10px 0 0;
+			display: flex;
+			align-items: center;
+			span { 
+				padding: 5px 10px;
+				background: $offset-bg;
+				flex: 0 0 auto;
+				border-radius: 1em 0 0 1em;
+			}
+			button {
+				padding: 5px 5px;
+				margin: 0;
+				svg {
+					width: 20px;
+					height: 20px;
+				}
+			}
 		}
 	}
 
 	&__new-filter-panel select, &__new-filter-panel input, &__new-filter-panel button {
 		margin: 5px 5px 0 0;
-		height: 36px;
+		height: auto;
+		min-height: 31px;
+	}
+	input {
+		padding: 6px 8px;
+		border-radius: 4px;
+		font-size: 13px;
+		line-height: normal;
+		width: auto;
+		flex: 1 1 auto;
+		border: 1px solid #7e8993;
+		min-height: 31px;
+
+		&:focus {
+			border-color: #007cba;
+			box-shadow: 0 0 1px #007cba;
+			outline: 2px solid transparent;
+		}
 	}
 
 	&__custom-filter-option[aria-hidden="true"] {
 		display: none;
+	}
+
+	&__new-filter-panel {
+		#{$root}__save-filter-button,
+		#{$root}__reset-filter-button {
+			margin-top: 15px;
+		}
 	}
 
 }

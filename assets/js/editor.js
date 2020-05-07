@@ -28,10 +28,20 @@
 		)
 	);
 
+	let description = __( 'Display a searchable table listing any or all of your products.', 'wpt-block' );
+	if ( typeof wcptbInvalid !== 'undefined' ) {
+		description = [ description, ' ', el(
+			'strong',
+			{},
+			__( 'Warning! This block is an add-on for the WooCommerce Product Table plugin, which is not currently installed. Please install the plugin before continuing.', 'wpt-block' )
+		) ];
+	}
+
 	wp.blocks.registerBlockType( 'barn2/wc-product-table', {
-		title:    'WooCommerce Product Table',
-		icon:     tableIcon,
-		category: 'woocommerce',
+		title:       __( 'WooCommerce Product Table', 'wpt-block' ),
+		description: description,
+		icon:        tableIcon,
+		category:    'woocommerce',
 		attributes: {
 			columns: {
 				type: 'array',
@@ -44,6 +54,10 @@
 			settings: {
 				type: 'array',
 				default: []
+			},
+			preview: {
+				type: 'boolean',
+				default: false,
 			}
 		},
 		supports: {
@@ -52,10 +66,26 @@
 			html: false,
 			align: [ 'wide', 'full' ],
 		},
+		example: {
+			attributes: {
+				preview: true
+			}
+		},
 
 		edit: function ( props ) {
 
 			const { attributes, setAttributes } = props;
+
+			if ( attributes.preview ) {
+				return el(
+					Fragment,
+					{},
+					el(
+						'img',
+						{ src: wcptbPreviewImage }
+					)
+				);
+			}
 
 			const productPreviewRef = wp.element.createRef();
 
@@ -64,7 +94,7 @@
 			if ( typeof wcptbInvalid !== 'undefined' ) {
 
 				let messageSplit = wcptbInvalid.message.split('%s'), message;
-				
+
 				if ( messageSplit.length > 1 ) {
 					message = [
 						messageSplit[0],
@@ -78,7 +108,6 @@
 				} else {
 					message = messageSplit[0];
 				}
-				
 
 				blockStructure = el( 
 					Placeholder,
