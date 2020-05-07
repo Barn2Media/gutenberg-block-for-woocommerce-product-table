@@ -175,6 +175,35 @@
       .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li:hover > svg,
       .barn2-wc-product-table-block__columns-selected li:hover > svg {
         fill: rgba(0, 93, 140, 0.5); }
+    .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li button, .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li input,
+    .barn2-wc-product-table-block__columns-selected li button,
+    .barn2-wc-product-table-block__columns-selected li input {
+      margin-top: 0;
+      margin-bottom: 0;
+      height: auto;
+      min-height: 31px; }
+  .editor-styles-wrapper .barn2-wc-product-table-block__edit-label-input, .editor-styles-wrapper .barn2-wc-product-table-block__save-label-button,
+  .barn2-wc-product-table-block__edit-label-input,
+  .barn2-wc-product-table-block__save-label-button {
+    margin-left: 5px; }
+    .barn2-wc-product-table-block__edit-label-button[aria-expanded="false"] ~ .editor-styles-wrapper .barn2-wc-product-table-block__edit-label-input, .barn2-wc-product-table-block__edit-label-button[aria-expanded="false"] ~ .editor-styles-wrapper .barn2-wc-product-table-block__save-label-button, .barn2-wc-product-table-block__edit-label-button[aria-expanded="false"] ~
+    .barn2-wc-product-table-block__edit-label-input, .barn2-wc-product-table-block__edit-label-button[aria-expanded="false"] ~
+    .barn2-wc-product-table-block__save-label-button {
+      display: none; }
+  .editor-styles-wrapper .barn2-wc-product-table-block__edit-label-button,
+  .barn2-wc-product-table-block__edit-label-button {
+    flex: 0 0 36px; }
+  .editor-styles-wrapper .barn2-wc-product-table-block__edit-label-input,
+  .barn2-wc-product-table-block__edit-label-input {
+    flex: 1 1 100%;
+    margin-left: 5px;
+    margin-right: 5px; }
+  .editor-styles-wrapper .barn2-wc-product-table-block__save-label-button,
+  .barn2-wc-product-table-block__save-label-button {
+    flex: 0 0 auto; }
+  .editor-styles-wrapper .barn2-wc-product-table-block__edit-label-button[aria-expanded="true"] ~ .barn2-wc-product-table-block__save-label-button ~ *,
+  .barn2-wc-product-table-block__edit-label-button[aria-expanded="true"] ~ .barn2-wc-product-table-block__save-label-button ~ * {
+    display: none; }
   .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected, .editor-styles-wrapper .barn2-wc-product-table-block__product-filters,
   .barn2-wc-product-table-block__columns-selected,
   .barn2-wc-product-table-block__product-filters {
@@ -223,13 +252,13 @@
         align-self: center;
         flex: 0 0 20px;
         fill: rgba(139, 139, 150, 0.25); }
-      .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li button, .editor-styles-wrapper .barn2-wc-product-table-block__product-filters li button,
-      .barn2-wc-product-table-block__columns-selected li button,
-      .barn2-wc-product-table-block__product-filters li button {
+      .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li .barn2-wc-product-table-block__delete-column, .editor-styles-wrapper .barn2-wc-product-table-block__product-filters li .barn2-wc-product-table-block__delete-column,
+      .barn2-wc-product-table-block__columns-selected li .barn2-wc-product-table-block__delete-column,
+      .barn2-wc-product-table-block__product-filters li .barn2-wc-product-table-block__delete-column {
         flex: 0 0 32px; }
-        .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li button svg, .editor-styles-wrapper .barn2-wc-product-table-block__product-filters li button svg,
-        .barn2-wc-product-table-block__columns-selected li button svg,
-        .barn2-wc-product-table-block__product-filters li button svg {
+        .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected li .barn2-wc-product-table-block__delete-column svg, .editor-styles-wrapper .barn2-wc-product-table-block__product-filters li .barn2-wc-product-table-block__delete-column svg,
+        .barn2-wc-product-table-block__columns-selected li .barn2-wc-product-table-block__delete-column svg,
+        .barn2-wc-product-table-block__product-filters li .barn2-wc-product-table-block__delete-column svg {
           width: 16px;
           height: 16px; }
     .editor-styles-wrapper .barn2-wc-product-table-block__columns-selected:not(:empty), .editor-styles-wrapper .barn2-wc-product-table-block__product-filters:not(:empty),

@@ -3,7 +3,7 @@
 
 	const { __ } = wp.i18n;
 	const { createElement } = wp.element;
-	const { Button, IconButton, Icon } = wp.components;
+	const { Button, IconButton, Icon, TextControl } = wp.components;
 
 	const el = createElement;
 
@@ -127,14 +127,46 @@
 		for ( let i in columns ) {
 
 			let labelSplit = columns[i].split(':');
-			let label = [
-				el( 'strong', {}, settings.columnLabels[ labelSplit[0] ].heading )
-			];
-			if ( labelSplit.length > 1 ) {
+			let label = [];
+			let labelValue = '';
+
+			let labelFree = '';
+
+			if ( [ 'att', 'cf', 'tax' ].indexOf( labelSplit[0] ) === -1 && labelSplit.length > 1 ) {
+
+				label.push( el( 'strong', {}, labelSplit[1] ) );
+				label.push( ' (' + settings.columnLabels[ labelSplit[0] ].heading + ')' );
+
+				labelValue = labelSplit[1];
+				labelFree = labelSplit[0];
+
+			} else if ( [ 'att', 'cf', 'tax' ].indexOf( labelSplit[0] ) > -1 && labelSplit.length > 2 ) {
+
+				label.push( el( 'strong', {}, labelSplit[2] ) );
+				label.push( ' (' + settings.columnLabels[ labelSplit[0] ].heading + ')' );
+
+				labelValue = labelSplit[2];
+				labelFree = labelSplit[0] + ':' + labelSplit[1];
+
+			} else {
+
+				label.push( el( 'strong', {}, settings.columnLabels[ labelSplit[0] ].heading ) );
+				labelFree = labelSplit[0];
+
+				if ( labelSplit.length === 2 ) {
+					labelFree += ':' + labelSplit[1];
+				}
+
+			}
+
+			if ( [ 'att', 'cf', 'tax' ].indexOf( labelSplit[0] ) > -1 && labelSplit.length > 1 ) {
 				label.push(
 					el( 'em', {}, labelSplit[1] )
 				);
 			}
+
+			let editButtonRef = wp.element.createRef();
+			let editInputRef = wp.element.createRef();
 
 			let node = el(
 				'li',
@@ -150,10 +182,63 @@
 							alt: ''
 						}
 					),
-					el( 'span', {}, label ),
 					el(
 						IconButton,
 						{
+							className: 'barn2-wc-product-table-block__edit-label-button',
+							icon: 'edit',
+							alt: 'Edit Column Name',
+							title: 'Edit Column Name',
+							'aria-expanded': 'false',
+							ref: editButtonRef,
+							onClick: (e) => {
+								if ( e.currentTarget.getAttribute( 'aria-expanded' ) === 'true' ) {
+									e.currentTarget.setAttribute( 'aria-expanded', 'false' );
+								} else {
+									e.currentTarget.setAttribute( 'aria-expanded', 'true' );
+								}
+							}
+						}
+					),
+					el(
+						'input',
+						{
+							className: 'barn2-wc-product-table-block__edit-label-input components-text-control__input',
+							placeholder: 'Edit Column Header',
+							defaultValue: labelValue,
+							ref: editInputRef,
+							/*onChange: ( e ) => {
+								console.log( e.currentTarget );
+							}*/
+						}
+					),
+					el(
+						Button,
+						{
+							className: 'barn2-wc-product-table-block__save-label-button is-primary',
+							'data-index': i,
+							'data-original': labelFree,
+							onClick: (e) => {
+								editButtonRef.current.setAttribute( 'aria-expanded', 'false' );
+
+								let newLabelValue = editInputRef.current.value;
+
+								let newColumns = JSON.parse( JSON.stringify( columns ) );
+								newColumns[ e.currentTarget.dataset.index ] = e.currentTarget.dataset.original;
+								if ( newLabelValue.length > 0 ) {
+									newColumns[ e.currentTarget.dataset.index ] += ':' + newLabelValue;
+								}
+
+								onChange( { newColumns } );
+							}
+						},
+						__( 'Done', 'wpt-block' )
+					),
+					el( 'span', { className: 'barn2-wc-product-table-block__column-label' }, label ),
+					el(
+						IconButton,
+						{
+							className: 'barn2-wc-product-table-block__delete-column',
 							icon: barn2_deleteIcon,
 							label: 'Remove Column',
 							'data-index': i,

@@ -169,6 +169,34 @@ $root: '.barn2-wc-product-table-block';
 				fill: rgba( $link-color, 0.5 );
 			}
 		}
+		button, input {
+			margin-top: 0;
+			margin-bottom: 0;
+			height: auto;
+			min-height: 31px;
+		}
+	}
+
+	&__edit-label-input, &__save-label-button {
+		margin-left: 5px;
+		#{$root}__edit-label-button[aria-expanded="false"] ~ & {
+			display: none;
+		}
+	}
+	&__edit-label-button {
+		flex: 0 0 36px;
+	}
+	&__edit-label-input {
+		flex: 1 1 100%;
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+	&__save-label-button {
+		flex: 0 0 auto;
+	}
+
+	&__edit-label-button[aria-expanded="true"] ~ #{$root}__save-label-button ~ * {
+		display: none;
 	}
 
 	&__columns-selected,
@@ -220,7 +248,7 @@ $root: '.barn2-wc-product-table-block';
 				fill: rgba(139, 139, 150, 0.25);
 			}
 
-			button {
+			.barn2-wc-product-table-block__delete-column {
 				flex: 0 0 32px;
 				svg {
 					width: 16px;
