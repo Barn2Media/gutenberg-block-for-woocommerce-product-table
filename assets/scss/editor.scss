@@ -151,7 +151,7 @@ $root: '.barn2-wc-product-table-block';
 	}
 
 	&__columns {
-		button, input, select, button:last-child {
+		button, input, select, > button:last-child {
 			margin-bottom: 5px;
 		}
 	}
@@ -339,10 +339,10 @@ $root: '.barn2-wc-product-table-block';
 		
 			button {
 				padding: 5px 5px;
-				margin: 0;
+				margin: 0 0 0 5px;
 				svg {
-					width: 20px;
-					height: 20px;
+					width: 16px;
+					height: 16px;
 				}
 			}
 		}

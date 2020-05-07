@@ -156,11 +156,11 @@
     .barn2-wc-product-table-block__attribute-selector.selected ~ .barn2-wc-product-table-block__add-column-button,
     .barn2-wc-product-table-block__custom-input.selected ~ .barn2-wc-product-table-block__add-column-button {
       display: block; }
-  .editor-styles-wrapper .barn2-wc-product-table-block__columns button, .editor-styles-wrapper .barn2-wc-product-table-block__columns input, .editor-styles-wrapper .barn2-wc-product-table-block__columns select, .editor-styles-wrapper .barn2-wc-product-table-block__columns button:last-child,
+  .editor-styles-wrapper .barn2-wc-product-table-block__columns button, .editor-styles-wrapper .barn2-wc-product-table-block__columns input, .editor-styles-wrapper .barn2-wc-product-table-block__columns select, .editor-styles-wrapper .barn2-wc-product-table-block__columns > button:last-child,
   .barn2-wc-product-table-block__columns button,
   .barn2-wc-product-table-block__columns input,
   .barn2-wc-product-table-block__columns select,
-  .barn2-wc-product-table-block__columns button:last-child {
+  .barn2-wc-product-table-block__columns > button:last-child {
     margin-bottom: 5px; }
   .editor-styles-wrapper .barn2-wc-product-table-block__add-column-button,
   .barn2-wc-product-table-block__add-column-button {
@@ -339,11 +339,11 @@
       .editor-styles-wrapper .barn2-wc-product-table-block__new-filter-selections li button,
       .barn2-wc-product-table-block__new-filter-selections li button {
         padding: 5px 5px;
-        margin: 0; }
+        margin: 0 0 0 5px; }
         .editor-styles-wrapper .barn2-wc-product-table-block__new-filter-selections li button svg,
         .barn2-wc-product-table-block__new-filter-selections li button svg {
-          width: 20px;
-          height: 20px; }
+          width: 16px;
+          height: 16px; }
   .editor-styles-wrapper .barn2-wc-product-table-block__new-filter-panel select, .editor-styles-wrapper .barn2-wc-product-table-block__new-filter-panel input, .editor-styles-wrapper .barn2-wc-product-table-block__new-filter-panel button,
   .barn2-wc-product-table-block__new-filter-panel select,
   .barn2-wc-product-table-block__new-filter-panel input,
