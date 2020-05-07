@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const PLUGIN_VERSION = '1.0.5';
+const PLUGIN_VERSION = '1.0.6';
 const PLUGIN_FILE    = __FILE__;
 
 require_once __DIR__ . '/src/class-plugin.php';

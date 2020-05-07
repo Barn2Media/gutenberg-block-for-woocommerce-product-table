@@ -150,6 +150,12 @@ $root: '.barn2-wc-product-table-block';
 		}
 	}
 
+	&__columns {
+		button, input, select, button:last-child {
+			margin-bottom: 5px;
+		}
+	}
+
 	&__add-column-button {
 		display: none;
 		height: auto;
@@ -325,12 +331,12 @@ $root: '.barn2-wc-product-table-block';
 			margin: 5px 10px 0 0;
 			display: flex;
 			align-items: center;
-			span { 
-				padding: 5px 10px;
-				background: $offset-bg;
-				flex: 0 0 auto;
-				border-radius: 1em 0 0 1em;
-			}
+			
+			padding: 0 0 0 10px;
+			background: $offset-bg;
+			flex: 0 0 auto;
+			border-radius: 2em;
+		
 			button {
 				padding: 5px 5px;
 				margin: 0;

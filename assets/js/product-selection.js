@@ -18,7 +18,7 @@
 		'tag': { label: 'Tag', andor: true, for: 'tag', multiple: true, selectLabel: 'Add tag' },
 		'cf': { label: 'Custom Field', andor: true, keypair: [ 'Key', 'Value' ], multiple: true, for: 'value' },
 		'term': { label: 'Custom Taxonomy Term', keypair: [ 'Taxonomy', 'Term' ], multiple: true, for: 'value' },
-		'attr': { attr: 'term', label: 'Attribute', keypair: [ 'Attribute', 'Term' ], for: 'attr', multiple: true, selectLabel: 'Add global attribute' },
+		'attr': { attr: 'term', andor: true, label: 'Attribute', keypair: [ 'Attribute', 'Term' ], for: 'attr', multiple: true, selectLabel: 'Add global attribute' },
 		'year': { label: 'Year', for: 'value' },
 		'month': { label: 'Month', for: 'value' },
 		'day': { label: 'Day', for: 'value' },
@@ -320,7 +320,7 @@
 		let removeButton = document.createElement( 'button' );
 		removeButton.classList.add( 'components-button' );
 		removeButton.classList.add( 'has-icon' );
-		removeButton.innerHTML = '<svg role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" class="dashicon dashicons-dismiss"><path d="M10 2c4.42 0 8 3.58 8 8s-3.58 8-8 8-8-3.58-8-8 3.58-8 8-8zm5 11l-3-3 3-3-2-2-3 3-3-3-2 2 3 3-3 3 2 2 3-3 3 3z"></path></svg>';
+		removeButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12,2C6.486,2,2,6.486,2,12s4.486,10,10,10s10-4.486,10-10S17.514,2,12,2z M16.207,14.793l-1.414,1.414L12,13.414 l-2.793,2.793l-1.414-1.414L10.586,12L7.793,9.207l1.414-1.414L12,10.586l2.793-2.793l1.414,1.414L13.414,12L16.207,14.793z"/></svg>';
 		removeButton.addEventListener( 'click', function (e) {
 			item.remove();
 
