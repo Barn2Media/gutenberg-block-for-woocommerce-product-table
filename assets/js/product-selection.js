@@ -222,9 +222,9 @@
 				}
 				if ( button ) {
 					button.innerHTML = __( 'Add', 'wpt-block' );
-					if ( filterSelectionOptions[ value ].selectLabel ) {
+					/*if ( filterSelectionOptions[ value ].selectLabel ) {
 						button.innerHTML = filterSelectionOptions[ value ].selectLabel;
-					}
+					}*/
 				}
 			}
 			if ( thisOption.dataset.andor ) {
