@@ -132,6 +132,11 @@ class Plugin {
 	 */
 	public function requirement_notices() {
 
+		if ( get_current_screen() !== 'plugins' ) {
+			// don't show warnings on the entire admin... just the plugin page
+			return;
+		}
+
 		$messages = '';
 
 		if ( ! $this->is_php_version_safe() ) {
@@ -146,16 +151,12 @@ class Plugin {
 			$messages .= '<li>' . esc_html( __( 'This plugin requires WooCommerce to be active', 'wpt-block' ) ) . '</li>';
 		}
 
-		/*if ( ! $this->is_wpt_safe() ) {
-			$messages .= '<li>' . esc_html( __( 'This plugin requires the WooCommerce Product Table plugin to be active', 'wpt-block' ) ) . '</li>';
-		}*/
-
 		if ( empty( $messages ) ) {
 			return;
 		}
 
 		echo '<div class="notice notice-error">';
-		echo '<p>' . esc_html( __( 'The WooCommerce Product Table Block plugin is active but not functioning!', 'wpt-block' ) ) . '</p>';
+		echo '<p>' . esc_html( __( 'The Gutenberg Block for WooCommerce Product Table plugin is active but not functioning!', 'wpt-block' ) ) . '</p>';
 		echo '<ul>';
 		echo $messages;
 		echo '</ul></div>';
