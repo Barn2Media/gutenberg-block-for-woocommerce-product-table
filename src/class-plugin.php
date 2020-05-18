@@ -156,7 +156,7 @@ class Plugin {
 		}
 
 		echo '<div class="notice notice-error">';
-		echo '<p>' . esc_html( __( 'The Gutenberg Block for WooCommerce Product Table plugin is active but not functioning!', 'wpt-block' ) ) . '</p>';
+		echo '<p>' . esc_html( __( 'The "Block for WooCommerce Product Table" plugin is active but not functioning!', 'wpt-block' ) ) . '</p>';
 		echo '<ul>';
 		echo $messages;
 		echo '</ul></div>';
