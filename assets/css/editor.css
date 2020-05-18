@@ -6,6 +6,8 @@
   padding: 1em;
   background: rgba(139, 139, 150, 0.1);
   color: #333333;
+  align-items: flex-start;
+  text-align: left;
   overflow: visible; }
   .editor-styles-wrapper .barn2-wc-product-table-block *,
   .barn2-wc-product-table-block * {
@@ -26,12 +28,23 @@
   .editor-styles-wrapper .barn2-wc-product-table-block .components-placeholder__label,
   .barn2-wc-product-table-block .components-placeholder__label {
     display: flex;
-    align-items: center; }
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    width: 100%; }
+    .editor-styles-wrapper .barn2-wc-product-table-block .components-placeholder__label svg,
+    .barn2-wc-product-table-block .components-placeholder__label svg {
+      margin-right: 0.5em; }
   .editor-styles-wrapper .barn2-wc-product-table-block .components-placeholder__fieldset,
   .barn2-wc-product-table-block .components-placeholder__fieldset {
     display: flex;
     flex-direction: column;
-    align-items: stretch; }
+    align-items: stretch;
+    width: 100%;
+    max-width: none; }
+  .editor-styles-wrapper .barn2-wc-product-table-block .block-description,
+  .barn2-wc-product-table-block .block-description {
+    text-align: left; }
   .editor-styles-wrapper .barn2-wc-product-table-block .components-button.has-icon span,
   .barn2-wc-product-table-block .components-button.has-icon span {
     display: none; }
@@ -39,7 +52,10 @@
   .barn2-wc-product-table-block p.additional-settings-notice {
     margin-top: 1em;
     padding-top: 1em;
-    border-top: 1px solid rgba(139, 139, 150, 0.1); }
+    border-top: 1px solid rgba(139, 139, 150, 0.1);
+    text-align: left;
+    font-size: 13px;
+    font-style: italic; }
   .editor-styles-wrapper .barn2-wc-product-table-block__options,
   .barn2-wc-product-table-block__options {
     margin-top: 1em;
@@ -112,7 +128,8 @@
   .editor-styles-wrapper .barn2-wc-product-table-block .empty-options,
   .barn2-wc-product-table-block .empty-options {
     font-style: italic;
-    flex: 1 1 100%; }
+    flex: 1 1 100%;
+    font-size: 13px; }
   .editor-styles-wrapper .barn2-wc-product-table-block__columns, .editor-styles-wrapper .barn2-wc-product-table-block__products, .editor-styles-wrapper .barn2-wc-product-table-block__new-filter-panel,
   .barn2-wc-product-table-block__columns,
   .barn2-wc-product-table-block__products,
@@ -128,7 +145,8 @@
     .barn2-wc-product-table-block__products p,
     .barn2-wc-product-table-block__new-filter-panel h3,
     .barn2-wc-product-table-block__new-filter-panel p {
-      flex: 1 1 100%; }
+      flex: 1 1 100%;
+      text-align: left; }
     .editor-styles-wrapper .barn2-wc-product-table-block__columns h3 em, .editor-styles-wrapper .barn2-wc-product-table-block__products h3 em, .editor-styles-wrapper .barn2-wc-product-table-block__new-filter-panel h3 em,
     .barn2-wc-product-table-block__columns h3 em,
     .barn2-wc-product-table-block__products h3 em,
@@ -374,3 +392,20 @@
   .barn2-wc-product-table-block__new-filter-panel .barn2-wc-product-table-block__save-filter-button,
   .barn2-wc-product-table-block__new-filter-panel .barn2-wc-product-table-block__reset-filter-button {
     margin-top: 15px; }
+  .editor-styles-wrapper .barn2-wc-product-table-block .components-button,
+  .barn2-wc-product-table-block .components-button {
+    border: 1px solid #1989c1;
+    border-radius: 3px; }
+    .editor-styles-wrapper .barn2-wc-product-table-block .components-button.is-primary,
+    .barn2-wc-product-table-block .components-button.is-primary {
+      background: #1989c1;
+      color: white; }
+    .editor-styles-wrapper .barn2-wc-product-table-block .components-button.is-secondary,
+    .barn2-wc-product-table-block .components-button.is-secondary {
+      border-color: #0075af;
+      background: #f3f5f6;
+      color: #0075af; }
+    .editor-styles-wrapper .barn2-wc-product-table-block .components-button.components-icon-button, .editor-styles-wrapper .barn2-wc-product-table-block .components-button.has-icon,
+    .barn2-wc-product-table-block .components-button.components-icon-button,
+    .barn2-wc-product-table-block .components-button.has-icon {
+      border: transparent; }

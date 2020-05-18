@@ -13,11 +13,13 @@
  * Plugin Name:     Gutenberg Block for WooCommerce Product Table
  * Plugin URI:      https://barn2.co.uk/wordpress-plugins/woocommerce-product-table-gutenberg/
  * Description:     Adds a Gutenberg block to the WooCommerce Product Table plugin by Barn2, making it quick and easy to create product tables with Gutenberg.
- * Version:         1.0.7
+ * Version:         1.0.0
  * Author:          Barn2 Plugins
  * Author URI:      https://barn2.co.uk
  * Text Domain:     wpt-block
  * Domain Path:     /languages
+ * Requires at least: 5.3
+ * Tested up to: 5.4.1
  *
  * WC requires at least: 3.4
  * WC tested up to: 4.0.1
@@ -33,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const PLUGIN_VERSION = '1.0.7';
+const PLUGIN_VERSION = '1.0.0';
 const PLUGIN_FILE    = __FILE__;
 
 require_once __DIR__ . '/src/class-plugin.php';
