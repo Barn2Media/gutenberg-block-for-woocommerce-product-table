@@ -13,7 +13,7 @@ namespace Barn2\Plugin\WC_Product_Table_Block;
 use Barn2\Plugin\WC_Product_Table\Table_Factory as Table_Factory;
 
 /**
- * The Gutenberg block class.
+ * The block class.
  */
 class Rest {
 

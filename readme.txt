@@ -48,7 +48,7 @@ By default, each product table will inherit the global options from the WooComme
 = HOW TO USE THE BLOCK =
 
 1. First make sure [WooCommerce](https://wordpress.org/plugins/woocommerce/), **Block for WooCommerce Product Table** and [WooCommerce Product Table](https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=gutenbergwpt&utm_content=gutenbergwpt) are all installed. 
-2. Next, go to any page or post that uses the Gutenberg editor and click the + icon to add a new block.
+2. Next, go to any page or post that uses the Block editor and click the + icon to add a new block.
 3. Navigate to the ‘WooCommerce’ section and find the block called ‘WooCommerce Product Table’, or type ‘WooCommerce Product Table’ into the search box. This will insert the WooCommerce Product Table block into the editor. 
 4. By default, the block will list all your products and will inherit the global options from the [WooCommerce Product Table plugin settings page.](https://barn2.co.uk/kb/product-table-settings-page/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=gutenbergwpt&utm_content=gutenbergwpt) You can override these by setting options directly in the Gutenberg block:
   * **Table Columns** - Use the ‘Add column’ dropdown to select which columns to include in the WooCommerce table. You can re-order columns using drag and drop, and rename columns by clicking the pencil icon. [Read more about the product table columns.](https://barn2.co.uk/kb/product-table-columns/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=gutenbergwpt&utm_content=gutenbergwpt)

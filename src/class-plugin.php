@@ -106,7 +106,7 @@ class Plugin {
 	}
 
 	/**
-	 * Checks to ensure WordPress is Gutenberg compatible
+	 * Checks to ensure WordPress is Block editor compatible
 	 */
 	public function is_wordpress_safe() {
 		global $wp_version;

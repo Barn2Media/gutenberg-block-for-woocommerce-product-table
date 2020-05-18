@@ -1,6 +1,6 @@
 <?php
 /**
- * Initializes the Gutenberg Block and applies render filters (if necessary)
+ * Initializes the Block and applies render filters (if necessary)
  *
  * @package   Barn2/woocommerce-product-table/block
  * @author    Barn2 Plugins <info@barn2.co.uk>
@@ -11,7 +11,7 @@
 namespace Barn2\Plugin\WC_Product_Table_Block;
 
 /**
- * The Gutenberg block class.
+ * The block class.
  */
 class Block {
 
@@ -59,7 +59,7 @@ class Block {
 	}
 
 	/**
-	 * Registers block with Gutenberg store and registers appropriate editor styles and scripts
+	 * Registers block with Block store and registers appropriate editor styles and scripts
 	 */
 	public function install() {
 
