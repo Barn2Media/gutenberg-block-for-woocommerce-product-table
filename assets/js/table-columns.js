@@ -29,7 +29,7 @@
 			el(
 				'option',
 				{ value: '', key: 0 },
-				__( 'Add column', 'wpt-block' )
+				__( 'Add column', 'block-for-woo-product-table' )
 			)
 		];
 		for ( var slug in settings.columnLabels ) {
@@ -50,7 +50,7 @@
 			el(
 				'option',
 				{ value: '', key: 0 },
-				__( 'Select global attribute', 'wpt-block' )
+				__( 'Select global attribute', 'block-for-woo-product-table' )
 			)
 		];
 
@@ -232,7 +232,7 @@
 								onChange( { newColumns } );
 							}
 						},
-						__( 'Done', 'wpt-block' )
+						__( 'Done', 'block-for-woo-product-table' )
 					),
 					el( 'span', { className: 'barn2-wc-product-table-block__column-label' }, label ),
 					el(
@@ -291,7 +291,7 @@
 		let componentClassName = 'barn2-wc-product-table-block__columns';
 
 		let	columnElements = [
-			el( 'h3', {}, __( 'Table Columns', 'wpt-block' ) )
+			el( 'h3', {}, __( 'Table Columns', 'block-for-woo-product-table' ) )
 		];
 
 		let columnRef = wp.element.createRef();
@@ -304,7 +304,7 @@
 			}
 		} ) );
 
-		columnElements.push( el( 'p', { className: 'empty-options' }, __( '(Using global options)', 'wpt-block' ) ) );
+		columnElements.push( el( 'p', { className: 'empty-options' }, __( '(Using global options)', 'block-for-woo-product-table' ) ) );
 
 		let selectionRef = wp.element.createRef();
 		let attrRef = wp.element.createRef();
@@ -354,7 +354,7 @@
 					saveColumns( newColumns );
 				},
 			},
-			__( 'Add', 'wpt-block' )
+			__( 'Add', 'block-for-woo-product-table' )
 		) );
 
 		return el(

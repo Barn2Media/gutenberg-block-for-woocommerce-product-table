@@ -38,28 +38,28 @@
 		return [
 			el(
 				PanelBody,
-				{ title: __( 'Add to Cart Column Settings', 'wpt-block' ) },
+				{ title: __( 'Add to Cart Column Settings', 'block-for-woo-product-table' ) },
 				[
 					el(
 						SelectControl,
 						{
-							label: __( 'Add to Cart Button', 'wpt-block' ),
+							label: __( 'Add to Cart Button', 'block-for-woo-product-table' ),
 							value: settings.cart_button,
 							options: [
-								{ value: '', label: __( '(Use global option)', 'wpt-block' ) },
-								{ value: 'button', label: __( 'Button', 'wpt-block' ) },
-								{ value: 'checkbox', label: __( 'Checkbox', 'wpt-block' ) },
-								{ value: 'button_checkbox', label: __( 'Button and Checkbox', 'wpt-block' ) },
+								{ value: '', label: __( '(Use global option)', 'block-for-woo-product-table' ) },
+								{ value: 'button', label: __( 'Button', 'block-for-woo-product-table' ) },
+								{ value: 'checkbox', label: __( 'Checkbox', 'block-for-woo-product-table' ) },
+								{ value: 'button_checkbox', label: __( 'Button and Checkbox', 'block-for-woo-product-table' ) },
 							],
 							onChange: ( value ) => {
 								changeSetting( 'cart_button', value );
 							},
 							help: [
-								__( "How 'Add to Cart' buttons are displayed in the table. ", 'wpt-block' ),
+								__( "How 'Add to Cart' buttons are displayed in the table. ", 'block-for-woo-product-table' ),
 								el(
 									'a',
 									{ href: 'https://barn2.co.uk/kb/add-to-cart-buttons', target: '_blank' },
-									__( 'Read More', 'wpt-block' )
+									__( 'Read More', 'block-for-woo-product-table' )
 								)
 							]
 						}
@@ -67,12 +67,12 @@
 					el(
 						SelectControl,
 						{
-							label: __( 'Quantities', 'wpt-block' ),
+							label: __( 'Quantities', 'block-for-woo-product-table' ),
 							value: settings.show_quantity,
 							options: [
-								{ value: '', label: __( '(Use global option)', 'wpt-block' ) },
-								{ value: 'true', label: __( 'Show in add to cart column', 'wpt-block' ) },
-								{ value: 'false', label: __( 'Do not show quantity selectors', 'wpt-block' ) },
+								{ value: '', label: __( '(Use global option)', 'block-for-woo-product-table' ) },
+								{ value: 'true', label: __( 'Show in add to cart column', 'block-for-woo-product-table' ) },
+								{ value: 'false', label: __( 'Do not show quantity selectors', 'block-for-woo-product-table' ) },
 							],
 							onChange: ( value ) => {
 								changeSetting( 'show_quantity', value );
@@ -82,23 +82,23 @@
 					el(
 						SelectControl,
 						{
-							label: __( 'Variations', 'wpt-block' ),
+							label: __( 'Variations', 'block-for-woo-product-table' ),
 							value: settings.variations,
 							options: [
-								{ value: '', label: __( '(Use global option)', 'wpt-block' ) },
-								{ value: 'false', label: __( 'Link to product page', 'wpt-block' ) },
-								{ value: 'dropdown', label: __( 'Dropdowns in add to cart column', 'wpt-block' ) },
-								{ value: 'separate', label: __( 'Separate rows in table', 'wpt-block' ) },
+								{ value: '', label: __( '(Use global option)', 'block-for-woo-product-table' ) },
+								{ value: 'false', label: __( 'Link to product page', 'block-for-woo-product-table' ) },
+								{ value: 'dropdown', label: __( 'Dropdowns in add to cart column', 'block-for-woo-product-table' ) },
+								{ value: 'separate', label: __( 'Separate rows in table', 'block-for-woo-product-table' ) },
 							],
 							onChange: ( value ) => {
 								changeSetting( 'variations', value );
 							},
 							help: [
-								__( 'How to display options for variable products. ', 'wpt-block' ),
+								__( 'How to display options for variable products. ', 'block-for-woo-product-table' ),
 								el(
 									'a',
 									{ href: 'https://barn2.co.uk/kb/product-variations', target: '_blank' },
-									__( 'Read More', 'wpt-block' )
+									__( 'Read More', 'block-for-woo-product-table' )
 								)
 							]
 						}
@@ -107,18 +107,18 @@
 			),
 			el(
 				PanelBody,
-				{ title: __( 'Table Controls', 'wpt-block' ) },
+				{ title: __( 'Table Controls', 'block-for-woo-product-table' ) },
 				[
 					el(
 						SelectControl,
 						{
-							label: __( 'Product Filters', 'wpt-block' ),
+							label: __( 'Product Filters', 'block-for-woo-product-table' ),
 							value: settings.filters,
 							options: [
-								{ value: '', label: __( '(Use global option)', 'wpt-block' ) },
-								{ value: 'false', label: __( 'Disabled', 'wpt-block' ) },
-								{ value: 'true', label: __( 'Show based on columns in table', 'wpt-block' ) },
-								{ value: 'custom', label: __( 'Custom', 'wpt-block' ) },
+								{ value: '', label: __( '(Use global option)', 'block-for-woo-product-table' ) },
+								{ value: 'false', label: __( 'Disabled', 'block-for-woo-product-table' ) },
+								{ value: 'true', label: __( 'Show based on columns in table', 'block-for-woo-product-table' ) },
+								{ value: 'custom', label: __( 'Custom', 'block-for-woo-product-table' ) },
 							],
 							onChange: ( value ) => {
 								if ( value !== 'custom' ) {
@@ -127,11 +127,11 @@
 								changeSetting( 'filters', value );
 							},
 							help: [
-								__( 'Dropdown lists to filter the table by category, tag, attribute, or custom taxonomy. ', 'wpt-block' ),
+								__( 'Dropdown lists to filter the table by category, tag, attribute, or custom taxonomy. ', 'block-for-woo-product-table' ),
 								el(
 									'a',
 									{ href: 'https://barn2.co.uk/kb/wpt-filters/#filter-dropdowns', target: '_blank' },
-									__( 'Read More', 'wpt-block' )
+									__( 'Read More', 'block-for-woo-product-table' )
 								)
 							]
 						}
@@ -146,7 +146,7 @@
 							el(
 								TextControl,
 								{
-									label: __( 'Custom Product Filters', 'wpt-block' ),
+									label: __( 'Custom Product Filters', 'block-for-woo-product-table' ),
 									value: settings.customFilters,
 									onChange: ( value ) => {
 										changeSetting( 'customFilters', value );
@@ -159,30 +159,30 @@
 			),
 			el(
 				PanelBody,
-				{ title: __( 'Additional Options', 'wpt-block' ), initialOpen: false },
+				{ title: __( 'Additional Options', 'block-for-woo-product-table' ), initialOpen: false },
 				[
 					el(
 						'p',
 						{},
 						[
-							__( 'You can configure additional options globally on the  ', 'wpt-block' ),
+							__( 'You can configure additional options globally on the  ', 'block-for-woo-product-table' ),
 							el( 
 								'a',
 								{ href: '/wp-admin/admin.php?page=wc-settings&tab=products&section=product-table', target: '_blank' },
-								__( 'WooCommerce Product Table settings page', 'wpt-block' )
+								__( 'WooCommerce Product Table settings page', 'block-for-woo-product-table' )
 							),
-							__( ', or by adding them below with one option per line (e.g. sort_by="name"). ', 'wpt-block' ),
+							__( ', or by adding them below with one option per line (e.g. sort_by="name"). ', 'block-for-woo-product-table' ),
 							el( 
 								'a',
 								{ href: 'https://barn2.co.uk/kb/product-table-options/', target: '_blank' },
-								__( 'See full list of options.', 'wpt-block' )
+								__( 'See full list of options.', 'block-for-woo-product-table' )
 							)
 						]
 					),
 					el(
 						TextareaControl,
 						{
-							label: __( 'Additional Shortcode Attributes', 'wpt-block' ),
+							label: __( 'Additional Shortcode Attributes', 'block-for-woo-product-table' ),
 							value: settings.additional,
 							onChange: ( value ) => {
 								changeSetting( 'additional', value );

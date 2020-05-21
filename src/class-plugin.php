@@ -76,7 +76,7 @@ class Plugin {
 			return;
 		}
 
-		load_plugin_textdomain( 'wpt-block', '', basename( dirname( PLUGIN_FILE ) ) . '/languages/' );
+		load_plugin_textdomain( 'block-for-woo-product-table', '', basename( dirname( PLUGIN_FILE ) ) . '/languages/' );
 
 		self::$assets_uri     = plugins_url( 'assets/', PLUGIN_FILE );
 		self::$assets_version = WP_DEBUG ? time() : PLUGIN_VERSION;
@@ -140,15 +140,15 @@ class Plugin {
 		$messages = '';
 
 		if ( ! $this->is_php_version_safe() ) {
-			$messages .= '<li>' . esc_html( __( 'PHP must be running on version 5.6 or above to use this plugin.', 'wpt-block' ) ) . '</li>';
+			$messages .= '<li>' . esc_html( __( 'PHP must be running on version 5.6 or above to use this plugin.', 'block-for-woo-product-table' ) ) . '</li>';
 		}
 
 		if ( ! $this->is_wordpress_safe() ) {
-			$messages .= '<li>' . esc_html( __( 'This plugin requires WordPress 5.3 or above', 'wpt-block' ) ) . '</li>';
+			$messages .= '<li>' . esc_html( __( 'This plugin requires WordPress 5.3 or above', 'block-for-woo-product-table' ) ) . '</li>';
 		}
 
 		if ( ! $this->is_woocommerce_safe() ) {
-			$messages .= '<li>' . esc_html( __( 'This plugin requires WooCommerce to be active', 'wpt-block' ) ) . '</li>';
+			$messages .= '<li>' . esc_html( __( 'This plugin requires WooCommerce to be active', 'block-for-woo-product-table' ) ) . '</li>';
 		}
 
 		if ( empty( $messages ) ) {
@@ -156,7 +156,7 @@ class Plugin {
 		}
 
 		echo '<div class="notice notice-error">';
-		echo '<p>' . esc_html( __( 'The "Block for WooCommerce Product Table" plugin is active but not functioning!', 'wpt-block' ) ) . '</p>';
+		echo '<p>' . esc_html( __( 'The "Block for WooCommerce Product Table" plugin is active but not functioning!', 'block-for-woo-product-table' ) ) . '</p>';
 		echo '<ul>';
 		echo $messages;
 		echo '</ul></div>';

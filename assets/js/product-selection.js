@@ -92,7 +92,7 @@
 		optionNodes.push( el(
 			'option',
 			{ value: '' },
-			__( 'Select products', 'wpt-block' )
+			__( 'Select products', 'block-for-woo-product-table' )
 		) );
 
 		for ( let key in filterSelectionOptions ) {
@@ -124,7 +124,7 @@
 		optionNodes.push( el(
 			'option',
 			{ value: '' },
-			__( label, 'wpt-block' )
+			__( label, 'block-for-woo-product-table' )
 		) );
 
 		for ( let key in values ) {
@@ -218,10 +218,10 @@
 				let label = self.parentNode.querySelector( '.barn2-wc-product-table-block__new-filter-selection-label' );
 				let button = self.parentNode.querySelector( '.barn2-wc-product-table-block__add-filter-button' );
 				if ( label ) {
-					label.innerHTML = thisOption.innerHTML + ' ' + __( 'Selections', 'wpt-block' );
+					label.innerHTML = thisOption.innerHTML + ' ' + __( 'Selections', 'block-for-woo-product-table' );
 				}
 				if ( button ) {
-					button.innerHTML = __( 'Add', 'wpt-block' );
+					button.innerHTML = __( 'Add', 'block-for-woo-product-table' );
 					/*if ( filterSelectionOptions[ value ].selectLabel ) {
 						button.innerHTML = filterSelectionOptions[ value ].selectLabel;
 					}*/
@@ -455,7 +455,7 @@
 				'h3',
 				{},
 				[
-					__( 'Products', 'wpt-block' ),
+					__( 'Products', 'block-for-woo-product-table' ),
 					el(
 						'em',
 						{},
@@ -474,7 +474,7 @@
 					}
 				} )
 			),
-			el( 'p', { className: 'empty-options' }, __( '(Using global options)', 'wpt-block' ) ),
+			el( 'p', { className: 'empty-options' }, __( '(Using global options)', 'block-for-woo-product-table' ) ),
 			el(
 				'div',
 				{
@@ -507,7 +507,7 @@
 						ToggleControl,
 						{
 							className: 'barn2-wc-product-table-block__andor-toggle',
-							label: __( 'Products must match all values', 'wpt-block' ),
+							label: __( 'Products must match all values', 'block-for-woo-product-table' ),
 							checked: isMatchall,
 							onChange: () => {
 								setState( { isMatchall: ! isMatchall } );
@@ -556,7 +556,7 @@
 								addFilterSelection( newFilterPanelRef.current, addFilter );
 							}
 						},
-						__( 'Select', 'wpt-block' )
+						__( 'Select', 'block-for-woo-product-table' )
 					),
 					el( 'span', { className: 'spacer' }, '' ),
 					el(
@@ -568,7 +568,7 @@
 								addFilter( newFilter );
 							}
 						},
-						__( 'Done', 'wpt-block' )
+						__( 'Done', 'block-for-woo-product-table' )
 					),
 					el(
 						Button,
@@ -578,7 +578,7 @@
 								resetPanel( newFilterPanelRef.current );
 							}
 						},
-						__( 'Cancel', 'wpt-block' )
+						__( 'Cancel', 'block-for-woo-product-table' )
 					)
 				]
 			)

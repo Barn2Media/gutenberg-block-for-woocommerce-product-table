@@ -65,7 +65,7 @@ var WCPTB = function( cb ) {
         name: 'WooCommerce Product Table Block',
         slug: 'woocommerce-product-table-block',
         libFiles: [],
-        domain: 'wpt-block'
+        domain: 'block-for-woo-product-table'
     }, cb );
 };
 

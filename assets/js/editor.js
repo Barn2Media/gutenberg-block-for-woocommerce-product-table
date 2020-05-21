@@ -28,17 +28,17 @@
 		)
 	);
 
-	let description = __( 'Display a searchable table listing any or all of your products.', 'wpt-block' );
+	let description = __( 'Display a searchable table listing any or all of your products.', 'block-for-woo-product-table' );
 	if ( typeof wcptbInvalid !== 'undefined' ) {
 		description = [ description, ' ', el(
 			'strong',
 			{},
-			__( 'Warning! This block is an add-on for the WooCommerce Product Table plugin, which is not currently installed. Please install the plugin before continuing.', 'wpt-block' )
+			__( 'Warning! This block is an add-on for the WooCommerce Product Table plugin, which is not currently installed. Please install the plugin before continuing.', 'block-for-woo-product-table' )
 		) ];
 	}
 
 	wp.blocks.registerBlockType( 'barn2/wc-product-table', {
-		title:       __( 'WooCommerce Product Table', 'wpt-block' ),
+		title:       __( 'WooCommerce Product Table', 'block-for-woo-product-table' ),
 		description: description,
 		icon:        tableIcon,
 		category:    'woocommerce',
@@ -145,7 +145,7 @@
 									{ className: 'components-placeholder__label' },
 									[
 										el( Icon, { icon: tableIcon, alt: '' } ),
-										__( 'Product Table', 'wpt-block' )
+										__( 'Product Table', 'block-for-woo-product-table' )
 									]
 								),
 								el(
@@ -156,11 +156,11 @@
 											'span',
 											{ className: 'block-description' },
 											[
-												__( 'Lists products in a table view using the WooCommerce Product Table plugin. ', 'wpt-block' ),
+												__( 'Lists products in a table view using the WooCommerce Product Table plugin. ', 'block-for-woo-product-table' ),
 												el(
 													'a',
 													{ href: 'https://barn2.co.uk/kb/woocommerce-product-table-gutenberg/', target: '_blank' },
-													__( 'Documentation', 'wpt-block' )
+													__( 'Documentation', 'block-for-woo-product-table' )
 												)
 											]
 										),
@@ -195,7 +195,7 @@
 									el(
 										'p',
 										{ className: 'additional-settings-notice' },
-										__( "You can configure additional settings in the 'Block' tab in the sidebar.", 'wpt-block' )
+										__( "You can configure additional settings in the 'Block' tab in the sidebar.", 'block-for-woo-product-table' )
 									)
 								)
 							]

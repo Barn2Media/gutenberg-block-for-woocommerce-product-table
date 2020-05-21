@@ -117,8 +117,8 @@ class Block {
 				'wcptbInvalid',
 				[
 					// translators: %s is the plugin name
-					'message' => __( 'Warning! This block is an add-on for the %s plugin, which is not currently installed. Please install the plugin before continuing.', 'wpt-block' ),
-					'link_text' => __( 'WooCommerce Product Table', 'wpt-block' ),
+					'message' => __( 'Warning! This block is an add-on for the %s plugin, which is not currently installed. Please install the plugin before continuing.', 'block-for-woo-product-table' ),
+					'link_text' => __( 'WooCommerce Product Table', 'block-for-woo-product-table' ),
 					'link' => 'https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/?utm_source=plugin&utm_medium=wptblock&utm_campaign=wptaddblock&utm_content=wptblockdashboard'
 				]
 			);
@@ -130,8 +130,8 @@ class Block {
 				'wcptbInvalid',
 				[
 					'no_woo' => true,
-					'message' => __( 'Warning! This block requires WooCommerce to function.', 'wpt-block' ),
-					'link_text' => __( 'WooCommerce Product Table', 'wpt-block' ),
+					'message' => __( 'Warning! This block requires WooCommerce to function.', 'block-for-woo-product-table' ),
+					'link_text' => __( 'WooCommerce Product Table', 'block-for-woo-product-table' ),
 					'link' => 'https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/?utm_source=plugin&utm_medium=wptblock&utm_campaign=wptaddblock&utm_content=wptblockdashboard'
 				]
 			);
@@ -205,28 +205,28 @@ class Block {
 			self::$column_defaults = apply_filters(
 				'wc_product_table_column_defaults',
 				array(
-					'sku'               => array( 'heading' => __( 'SKU', 'wpt-block' ), 'priority' => 6 ),
-					'id'                => array( 'heading' => __( 'ID', 'wpt-block' ), 'priority' => 8 ),
-					'name'              => array( 'heading' => __( 'Name', 'wpt-block' ), 'priority' => 1 ),
-					'description'       => array( 'heading' => __( 'Description', 'wpt-block' ), 'priority' => 12 ),
-					'short-description' => array( 'heading' => __( 'Short Description', 'wpt-block' ), 'priority' => 11 ),
-					'date'              => array( 'heading' => __( 'Date', 'wpt-block' ), 'priority' => 14 ),
-					'categories'        => array( 'heading' => __( 'Categories', 'wpt-block' ), 'priority' => 9 ),
-					'tags'              => array( 'heading' => __( 'Tags', 'wpt-block' ), 'priority' => 10 ),
-					'image'             => array( 'heading' => __( 'Image', 'wpt-block' ), 'priority' => 4 ),
-					'reviews'           => array( 'heading' => __( 'Reviews', 'wpt-block' ), 'priority' => 13 ),
-					'stock'             => array( 'heading' => __( 'Stock', 'wpt-block' ), 'priority' => 7 ),
-					'weight'            => array( 'heading' => __( 'Weight', 'wpt-block' ), 'priority' => 15 ),
-					'dimensions'        => array( 'heading' => __( 'Dimensions', 'wpt-block' ), 'priority' => 16 ),
-					'price'             => array( 'heading' => __( 'Price', 'wpt-block' ), 'priority' => 3 ),
-					'add-to-cart'       => array( 'heading' => __( 'Add to Cart', 'wpt-block' ), 'priority' => 2 ),
-					'button'            => array( 'heading' => __( 'Button', 'wpt-block' ), 'priority' => 5 ),
+					'sku'               => array( 'heading' => __( 'SKU', 'block-for-woo-product-table' ), 'priority' => 6 ),
+					'id'                => array( 'heading' => __( 'ID', 'block-for-woo-product-table' ), 'priority' => 8 ),
+					'name'              => array( 'heading' => __( 'Name', 'block-for-woo-product-table' ), 'priority' => 1 ),
+					'description'       => array( 'heading' => __( 'Description', 'block-for-woo-product-table' ), 'priority' => 12 ),
+					'short-description' => array( 'heading' => __( 'Short Description', 'block-for-woo-product-table' ), 'priority' => 11 ),
+					'date'              => array( 'heading' => __( 'Date', 'block-for-woo-product-table' ), 'priority' => 14 ),
+					'categories'        => array( 'heading' => __( 'Categories', 'block-for-woo-product-table' ), 'priority' => 9 ),
+					'tags'              => array( 'heading' => __( 'Tags', 'block-for-woo-product-table' ), 'priority' => 10 ),
+					'image'             => array( 'heading' => __( 'Image', 'block-for-woo-product-table' ), 'priority' => 4 ),
+					'reviews'           => array( 'heading' => __( 'Reviews', 'block-for-woo-product-table' ), 'priority' => 13 ),
+					'stock'             => array( 'heading' => __( 'Stock', 'block-for-woo-product-table' ), 'priority' => 7 ),
+					'weight'            => array( 'heading' => __( 'Weight', 'block-for-woo-product-table' ), 'priority' => 15 ),
+					'dimensions'        => array( 'heading' => __( 'Dimensions', 'block-for-woo-product-table' ), 'priority' => 16 ),
+					'price'             => array( 'heading' => __( 'Price', 'block-for-woo-product-table' ), 'priority' => 3 ),
+					'add-to-cart'       => array( 'heading' => __( 'Add to Cart', 'block-for-woo-product-table' ), 'priority' => 2 ),
+					'button'            => array( 'heading' => __( 'Button', 'block-for-woo-product-table' ), 'priority' => 5 ),
 					'att'               => array( 
-						'heading' => __( 'Product Attribute', 'wpt-block' ), 
+						'heading' => __( 'Product Attribute', 'block-for-woo-product-table' ), 
 						'values'  => wc_get_attribute_taxonomies(),
 					),
-					'cf'                => array( 'heading' => __( 'Custom Field Value', 'wpt-block' ), 'placeholder' => __( 'Enter a customer meta key', 'wpt-block' ) ),
-					'tax'               => array( 'heading' => __( 'Custom Taxonomy', 'wpt-block' ), 'placeholder' => __( 'Enter a taxonomy name', 'wpt-block' )  )
+					'cf'                => array( 'heading' => __( 'Custom Field Value', 'block-for-woo-product-table' ), 'placeholder' => __( 'Enter a customer meta key', 'block-for-woo-product-table' ) ),
+					'tax'               => array( 'heading' => __( 'Custom Taxonomy', 'block-for-woo-product-table' ), 'placeholder' => __( 'Enter a taxonomy name', 'block-for-woo-product-table' )  )
 				)
 			);
 		}
