@@ -2,11 +2,11 @@
 Plugin Name: Gutenberg Block for WooCommerce Product Table
 Contributors: barn2media
 Donate link: https://barn2.co.uk
-Tags: wordpress table plugin, data-table plugin, table plugin, table, wordpress table, gutenberg block, editor block
+Tags: gutenberg block, blocks, block, product table, order form
 Requires at least: 5.3
 Tested up to: 5.4.2
 Requires PHP: 5.6
-Stable tag: 1.0
+Stable tag: 1.0.1
 License: GPL-3.0
 License URI: https://www.gnu.org/licenses/gpl.html
 
@@ -88,6 +88,12 @@ There are also options on the WooCommerce Product Table plugin settings page whi
 3. When used together with the WooCommerce Product Table plugin, the Gutenberg block displays a fully functional order form.
 
 == Changelog ==
+
+= 1.0.2 =
+* Fixed an issue to prevent a false-positive PHP notice from the REST API
+
+= 1.0.1 =
+* No functional changes, updated repository tags
 
 = 1.0 =
 * Initial release

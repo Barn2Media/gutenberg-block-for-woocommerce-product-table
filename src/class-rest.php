@@ -61,8 +61,8 @@ class Rest {
 		register_rest_route( 'wc-product-table/v1', 'count', array(
 			'methods'  => 'POST',
 			'callback' => array( $this, 'get_product_count' ),
-			'permissions_callback' => function() {
-				return current_user_can( 'edit_page' );
+			'permission_callback' => function() {
+				return current_user_can( 'edit_pages' );
 			},
 		) );
 

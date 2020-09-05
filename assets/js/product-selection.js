@@ -608,4 +608,8 @@
 
 	} );
 
-} )( window.wp, typeof wcptbNonce !== 'undefined' ? wcptbNonce : null, typeof wcptbCatalog !== 'undefined' ? wcptbCatalog : null );
+} )( 
+	window.wp, 
+	typeof wcptbNonce !== 'undefined' ? wcptbNonce : null, 
+	typeof wcptbCatalog !== 'undefined' ? wcptbCatalog : null 
+);
