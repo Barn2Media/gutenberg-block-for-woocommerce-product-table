@@ -4,9 +4,9 @@ Contributors: barn2media
 Donate link: https://barn2.co.uk
 Tags: gutenberg block, blocks, block, product table, order form
 Requires at least: 5.3
-Tested up to: 5.4.2
+Tested up to: 5.5.1
 Requires PHP: 5.6
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPL-3.0
 License URI: https://www.gnu.org/licenses/gpl.html
 
@@ -90,7 +90,7 @@ There are also options on the WooCommerce Product Table plugin settings page whi
 == Changelog ==
 
 = 1.0.2 =
-* Fixed an issue to prevent a false-positive PHP notice from the REST API
+* Fixed issue with REST API permission notice
 
 = 1.0.1 =
 * No functional changes, updated repository tags
