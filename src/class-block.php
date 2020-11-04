@@ -117,7 +117,7 @@ class Block {
 				'wcptbInvalid',
 				[
 					// translators: %s is the plugin name
-					'message' => __( 'Warning! This block is an add-on for the %s plugin, which is not currently installed. Please install the plugin before continuing.', 'block-for-woo-product-table' ),
+					'message' => __( 'Warning! This block is an add-on for the %s plugin, which is not currently installed. Please sign up for a free trial and install the plugin before continuing.', 'block-for-woo-product-table' ),
 					'link_text' => __( 'WooCommerce Product Table', 'block-for-woo-product-table' ),
 					'link' => 'https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/?utm_source=plugin&utm_medium=wptblock&utm_campaign=wptaddblock&utm_content=wptblockdashboard'
 				]

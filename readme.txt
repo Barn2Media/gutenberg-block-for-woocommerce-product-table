@@ -6,7 +6,7 @@ Tags: gutenberg block, blocks, block, product table, order form
 Requires at least: 5.3
 Tested up to: 5.5.1
 Requires PHP: 5.6
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPL-3.0
 License URI: https://www.gnu.org/licenses/gpl.html
 
@@ -14,7 +14,7 @@ A WordPress editor block which implements the options found in the WooCommerce P
 
 == Description ==
 
-*Gutenberg Block for WooCommerce Product Table* adds a user-friendly editor block to the [WooCommerce Product Table](https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=gutenbergwpt&utm_content=gutenbergwpt) plugin by Barn2, providing an easier way for Gutenberg users to create product tables. It requires WooCommerce Product Table (purchasable separately) to work. 
+*Gutenberg Block for WooCommerce Product Table* adds a user-friendly editor block to the [WooCommerce Product Table](https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=gutenbergwpt&utm_content=gutenbergwpt) plugin by Barn2, providing an easier way for Gutenberg users to create product tables. It requires WooCommerce Product Table (available separately - sign up for a free trial) to work. 
 
 [WooCommerce Product Table](https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=gutenbergwpt&utm_content=gutenbergwpt) lists products in a quick order form layout designed to increase your sales and average order value. Instead of having to visit a separate page for each product, customers can select products, quantities and variations from the product table and quickly add them to the cart. 
 
@@ -72,7 +72,7 @@ Yes, you can create as many product tables as you like. Simply add the ‘WooCom
 Tip: If you are adding several product tables to the same page then we recommend enabling the lazy load option on the [WooCommerce Product Table plugin settings page](https://barn2.co.uk/kb/product-table-settings-page/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=gutenbergwpt&utm_content=gutenbergwpt). This will prevent any performance problems from listing large numbers of products on one page. 
 
 = What if I don’t have WooCommerce Product Table? =
-*Gutenberg Block for WooCommerce Product Table* is an add-on for [WooCommerce Product Table](https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=gutenbergwpt&utm_content=gutenbergwpt) and is not designed to be used separately. It only works with the premium WooCommerce Product Table plugin by Barn2, and not other plugins with similar names. 
+*Gutenberg Block for WooCommerce Product Table* is an add-on for [WooCommerce Product Table](https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=gutenbergwpt&utm_content=gutenbergwpt) and is not designed to be used separately. It only works with the premium WooCommerce Product Table plugin by Barn2, and not other plugins with similar names. [Sign up for a free trial](https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/#pricing).
 
 = Can I create product tables if I’m not using Gutenberg? =
 If you’re not using Gutenberg then you can use [WooCommerce Product Table](https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=gutenbergwpt&utm_content=gutenbergwpt) without Gutenberg Block for WooCommerce Product Table. 
@@ -88,6 +88,9 @@ There are also options on the WooCommerce Product Table plugin settings page whi
 3. When used together with the WooCommerce Product Table plugin, the Gutenberg block displays a fully functional order form.
 
 == Changelog ==
+
+= 1.0.3 =
+* Changed language of plugin warnings to alert user of free trial when WPT plugin is not installed
 
 = 1.0.2 =
 * Fixed issue with REST API permission notice

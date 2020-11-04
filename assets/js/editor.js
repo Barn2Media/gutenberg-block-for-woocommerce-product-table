@@ -33,7 +33,7 @@
 		description = [ description, ' ', el(
 			'strong',
 			{},
-			__( 'Warning! This block is an add-on for the WooCommerce Product Table plugin, which is not currently installed. Please install the plugin before continuing.', 'block-for-woo-product-table' )
+			__( 'Warning! This block is an add-on for the WooCommerce Product Table plugin, which is not currently installed. Please sign up for a free trial and install the plugin before continuing.', 'block-for-woo-product-table' )
 		) ];
 	}
 
