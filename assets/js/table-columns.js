@@ -3,7 +3,7 @@
 
 	const { __ } = wp.i18n;
 	const { createElement } = wp.element;
-	const { Button, IconButton, Icon, TextControl } = wp.components;
+	const { Button, Icon, TextControl } = wp.components;
 
 	const el = createElement;
 
@@ -21,7 +21,7 @@
 		}
 
 		return newColumnOrder;
-	}
+	};
 
 	const getTableColumnOptions = () => {
 
@@ -33,11 +33,13 @@
 			)
 		];
 		for ( var slug in settings.columnLabels ) {
-			options.push( el(
-				'option',
-				{ value: slug, key: slug },
-				settings.columnLabels[slug].heading
-			) );
+			if ( ! settings.columnLabels[slug].compat ) {
+				options.push( el(
+					'option',
+					{ value: slug, key: slug },
+					settings.columnLabels[slug].heading
+				) );
+			}
 		}
 
 		return options;
@@ -183,10 +185,10 @@
 						}
 					),
 					el(
-						IconButton,
+						Button,
 						{
 							className: 'barn2-wc-product-table-block__edit-label-button',
-							icon: 'edit',
+							icon: barn2_editIcon,
 							alt: 'Edit Column Name',
 							title: 'Edit Column Name',
 							'aria-expanded': 'false',
@@ -236,7 +238,7 @@
 					),
 					el( 'span', { className: 'barn2-wc-product-table-block__column-label' }, label ),
 					el(
-						IconButton,
+						Button,
 						{
 							className: 'barn2-wc-product-table-block__delete-column',
 							icon: barn2_deleteIcon,

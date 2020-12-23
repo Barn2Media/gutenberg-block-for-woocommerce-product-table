@@ -13,9 +13,9 @@
   .barn2-wc-product-table-block * {
     box-sizing: inherit;
     font-family: inherit; }
-  .editor-styles-wrapper .barn2-wc-product-table-block a, .editor-styles-wrapper .barn2-wc-product-table-block components-button.is-secondary,
+  .editor-styles-wrapper .barn2-wc-product-table-block a, .editor-styles-wrapper .barn2-wc-product-table-block .components-button.is-secondary,
   .barn2-wc-product-table-block a,
-  .barn2-wc-product-table-block components-button.is-secondary {
+  .barn2-wc-product-table-block .components-button.is-secondary {
     color: #005d8c; }
   .editor-styles-wrapper .barn2-wc-product-table-block h3, .editor-styles-wrapper .barn2-wc-product-table-block p, .editor-styles-wrapper .barn2-wc-product-table-block li,
   .barn2-wc-product-table-block h3,
@@ -45,8 +45,8 @@
   .editor-styles-wrapper .barn2-wc-product-table-block .block-description,
   .barn2-wc-product-table-block .block-description {
     text-align: left; }
-  .editor-styles-wrapper .barn2-wc-product-table-block .components-button.has-icon span,
-  .barn2-wc-product-table-block .components-button.has-icon span {
+  .editor-styles-wrapper .barn2-wc-product-table-block .components-button.has-svg span,
+  .barn2-wc-product-table-block .components-button.has-svg span {
     display: none; }
   .editor-styles-wrapper .barn2-wc-product-table-block p.additional-settings-notice,
   .barn2-wc-product-table-block p.additional-settings-notice {
@@ -216,7 +216,12 @@
       display: none; }
   .editor-styles-wrapper .barn2-wc-product-table-block__edit-label-button,
   .barn2-wc-product-table-block__edit-label-button {
-    flex: 0 0 36px; }
+    flex: 0 0 36px;
+    margin-right: 0; }
+    .editor-styles-wrapper .barn2-wc-product-table-block__edit-label-button svg,
+    .barn2-wc-product-table-block__edit-label-button svg {
+      width: 18px;
+      height: 18px; }
   .editor-styles-wrapper .barn2-wc-product-table-block__edit-label-input,
   .barn2-wc-product-table-block__edit-label-input {
     flex: 1 1 100%;
@@ -405,7 +410,7 @@
       border-color: #0075af;
       background: #f3f5f6;
       color: #0075af; }
-    .editor-styles-wrapper .barn2-wc-product-table-block .components-button.components-icon-button, .editor-styles-wrapper .barn2-wc-product-table-block .components-button.has-icon,
-    .barn2-wc-product-table-block .components-button.components-icon-button,
-    .barn2-wc-product-table-block .components-button.has-icon {
+    .editor-styles-wrapper .barn2-wc-product-table-block .components-button.components-button.has-icon, .editor-styles-wrapper .barn2-wc-product-table-block .components-button.has-svg,
+    .barn2-wc-product-table-block .components-button.components-button.has-icon,
+    .barn2-wc-product-table-block .components-button.has-svg {
       border: transparent; }

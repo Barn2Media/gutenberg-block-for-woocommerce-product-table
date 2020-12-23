@@ -68,14 +68,19 @@
 						SelectControl,
 						{
 							label: __( 'Quantities', 'block-for-woo-product-table' ),
-							value: settings.show_quantity,
+							value: ( settings.show_quantity || settings.quantities ),
 							options: [
 								{ value: '', label: __( '(Use global option)', 'block-for-woo-product-table' ) },
 								{ value: 'true', label: __( 'Show in add to cart column', 'block-for-woo-product-table' ) },
 								{ value: 'false', label: __( 'Do not show quantity selectors', 'block-for-woo-product-table' ) },
 							],
 							onChange: ( value ) => {
-								changeSetting( 'show_quantity', value );
+								if ( wcptVersion === '< 2.8' ) {
+									changeSetting( 'show_quantity', value );
+								} else {
+									changeSetting( 'quantities', value );
+									changeSetting( 'show_quantity', '' );
+								}
 							}
 						},
 					),

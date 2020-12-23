@@ -81,6 +81,7 @@ class Plugin {
 		self::$assets_uri     = plugins_url( 'assets/', PLUGIN_FILE );
 		self::$assets_version = WP_DEBUG ? time() : PLUGIN_VERSION;
 
+		require_once __DIR__ . '/class-compat.php';
 		require_once __DIR__ . '/class-block.php';
 		require_once __DIR__ . '/class-rest.php';
 
@@ -124,7 +125,7 @@ class Plugin {
 	 * Checks to ensure WooCommerce Product Table plugin is active
 	 */
 	public static function is_wpt_safe() {
-		return class_exists( 'WC_Product_Table_Plugin' );
+		return class_exists( 'Barn2\Plugin\WC_Product_Table\Plugin') || class_exists( 'WC_Product_Table_Plugin' );
 	}
 
 	/**

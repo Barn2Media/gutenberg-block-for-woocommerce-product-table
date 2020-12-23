@@ -138,9 +138,9 @@ class Block {
 
 		} else {
 
-			$defaults = \WCPT_Settings::get_setting_table_defaults();
+			$defaults = Compat::get_default_table_settings();
 			if ( empty( $defaults['columns'] ) ) {
-				$defaults['columns'] = \WC_Product_Table_Args::$default_args['columns'];
+				$defaults['columns'] = Compat::get_default_table_columns();
 			}
 			if ( ! empty( $defaults['columns'] ) ) {
 				$defaults['columns'] = explode( ',', $defaults['columns'] );
@@ -182,6 +182,12 @@ class Block {
 			plugins_url( 'assets/images/block-preview.jpg', __DIR__ )
 		);
 
+		wp_localize_script(
+			'barn2-wc-product-table-block',
+			'wcptVersion',
+			version_compare( Compat::wcpt_version(), '2.8', '<' ) ? '< 2.8' : '>= 2.8'
+		);
+
 		register_block_type(
 			'barn2/wc-product-table',
 			array(
@@ -202,6 +208,9 @@ class Block {
 
 		if ( ! self::$column_defaults ) {
 
+			/**
+			 * Filtered by Compat::compat_column_names for WPT versions earlier than 2.8
+			 */
 			self::$column_defaults = apply_filters(
 				'wc_product_table_column_defaults',
 				array(
@@ -219,7 +228,7 @@ class Block {
 					'weight'            => array( 'heading' => __( 'Weight', 'block-for-woo-product-table' ), 'priority' => 15 ),
 					'dimensions'        => array( 'heading' => __( 'Dimensions', 'block-for-woo-product-table' ), 'priority' => 16 ),
 					'price'             => array( 'heading' => __( 'Price', 'block-for-woo-product-table' ), 'priority' => 3 ),
-					'add-to-cart'       => array( 'heading' => __( 'Add to Cart', 'block-for-woo-product-table' ), 'priority' => 2 ),
+					'buy'               => array( 'heading' => __( 'Buy', 'block-for-woo-product-table' ), 'priority' => 2 ),
 					'button'            => array( 'heading' => __( 'Button', 'block-for-woo-product-table' ), 'priority' => 5 ),
 					'att'               => array( 
 						'heading' => __( 'Product Attribute', 'block-for-woo-product-table' ), 
