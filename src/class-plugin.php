@@ -87,6 +87,10 @@ class Plugin {
 
 		do_action( 'barn2_wcptb_installed', $this );
 
+		if ( self::is_wpt_safe() ) {
+			do_action( 'barn2_wcptb_active', $this );
+		}
+
 	}
 
 	/**
