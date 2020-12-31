@@ -56,6 +56,14 @@ class Compat {
 				if ( version_compare( self::wcpt_version(), '2.8', '<' ) ) {
 
 					$value[ 'heading' ] = __( 'Add to Cart', 'block-for-woo-product-table' );
+
+					// why would anyone go back to an old version? i don't know, but that's
+					// what this code is for
+					$old_value = $value;
+					$old_value[ 'compat' ] = true;
+					$old_columns[ 'buy' ] = $old_value;
+
+					// and this converts the new heading to the old one
 					$key = 'add-to-cart';
 
 				} else {
