@@ -1,6 +1,6 @@
 const pluginData = {
 	name: 'WooCommerce Product Table Block',
-	slug: 'woocommerce-product-table-block',
+	slug: 'block-for-woo-product-table',
 	libExcludes: ['**'],
 	domain: 'block-for-woo-product-table',
 	requiresES6: true,

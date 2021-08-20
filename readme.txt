@@ -91,6 +91,7 @@ There are also options on the WooCommerce Product Table plugin settings page whi
 
 = 1.0.5 =
 * Compatibility update
+* Fixed incorrect use of `$l10n` in `WP_Scripts::locate()`
 
 = 1.0.4 =
 * Replaced edit button on table columns with WP 5.6 compatible version
