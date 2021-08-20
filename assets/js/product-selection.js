@@ -1,9 +1,10 @@
-( function ( wp, nonce, data ) {
+( function ( wp, nonceObj, data ) {
 	"use strict";
 
 	const { __ } = wp.i18n;
 	const { createElement } = wp.element;
 	const { Button, Icon, TextControl, ToggleControl } = wp.components;
+	const nonce = nonceObj ? nonceObj.nonce : null;
 
 	const { withState } = wp.compose;
 
@@ -83,7 +84,7 @@
 
 		return filterNodes;
 
-	}
+	};
 
 	const getFilterSelectionOptions = () => {
 
@@ -374,7 +375,7 @@
 			newFilterValue = filters.join( joinChar );
 
 		} else if ( ! panel.classList.contains( 'allow-multiple' ) ) {
-			
+
 			let value = panel.querySelector( '.barn2-wc-product-table-block__new-option.selected' );
 
 			if ( selectedOption.dataset.value && selectedOption.dataset.value.length > 0 ) {
@@ -608,8 +609,8 @@
 
 	} );
 
-} )( 
-	window.wp, 
-	typeof wcptbNonce !== 'undefined' ? wcptbNonce : null, 
-	typeof wcptbCatalog !== 'undefined' ? wcptbCatalog : null 
+} )(
+	window.wp,
+	typeof wcptbNonce !== 'undefined' ? wcptbNonce : null,
+	typeof wcptbCatalog !== 'undefined' ? wcptbCatalog : null
 );

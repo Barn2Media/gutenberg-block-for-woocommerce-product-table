@@ -277,7 +277,7 @@
 			columnNodes
 		);
 
-	}
+	};
 
 	/*window.productTableBlockComponents.ProductTableColumns = withState( {
 

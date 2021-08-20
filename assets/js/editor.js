@@ -82,7 +82,7 @@
 					{},
 					el(
 						'img',
-						{ src: wcptbPreviewImage }
+						{ src: wcptbPreviewImage.src }
 					)
 				);
 			}
@@ -109,7 +109,7 @@
 					message = messageSplit[0];
 				}
 
-				blockStructure = el( 
+				blockStructure = el(
 					Placeholder,
 					{ icon: tableIcon, label: 'Product Table', instructions: message }
 				);
@@ -152,7 +152,7 @@
 									'div',
 									{ className: 'components-placeholder__fieldset' },
 									[
-										el( 
+										el(
 											'span',
 											{ className: 'block-description' },
 											[
@@ -205,7 +205,7 @@
 
 			}
 
-			
+
 
 			return blockStructure;
 		},

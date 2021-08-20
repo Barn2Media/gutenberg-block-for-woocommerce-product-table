@@ -75,14 +75,14 @@
 								{ value: 'false', label: __( 'Do not show quantity selectors', 'block-for-woo-product-table' ) },
 							],
 							onChange: ( value ) => {
-								if ( wcptVersion === '< 2.8' ) {
+								if ( wcptVersion.version === '< 2.8' ) {
 									changeSetting( 'show_quantity', value );
 								} else {
 									changeSetting( 'quantities', value );
 									changeSetting( 'show_quantity', '' );
 								}
 							}
-						},
+						}
 					),
 					el(
 						SelectControl,
@@ -171,13 +171,13 @@
 						{},
 						[
 							__( 'You can configure additional options globally on the  ', 'block-for-woo-product-table' ),
-							el( 
+							el(
 								'a',
 								{ href: '/wp-admin/admin.php?page=wc-settings&tab=products&section=product-table', target: '_blank' },
 								__( 'WooCommerce Product Table settings page', 'block-for-woo-product-table' )
 							),
 							__( ', or by adding them below with one option per line (e.g. sort_by="name"). ', 'block-for-woo-product-table' ),
-							el( 
+							el(
 								'a',
 								{ href: 'https://barn2.co.uk/kb/product-table-options/', target: '_blank' },
 								__( 'See full list of options.', 'block-for-woo-product-table' )

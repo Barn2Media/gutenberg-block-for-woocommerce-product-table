@@ -44,7 +44,8 @@ const barn2_editIcon = createElement(
 );
 
 const waitForReference = ( ref, ready ) => {
-
+	"use strict";
+	
 	if ( ref.current ) {
 		ready( ref.current );
 	} else {
@@ -54,6 +55,7 @@ const waitForReference = ( ref, ready ) => {
 };
 
 const removeArrayIndex = ( array, index ) => {
+	"use strict";
 
 	let newArray = [];
 
@@ -65,4 +67,4 @@ const removeArrayIndex = ( array, index ) => {
 
 	return newArray;
 
-}
+};

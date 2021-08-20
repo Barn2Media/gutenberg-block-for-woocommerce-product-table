@@ -161,7 +161,9 @@ class Block {
 			wp_localize_script(
 				'barn2-wc-product-table-query',
 				'wcptbNonce',
-				wp_create_nonce( 'wp_rest' )
+				[
+					'nonce' => wp_create_nonce( 'wp_rest' ),
+				]
 			);
 
 			wp_localize_script(
@@ -179,21 +181,25 @@ class Block {
 		wp_localize_script(
 			'barn2-wc-product-table-block',
 			'wcptbPreviewImage',
-			plugins_url( 'assets/images/block-preview.jpg', __DIR__ )
+			[
+				'src' => plugins_url( 'assets/images/block-preview.jpg', __DIR__ ),
+			]
 		);
 
 		wp_localize_script(
 			'barn2-wc-product-table-block',
 			'wcptVersion',
-			version_compare( Compat::wcpt_version(), '2.8', '<' ) ? '< 2.8' : '>= 2.8'
+			[
+				'version' => version_compare( Compat::wcpt_version(), '2.8', '<' ) ? '< 2.8' : '>= 2.8',
+			]
 		);
 
 		register_block_type(
 			'barn2/wc-product-table',
-			array(
+			[
 				'editor_style'  => 'barn2-wc-product-table-block',
 				'editor_script' => 'barn2-wc-product-table-block',
-			)
+			]
 		);
 
 	}
@@ -230,8 +236,8 @@ class Block {
 					'price'             => array( 'heading' => __( 'Price', 'block-for-woo-product-table' ), 'priority' => 3 ),
 					'buy'               => array( 'heading' => __( 'Buy', 'block-for-woo-product-table' ), 'priority' => 2 ),
 					'button'            => array( 'heading' => __( 'Button', 'block-for-woo-product-table' ), 'priority' => 5 ),
-					'att'               => array( 
-						'heading' => __( 'Product Attribute', 'block-for-woo-product-table' ), 
+					'att'               => array(
+						'heading' => __( 'Product Attribute', 'block-for-woo-product-table' ),
 						'values'  => wc_get_attribute_taxonomies(),
 					),
 					'cf'                => array( 'heading' => __( 'Custom Field Value', 'block-for-woo-product-table' ), 'placeholder' => __( 'Enter a customer meta key', 'block-for-woo-product-table' ) ),
