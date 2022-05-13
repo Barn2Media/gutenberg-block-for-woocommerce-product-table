@@ -10,6 +10,8 @@
 
 namespace Barn2\Plugin\WC_Product_Table_Block;
 
+use Barn2\Plugin\WC_Product_Table\Util\Columns_Util;
+
 /**
  * The block class.
  */
@@ -217,32 +219,21 @@ class Block {
 			/**
 			 * Filtered by Compat::compat_column_names for WPT versions earlier than 2.8
 			 */
-			self::$column_defaults = apply_filters(
-				'wc_product_table_column_defaults',
-				array(
-					'sku'               => array( 'heading' => __( 'SKU', 'block-for-woo-product-table' ), 'priority' => 6 ),
-					'id'                => array( 'heading' => __( 'ID', 'block-for-woo-product-table' ), 'priority' => 8 ),
-					'name'              => array( 'heading' => __( 'Name', 'block-for-woo-product-table' ), 'priority' => 1 ),
-					'description'       => array( 'heading' => __( 'Description', 'block-for-woo-product-table' ), 'priority' => 12 ),
-					'short-description' => array( 'heading' => __( 'Short Description', 'block-for-woo-product-table' ), 'priority' => 11 ),
-					'date'              => array( 'heading' => __( 'Date', 'block-for-woo-product-table' ), 'priority' => 14 ),
-					'categories'        => array( 'heading' => __( 'Categories', 'block-for-woo-product-table' ), 'priority' => 9 ),
-					'tags'              => array( 'heading' => __( 'Tags', 'block-for-woo-product-table' ), 'priority' => 10 ),
-					'image'             => array( 'heading' => __( 'Image', 'block-for-woo-product-table' ), 'priority' => 4 ),
-					'reviews'           => array( 'heading' => __( 'Reviews', 'block-for-woo-product-table' ), 'priority' => 13 ),
-					'stock'             => array( 'heading' => __( 'Stock', 'block-for-woo-product-table' ), 'priority' => 7 ),
-					'weight'            => array( 'heading' => __( 'Weight', 'block-for-woo-product-table' ), 'priority' => 15 ),
-					'dimensions'        => array( 'heading' => __( 'Dimensions', 'block-for-woo-product-table' ), 'priority' => 16 ),
-					'price'             => array( 'heading' => __( 'Price', 'block-for-woo-product-table' ), 'priority' => 3 ),
-					'buy'               => array( 'heading' => __( 'Buy', 'block-for-woo-product-table' ), 'priority' => 2 ),
-					'button'            => array( 'heading' => __( 'Button', 'block-for-woo-product-table' ), 'priority' => 5 ),
-					'att'               => array(
-						'heading' => __( 'Product Attribute', 'block-for-woo-product-table' ),
-						'values'  => wc_get_attribute_taxonomies(),
-					),
-					'cf'                => array( 'heading' => __( 'Custom Field Value', 'block-for-woo-product-table' ), 'placeholder' => __( 'Enter a customer meta key', 'block-for-woo-product-table' ) ),
-					'tax'               => array( 'heading' => __( 'Custom Taxonomy', 'block-for-woo-product-table' ), 'placeholder' => __( 'Enter a taxonomy name', 'block-for-woo-product-table' )  )
-				)
+			self::$column_defaults = Columns_Util::column_defaults();
+
+			self::$column_defaults['att']  = array(
+				'heading'  => __( 'Product Attribute', 'block-for-woo-product-table' ),
+				'values'   => wc_get_attribute_taxonomies(),
+				'priority' => 17,
+			);
+			self::$column_defaults['cf']  = array( 'heading' => __( 'Custom Field Value', 'block-for-woo-product-table' ), 'placeholder' => __( 'Enter a customer meta key', 'block-for-woo-product-table' ), 'priority' => 17 );
+			self::$column_defaults['tax'] = array( 'heading' => __( 'Custom Taxonomy', 'block-for-woo-product-table' ), 'placeholder' => __( 'Enter a taxonomy name', 'block-for-woo-product-table' ), 'priority' => 17  );
+
+			uasort(
+				self::$column_defaults,
+				function( $a, $b ) {
+					return $a['priority'] > $b['priority'] ? 1 : -1;
+				}
 			);
 		}
 
