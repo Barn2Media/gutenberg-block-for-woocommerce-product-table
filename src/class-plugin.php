@@ -76,7 +76,7 @@ class Plugin {
 			return;
 		}
 
-		load_plugin_textdomain( 'block-for-woo-product-table', '', basename( dirname( PLUGIN_FILE ) ) . '/languages/' );
+		load_plugin_textdomain( 'block-for-woo-product-table', false, basename( dirname( PLUGIN_FILE ) ) . '/languages/' );
 
 		self::$assets_uri     = plugins_url( 'assets/', PLUGIN_FILE );
 		self::$assets_version = WP_DEBUG ? time() : PLUGIN_VERSION;
@@ -107,7 +107,7 @@ class Plugin {
 	 * Checks to ensure the server PHP version is compatible with this plugin
 	 */
 	public function is_php_version_safe() {
-		return version_compare( PHP_VERSION, '5.6.0', '>=' );
+		return version_compare( PHP_VERSION, '7.2.0', '>=' );
 	}
 
 	/**
@@ -115,7 +115,7 @@ class Plugin {
 	 */
 	public function is_wordpress_safe() {
 		global $wp_version;
-		return function_exists( 'register_block_type' ) && version_compare( $wp_version, '5.3.0', '>=' );
+		return function_exists( 'register_block_type' ) && version_compare( $wp_version, '5.2.0', '>=' );
 	}
 
 	/**
@@ -145,11 +145,11 @@ class Plugin {
 		$messages = '';
 
 		if ( ! $this->is_php_version_safe() ) {
-			$messages .= '<li>' . esc_html( __( 'PHP must be running on version 5.6 or above to use this plugin.', 'block-for-woo-product-table' ) ) . '</li>';
+			$messages .= '<li>' . esc_html( __( 'PHP must be running on version 7.2 or above to use this plugin.', 'block-for-woo-product-table' ) ) . '</li>';
 		}
 
 		if ( ! $this->is_wordpress_safe() ) {
-			$messages .= '<li>' . esc_html( __( 'This plugin requires WordPress 5.3 or above', 'block-for-woo-product-table' ) ) . '</li>';
+			$messages .= '<li>' . esc_html( __( 'This plugin requires WordPress 5.2 or above', 'block-for-woo-product-table' ) ) . '</li>';
 		}
 
 		if ( ! $this->is_woocommerce_safe() ) {

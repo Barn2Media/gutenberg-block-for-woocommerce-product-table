@@ -1,12 +1,12 @@
 const pluginData = {
 	name: 'WooCommerce Product Table Block',
 	slug: 'block-for-woo-product-table',
-	libExcludes: ['**'],
+	libIncludes: [],
 	domain: 'block-for-woo-product-table',
 	requiresES6: true,
 };
 
-const { src, dest, watch, series, parallel } = require( 'gulp' );
+const { watch } = require( 'gulp' );
 
 const fs = require( 'fs' ),
     barn2build = getBarn2Build();
@@ -37,9 +37,9 @@ module.exports = {
     library: barn2build.updateLibrary,
     zip: barn2build.createZipFile,
     release: barn2build.releasePlugin,
-    updatePluginTesting: barn2build.updatePluginTesting,
-    updatePlayground: barn2build.updatePluginPlayground,
-    updateDemo: barn2build.updatePluginDemo,
+    pluginTesting: barn2build.updatePluginTesting,
+    playground: barn2build.updatePluginPlayground,
+    demo: barn2build.updatePluginDemo,
 	doc: barn2build.updateDoc,
 	exists: barn2build.fileExists,
     watch: () => {
