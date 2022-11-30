@@ -4,7 +4,7 @@ const pluginData = {
 	libIncludes: [],
 	domain: 'block-for-woo-product-table',
 	requiresES6: true,
-};
+}; 
 
 const { watch } = require( 'gulp' );
 
