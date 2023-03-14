@@ -89,6 +89,9 @@ There are also options on the WooCommerce Product Table plugin settings page whi
 
 == Changelog ==
 
+= 1.0.8 = 
+* Compatibility update with WC 7.4.1 
+
 = 1.0.7 =
 * Compatibility update with WP 6.1.1 and WC 7.1.0
 
