@@ -4,9 +4,9 @@ Contributors: barn2media
 Donate link: https://barn2.co.uk
 Tags: gutenberg block, blocks, block, product table, order form
 Requires at least: 5.3
-Tested up to: 6.1.1
+Tested up to: 6.2.2
 Requires PHP: 7.2
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GPL-3.0
 License URI: https://www.gnu.org/licenses/gpl.html
 
@@ -88,6 +88,10 @@ There are also options on the WooCommerce Product Table plugin settings page whi
 3. When used together with the WooCommerce Product Table plugin, the Gutenberg block displays a fully functional order form.
 
 == Changelog ==
+
+= 1.0.9 =
+* Declare HPOS compatibility 
+* Tested up to WordPress 6.2.2 and WooCommerce 7.8.2
 
 = 1.0.8 = 
 * Compatibility update with WC 7.4.1 

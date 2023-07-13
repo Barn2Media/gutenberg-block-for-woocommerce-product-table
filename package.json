@@ -1,6 +1,6 @@
 {
 	"name": "wc-product-table-block",
-	"version": "1.0.8",
+	"version": "1.0.9",
 	"description": "Build package for plugins",
 	"main": "gulpfile.js",
 	"scripts": {
@@ -9,7 +9,7 @@
 	"author": "Barn2 Plugins",
 	"license": "GPL-3.0",
 	"devDependencies": {
-		"gulp": "^4.0.2",
+		"gulp": "^4.0.2"
 	},
 	"dependencies": {}
 }
