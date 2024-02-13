@@ -3,9 +3,9 @@ Plugin Name: Gutenberg Block for WooCommerce Product Table
 Contributors: barn2media
 Donate link: https://barn2.co.uk
 Tags: gutenberg block, blocks, block, product table, order form
-Requires at least: 5.3
-Tested up to: 6.2.2
-Requires PHP: 7.2
+Requires at least: 6.0
+Tested up to: 6.4.3
+Requires PHP: 7.4
 Stable tag: 1.0.9
 License: GPL-3.0
 License URI: https://www.gnu.org/licenses/gpl.html
@@ -14,7 +14,7 @@ A WordPress editor block which implements the options found in the WooCommerce P
 
 == Description ==
 
-*Gutenberg Block for WooCommerce Product Table* adds a user-friendly editor block to the [WooCommerce Product Table](https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=gutenbergwpt&utm_content=gutenbergwpt) plugin by Barn2, providing an easier way for Gutenberg users to create product tables. It requires WooCommerce Product Table (available separately - sign up for a free trial) to work.
+*Gutenberg Block for WooCommerce Product Table* adds a user-friendly editor block to the [WooCommerce Product Table](https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=gutenbergwpt&utm_content=gutenbergwpt) plugin by Barn2, providing an easier way for Gutenberg users to create product tables. It requires WooCommerce Product Table (available separately) to work.
 
 [WooCommerce Product Table](https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=gutenbergwpt&utm_content=gutenbergwpt) lists products in a quick order form layout designed to increase your sales and average order value. Instead of having to visit a separate page for each product, customers can select products, quantities and variations from the product table and quickly add them to the cart.
 
