@@ -4,7 +4,7 @@ Contributors: barn2media
 Donate link: https://barn2.co.uk
 Tags: gutenberg block, blocks, block, product table, order form
 Requires at least: 6.1
-Tested up to: 6.5.2
+Tested up to: 6.6
 Requires PHP: 7.4
 Stable tag: 1.0.10
 License: GPL-3.0
