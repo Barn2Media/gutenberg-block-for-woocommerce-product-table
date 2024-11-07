@@ -14,13 +14,15 @@ A WordPress editor block which implements the options found in the WooCommerce P
 
 == Description ==
 
-*Gutenberg Block for WooCommerce Product Table* adds a user-friendly editor block to the [WooCommerce Product Table](https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=gutenbergwpt&utm_content=gutenbergwpt) plugin by Barn2, providing an easier way for Gutenberg users to create product tables. It requires WooCommerce Product Table (available separately) to work.
+*Note: Since building this block plugin, we have added an interactive table builder to the main WooCommerce Product Table plugin. This makes it easy to create product tables and insert them into the block editor or any page builder. While you can still use the block plugin, it is no longer actively being developed and we recommend using the built-in table builder instead, which has more features.*
 
-[WooCommerce Product Table](https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=gutenbergwpt&utm_content=gutenbergwpt) lists products in a quick order form layout designed to increase your sales and average order value. Instead of having to visit a separate page for each product, customers can select products, quantities and variations from the product table and quickly add them to the cart.
+Gutenberg Block for WooCommerce Product Table adds a user-friendly editor block to the [WooCommerce Product Table](https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=gutenbergwpt&utm_content=gutenbergwpt) plugin by Barn2, providing an easier way for Gutenberg users to create product tables. It requires WooCommerce Product Table (available separately) to work.
+
+WooCommerce Product Table lists products in a quick order form layout designed to increase your sales and average order value. Instead of having to visit a separate page for each product, customers can select products, quantities and variations from the product table and quickly add them to the cart.
 
 WooCommerce Product Table is highly flexible and you can choose which products to include, a wide range of column options, filters, instant AJAX search, add to cart button styles, and more.
 
-*Gutenberg Block for WooCommerce Product Table* makes it easy to insert product tables anywhere on your site using the Gutenberg editor. This gives you full control over your product tables, without having to use shortcodes.
+*Gutenberg Block for WooCommerce Product Table* makes it easy to insert product tables anywhere on your site using the Gutenberg editor. This gives you full control over your product tables.
 
 https://www.youtube.com/watch?v=yEsK8KEi0mk
 
@@ -75,11 +77,7 @@ Tip: If you are adding several product tables to the same page then we recommend
 *Gutenberg Block for WooCommerce Product Table* is an add-on for [WooCommerce Product Table](https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=gutenbergwpt&utm_content=gutenbergwpt) and is not designed to be used separately. It only works with the premium WooCommerce Product Table plugin by Barn2, and not other plugins with similar names. [Sign up for a free trial](https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/#pricing).
 
 = Can I create product tables if I’m not using Gutenberg? =
-If you’re not using Gutenberg then you can use [WooCommerce Product Table](https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=gutenbergwpt&utm_content=gutenbergwpt) without Gutenberg Block for WooCommerce Product Table.
-
-You can create product tables by adding the [[product_table] shortcode](https://barn2.co.uk/kb/product-table-options/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=gutenbergwpt&utm_content=gutenbergwpt) anywhere on your site, including text, HTML or shortcode blocks in other page builders such as Elementor, Divi Builder and Visual Composer.
-
-There are also options on the WooCommerce Product Table plugin settings page which automatically enable the product table layout on your shop and/or product category pages.
+Yes, [WooCommerce Product Table](https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=gutenbergwpt&utm_content=gutenbergwpt) comes with a built-in table builder which works with all WordPress editors and page builders. Simply install WooCommerce Product Table and go to *Products > Product Tables > Add New* to create tables. The final page of the table builder provides a shortcode which you can use to insert the table anywhere on your site. You can also enable tables automatically on your main shop page templates, without having to use a block or shortcode.
 
 == Screenshots ==
 

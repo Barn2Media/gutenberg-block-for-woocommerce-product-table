@@ -29,7 +29,7 @@
 	);
 
 	let description = __( 'Display a searchable table listing any or all of your products.', 'block-for-woo-product-table' );
-	if ( typeof wcptbInvalid !== 'undefined' ) {
+	if ( typeof info !== 'undefined' ) {
 		description = [ description, ' ', el(
 			'strong',
 			{},
@@ -91,17 +91,17 @@
 
 			let blockStructure;
 
-			if ( typeof wcptbInvalid !== 'undefined' ) {
+			if ( typeof info !== 'undefined' ) {
 
-				let messageSplit = wcptbInvalid.message.split('%s'), message;
+				let messageSplit = info.message.split('%s'), message;
 
 				if ( messageSplit.length > 1 ) {
 					message = [
 						messageSplit[0],
 						el(
 							'a',
-							{ href: wcptbInvalid.link, target: '_blank' },
-							wcptbInvalid.link_text
+							{ href: info.link, target: '_blank' },
+							info.link_text
 						),
 						messageSplit[1]
 					];
@@ -156,11 +156,11 @@
 											'span',
 											{ className: 'block-description' },
 											[
-												__( 'Lists products in a table view using the WooCommerce Product Table plugin. ', 'block-for-woo-product-table' ),
+												__( 'Lists products in a table view using the WooCommerce Product Table plugin. For more features, use the ', 'block-for-woo-product-table' ),
 												el(
 													'a',
-													{ href: 'https://barn2.co.uk/kb/woocommerce-product-table-gutenberg/', target: '_blank' },
-													__( 'Documentation', 'block-for-woo-product-table' )
+													{ href: info.table_builder, target: '_blank' },
+													__( 'central table builder.', 'block-for-woo-product-table' )
 												)
 											]
 										),
