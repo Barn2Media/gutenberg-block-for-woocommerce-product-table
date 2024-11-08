@@ -93,15 +93,15 @@
 
 			if ( typeof info !== 'undefined' ) {
 
-				let messageSplit = info.message.split('%s'), message;
+				let messageSplit = wcptbInvalid.message.split('%s'), message;
 
 				if ( messageSplit.length > 1 ) {
 					message = [
 						messageSplit[0],
 						el(
 							'a',
-							{ href: info.link, target: '_blank' },
-							info.link_text
+							{ href: wcptbInvalid.link, target: '_blank' },
+							wcptbInvalid.link_text
 						),
 						messageSplit[1]
 					];
