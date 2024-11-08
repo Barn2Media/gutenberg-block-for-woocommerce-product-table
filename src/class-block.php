@@ -10,7 +10,7 @@
 
 namespace Barn2\Plugin\WC_Product_Table_Block;
 
-use Barn2\Plugin\WC_Product_Table\Util\Columns_Util;
+use Barn2\Plugin\WC_Product_Table\Util\Columns as Columns_Util;
 
 /**
  * The block class.

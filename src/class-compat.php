@@ -90,7 +90,7 @@ class Compat {
 	 */
 	public static function wcpt_version() {
 
-		return Plugin::is_wpt_safe() ? \Barn2\Plugin\WC_Product_Table\PLUGIN_VERSION : null;
+		return Plugin::is_wpt_safe() ? \Barn2\Plugin\WC_Product_Table\PLUGIN_VERSION : '';
 
 	}
 

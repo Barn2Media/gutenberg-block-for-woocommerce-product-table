@@ -99,8 +99,8 @@ class Plugin {
 	private function is_plugin_compatible() {
 		return $this->is_php_version_safe()
 			&& $this->is_wordpress_safe()
-			&& $this->is_woocommerce_safe();
-			//&& $this->is_wpt_safe();
+			&& $this->is_woocommerce_safe()
+			&& $this->is_wpt_safe();
 	}
 
 	/**
