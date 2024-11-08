@@ -13,14 +13,16 @@
  * Plugin Name:     Gutenberg Block for WooCommerce Product Table
  * Plugin URI:      https://barn2.co.uk/wordpress-plugins/block-for-woo-product-table/
  * Description:     Adds an editor block to the WooCommerce Product Table plugin by Barn2, making it quick and easy to create product tables with the block editor.
- * Version:         1.0.10
+ * Version:         1.0.11
  * Author:          Barn2 Plugins
  * Author URI:      https://barn2.co.uk
  * Text Domain:     block-for-woo-product-table
  * Domain Path:     /languages
  *
  * WC requires at least: 7.2
- * WC tested up to: 8.8.2
+ * WC tested up to: 9.3.3
+ * Requires at least:     6.1.0
+ * Requires PHP:          7.4
  *
  * Copyright:       Barn2 Media Ltd
  * License:         GNU General Public License v3.0
@@ -33,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const PLUGIN_VERSION = '1.0.10';
+const PLUGIN_VERSION = '1.0.11';
 const PLUGIN_FILE    = __FILE__;
 
 add_action( 'before_woocommerce_init', function() {

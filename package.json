@@ -1,6 +1,6 @@
 {
 	"name": "wc-product-table-block",
-	"version": "1.0.10",
+	"version": "1.0.11",
 	"description": "Build package for plugins",
 	"main": "gulpfile.js",
 	"scripts": {
